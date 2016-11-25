@@ -67,7 +67,7 @@ public abstract class LogData {
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	
+
 	public abstract LogReport generateReport();
 
 }
