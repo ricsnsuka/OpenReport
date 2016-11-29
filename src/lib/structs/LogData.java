@@ -14,7 +14,7 @@ public abstract class LogData {
 	private String details;
 
 	private boolean validLogTime(String logTime) {
-		return logTime.length() == 24;
+		return logTime.length() == 23 || logTime.length() == 24;
 	}
 
 	public Date getLogTime() {

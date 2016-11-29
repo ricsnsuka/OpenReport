@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 	<head>
-		<meta charset="UTF-8"/>
+		<meta charset="UTF-8" />
 		<title>eBroker Reports</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--script type="text/javascript" src="js/scripts.js"-->
 		<style>
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
 }
 
 td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
 }
 
 th {
@@ -27,7 +28,7 @@ th, td {
 }
 
 tr:nth-child(even) {
-    background-color: #dddddd;
+	background-color: #dddddd;
 }
 
 footer {
@@ -39,69 +40,62 @@ thead {
 	text-decoration: bold;
 }
 
-h2 {
+h2, h4 {
 	text-align: center;
 }
 		</style>
-		<script type="text/javascript">
-			var cell = document.getElementsByName("severeHits");
-			for(i = 0; i < cell.length; i++) {
-				var cellValue = $this.val();
-				if(cellValue >= 500) {
-					$(this).css({'background-color' : '#FF0000'});
-					}
-				};
-		</script>
+
 	</head>
 	<body>
 		<table>
 			<thead>
 				<h2>eBroker Reports</h2>
+				<h4>Week 28/11-04/12 (2016)</h4>
 			</thead>
 			<tr>
-				<th>Week</th>
+
 				<th>Problematic Broker</th>
 				<th>SEVERE</th>
 				<th>***</th>
 			</tr>
 			<tr>
-				<td>36/2016</td>
+
 				<td>Eldon</td>
-				<td name="severeHits" value="753">753</td>
+				<td class="severeHits" value="758">753</td>
 				<td>***</td>
 			</tr>
 			<tr>
-				<td>37/2016</td>
+
 				<td>Fresh-Autosaint</td>
-				<td name="severeHits" value="679">679</td>
+				<td class="severeHits" value="679">679</td>
 				<td>***</td>
 			</tr>
 			<tr>
-				<td>38/2016</td>
+
 				<td>Hughes</td>
-				<td name="severeHits" value="758">758</td>
+				<td class="severeHits" value="758">758</td>
 				<td>***</td>
 			</tr>
 			<tr>
-				<td>39/2016</td>
+
 				<td>Eldon</td>
-				<td name="severeHits" value="369">369</td>
+				<td class="severeHits" value="369">369</td>
 				<td>***</td>
 			</tr>
 			<tr>
-				<td>40/2016</td>
+
 				<td>Fresh-Autosaint</td>
-				<td name="severeHits" value="258">258</td>
+				<td class="severeHits" value="258">258</td>
 				<td>***</td>
 			</tr>
 			<tr>
-				<td>41/2016</td>
+
 				<td>Hughes</td>
-				<td name="severeHits" value="145">145</td>
+				<td class="severeHits" value="145">145</td>
 				<td>***</td>
 			</tr>
 			<tr>
-				<td>...</td>
+
 				<td>...</td>
 				<td>...</td>
 				<td>...</td>
@@ -110,113 +104,82 @@ h2 {
 		<table>
 			<thead>
 				<h2>eBroker Reports</h2>
+				<h4>Week 28/11-04/12 (2016)</h4>
 			</thead>
-			<tr>
-				<th>Week</th>
+			<tr>				
 				<th>Broker</th>
 				<th>SEVERE</th>
+				<th>Communication link failure</th>
+				<th>Unable to get broker storage folder</th>
 				<th>***</th>
 			</tr>
-			<tr>
-				<td>36/2016</td>
+			<tr>				
 				<td>Eldon</td>
-				<td name="severeHits" value="753">753</td>
+				<td class="severeHits" value="2000">2000</td>
+				<td class="severeType" value="1000">1000(50)</td>
+				<td class="severeType" value="500">500(25)</td>
 				<td>***</td>
 			</tr>
-			<tr>
-				<td>36/2016</td>
+			<tr>				
 				<td>Fresh-Autosaint</td>
-				<td name="severeHits" value="679">679</td>
+				<td class="severeHits" value="1750">1750</td>
+				<td class="severeType" value="1250">1250(71)</td>
+				<td class="severeType" value="0">0(0)</td>
 				<td>***</td>
 			</tr>
-			<tr>
-				<td>36/2016</td>
+			<tr>				
 				<td>Hughes</td>
-				<td name="severeHits" value="758">758</td>
+				<td class="severeHits" value="369">369</td>
+				<td class="severeType" value="120">120(34)</td>
+				<td class="severeType" value="37">37(10)</td>
 				<td>***</td>
 			</tr>
-			<tr>
-				<td>37/2016</td>
-				<td>Eldon</td>
-				<td name="severeHits" value="369">369</td>
-				<td>***</td>
-			</tr>
-			<tr>
-				<td>37/2016</td>
-				<td>Fresh-Autosaint</td>
-				<td name="severeHits" value="258">258</td>
-				<td>***</td>
-			</tr>
-			<tr>
-				<td>37/2016</td>
-				<td>Hughes</td>
-				<td name="severeHits" value="145">145</td>
-				<td>***</td>
-			</tr>
-			<tr>
+			<tr>				
+				<td>...</td>
 				<td>...</td>
 				<td>...</td>
 				<td>...</td>
 				<td>...</td>
 			</tr>
 		</table>
-		<br/>
-		<br/>
+		<br />
+		<br />
 		<table>
 			<thead>
 				<h2>OpenQuote Reports</h2>
+				<h4>Week 28/11-04/12 (2016)</h4>
 			</thead>
-			<tr>
-				<th>Week</th>
+			<tr>				
 				<th>Server</th>
 				<th>SEVERE</th>
 				<th>Communication failure errors</th>
 				<th>***</th>
 			</tr>
-			<tr>
-				<td>36/2016</td>
+			<tr>				
 				<td>1</td>
-				<td>1723</td>
-				<td name="severeHits" value="267">267</td>
+				<td class="severeHits" value="1723">1723</td>
+				<td class="severeType" value="267">267(15)</td>
 				<td>***</td>
 			</tr>
-			<tr>
-				<td>36/2016</td>
+			<tr>				
 				<td>2</td>
-				<td>1142</td>
-				<td name="severeHits" value="267">267</td>
+				<td class="severeHits" value="1475">1475</td>
+				<td class="severeType" value="267">267(18)</td>
 				<td>***</td>
 			</tr>
-			<tr>
-				<td>36/2016</td>
+			<tr>				
 				<td>3</td>
-				<td name="severeHits" value="458">458</td>
-				<td>0</td>
+				<td class="severeHits" value="1142">1142</td>
+				<td class="severeType" value="0">0(0)</td>
 				<td>***</td>
 			</tr>
-			<tr>
-				<td>37/2016</td>
-				<td>1</td>
-				<td name="severeHits" value="1475">1475</td>
-				<td>267</td>
+			<tr>				
+				<td>4</td>
+				<td class="severeHits" value="458">458</td>
+				<td class="severeType" value="267">267(58)</td>
 				<td>***</td>
 			</tr>
-			<tr>
-				<td>37/2016</td>
-				<td>2</td>
-				<td name="severeHits" value="478">478</td>
-				<td>18</td>
-				<td>***</td>
-			</tr>
-			<tr>
-				<td>37/2016</td>
-				<td>3</td>
-				<td name="severeHits" value="267">267</td>
-				<td>2</td>
-				<td>***</td>
-			</tr>
-			<tr>
-				<td>...</td>
+			<tr>				
 				<td>...</td>
 				<td>...</td>
 				<td>...</td>
@@ -224,7 +187,10 @@ h2 {
 			</tr>
 		</table>
 		<footer>
-			<p>*** means that this table can be customizable and it's allowed to add more columns</p>
+			<p>*** additional columns related to "SEVERE" and their are meant to provide
+				the number of specific problems on the logs.</p>
 		</footer>
+		<script src="js/scripts.js">
+		</script>
 	</body>
 </html>
