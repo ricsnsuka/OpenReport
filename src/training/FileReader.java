@@ -18,7 +18,6 @@ public class FileReader {
 	
 	public static void main(String[] args) {
 		fileReading("test.txt");
-		System.out.println(patternMatches());
 	}
 
 
@@ -31,9 +30,7 @@ public class FileReader {
 			String line = null;
 			System.out.println("----START WHILE----");
 			while((line = br.readLine()) != null) {
-				System.out.println(hasDate(line));
-				
-				
+				doSomethingWithLine(line);
 				
 			}
 			br.close();
@@ -48,46 +45,42 @@ public class FileReader {
 		}
 	}
 	
-	public static boolean hasDate(String line) {
-		String filtered = null;
-		if(line.length()>=24) {
-			filtered = line.substring(0, 24);
+	public static void doSomethingWithLine(String line) {
+		String[] splitted = line.split(" ");
+		for(String word : splitted) {
+//			System.out.println(word);
 		}
-		else {
-			filtered = line;
+		if(startsWithMonth(line)) {
+			int i = 0;
+			String[] passer = new String[5];
+			while(i < passer.length) {
+				passer[i] = splitted[i];
+				i++;
+			}
+			System.out.println(arrayToString(passer));
 		}
-		System.out.println(filtered);
-		
-		
-		Pattern month = Pattern.compile("(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)");
-		Matcher matcher = month.matcher(filtered);
-				
-		return matcher.matches();
+		if(hasSeverity(line)) {
+			System.out.println(splitted[0]);
+			System.out.println(line.substring(splitted[0].length() + 1));
+		}
 	}
 	
-	
-	public static void extractLogData() {
-		
-	}
-	
-	
-	public static boolean patternMatches() {
-		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss a", Locale.US);
-		String test = "Oct 21, 2016 11:59:46 PM";
-		System.out.println(test.length());
-		char[] date_hour = new char[24];
-		
-		date_hour = test.toCharArray();
-		
-		System.out.println(date_hour);
-		
-		boolean ret = Pattern.matches(sdf.toPattern(), test);
-		System.out.println(sdf.toPattern());
-		System.out.println(sdf.toLocalizedPattern());
+	private static String arrayToString(String[] array) {
+		String ret = "";
+		for(String pos: array) {
+			ret = ret + pos + " ";
+		}
 		return ret;
 	}
-
-
-
+	
+	public static boolean startsWithMonth(String line) {
+		return  line.startsWith("Jan") || line.startsWith("Feb") || line.startsWith("Mar") || line.startsWith("Apr")
+				|| line.startsWith("May") || line.startsWith("Jun") || line.startsWith("Jul") || line.startsWith("Aug")
+				|| line.startsWith("Sep") || line.startsWith("Oct") || line.startsWith("Nov") || line.startsWith("Dec");
+	}
+	
+	public static boolean hasSeverity(String line) {
+		return line.startsWith("SEVERE") || line.startsWith("INFO") || line.startsWith("WARNING");
+	}
 
 }

@@ -10,8 +10,13 @@ public abstract class LogData {
 	private Date logTime;
 	private String fault;
 	private LogType logType;
-	private String logInfo;
-	private String details;
+	
+	public LogData(String logTime, String fault, LogType logType) {
+		this.logTime = null;
+		setLogTime(logTime);
+		this.fault = fault;
+		this.logType = logType;
+	}
 
 	private boolean validLogTime(String logTime) {
 		return logTime.length() == 23 || logTime.length() == 24;
@@ -32,7 +37,7 @@ public abstract class LogData {
 				setLogTime(sdf.parse(logTime));
 			} catch (ParseException e) {
 				// LOG
-			}
+			} 
 		}
 	}
 
@@ -50,22 +55,6 @@ public abstract class LogData {
 
 	public void setLogType(LogType logType) {
 		this.logType = logType;
-	}
-
-	public String getLogInfo() {
-		return logInfo;
-	}
-
-	public void setLogInfo(String logInfo) {
-		this.logInfo = logInfo;
-	}
-
-	public String getDetails() {
-		return details;
-	}
-
-	public void setDetails(String details) {
-		this.details = details;
 	}
 
 	public abstract LogReport generateReport();

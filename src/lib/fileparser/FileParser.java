@@ -10,10 +10,10 @@ public class FileParser {
 		
 	}
 	
-	public LogData parse(File fileToParse) {
+	public LogData parse(String lineToParse) {
 		
 		
-		return null;
+		
 	}
 
 }
