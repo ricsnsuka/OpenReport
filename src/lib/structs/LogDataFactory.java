@@ -8,14 +8,17 @@ public class LogDataFactory {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public static LogData generateLogData(LogType type) throws OpenReportException {
+	public static LogData generateLogData(String type, String logDate, String severityInfo) throws OpenReportException {
 		LogData log = null;
 		switch(type) {
-		case SEVERE:
-			log = new SevereLogData(null, null, null);
+		case "SEVERE":
+			log = new SevereLogData(logDate, severityInfo);
 			break;
-		case INFO:
-			log = new InfoLogData(null, null, null);
+		case "INFO":
+			log = new InfoLogData(logDate, severityInfo);
+			break;
+		case "WARNING":
+			log = new WarningLogData(logDate, severityInfo);
 			break;
 		default:
 			throw new OpenReportException("The provided type is invalid.");

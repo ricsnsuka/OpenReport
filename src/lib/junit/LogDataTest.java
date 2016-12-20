@@ -13,13 +13,8 @@ public class LogDataTest {
 	LogData log;
 	@Test
 	public void testSetLogTime() {
-		log = new SevereLogData("Set 29, 2016 12:12:12 PM", null, LogType.SEVERE);
+		log = new SevereLogData("Set 29, 2016 12:12:12 PM", "Test");
 		assertEquals("Set 29, 2016 12:12:12 PM", log.getLogTime());
-	}
-
-	@Test
-	public void testSetFault() {
-		fail("Not yet implemented");
 	}
 
 	@Test

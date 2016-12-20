@@ -1,60 +1,46 @@
 package lib.structs;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 public abstract class LogData {
 
-	private Date logTime;
-	private String fault;
-	private LogType logType;
+	private String logTime;
+	private String severityInfo;
+	private LogType type;
 	
-	public LogData(String logTime, String fault, LogType logType) {
-		this.logTime = null;
-		setLogTime(logTime);
-		this.fault = fault;
-		this.logType = logType;
+	public LogData(String logTime, String severityInfo, LogType type) {
+		this.logTime = logTime;
+		this.severityInfo = severityInfo;
+		this.setType(type);
 	}
 
-	private boolean validLogTime(String logTime) {
-		return logTime.length() == 23 || logTime.length() == 24;
-	}
-
-	public Date getLogTime() {
+	public String getLogTime() {
 		return logTime;
 	}
 
-	private void setLogTime(Date logTime) {
+	public void setLogTime(String logTime) {
 		this.logTime = logTime;
 	}
 
-	public void setLogTime(String logTime) {
-		if (validLogTime(logTime)) {
-			SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss a", Locale.US);
-			try {
-				setLogTime(sdf.parse(logTime));
-			} catch (ParseException e) {
-				// LOG
-			} 
-		}
+	public String getSeverityInfo() {
+		return severityInfo;
 	}
 
-	public String getFault() {
-		return fault;
+	public void setSeverityInfo(String severityInfo) {
+		this.severityInfo = severityInfo;
+	}
+	
+
+	/**
+	 * @return the type
+	 */
+	public LogType getType() {
+		return type;
 	}
 
-	public void setFault(String fault) {
-		this.fault = fault;
-	}
-
-	public LogType getLogType() {
-		return logType;
-	}
-
-	public void setLogType(LogType logType) {
-		this.logType = logType;
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(LogType type) {
+		this.type = type;
 	}
 
 	public abstract LogReport generateReport();
