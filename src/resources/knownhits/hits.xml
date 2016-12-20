@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Hits>
+	<Severes>
+		<Severe></Severe>
+		<Severe></Severe>
+		<Severe></Severe>
+		<Severe></Severe>
+		<Severe></Severe>
+	</Severes>
+	<Infos>
+		<Info>Rule publish DateTime</Info>
+		<Info>Initializing ProtocolHandler</Info>
+		<Info>The web application [/ActiveQuote] created a ThreadLocal</Info>
+	</Infos>
+	<Warnings>
+	</Warnings>
+</Hits>

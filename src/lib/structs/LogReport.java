@@ -8,9 +8,11 @@ import lib.fileparser.FileParser;
 public class LogReport {
 	private HashMap<String, Integer> hits;
 	private ArrayList<LogData> logData;
+	private HashMap<String, Integer> logDataHits;
 	
 	public LogReport() {
 		hits = new HashMap<>();
+		logDataHits = new HashMap<>();
 		init();
 	}
 	
@@ -44,6 +46,21 @@ public class LogReport {
 	
 	public HashMap<String, Integer> getHits() {
 		return this.hits;
+	}
+	
+	public void beautify() {
+		for(LogData data: logData) {
+			if(!logDataHits.containsKey(data)) {
+				logDataHits.put(data.getSeverityInfo(), 1);
+			}
+			else {
+				logDataHits.replace(data.getSeverityInfo(), logDataHits.get(data)+1);
+			}
+		}
+	}
+	
+	public HashMap<String, Integer> getLogDataHits() {
+		return this.logDataHits;
 	}
 
 }
