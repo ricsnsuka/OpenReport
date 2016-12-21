@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Hits>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Hits>
 	<SEVERES>
-		<Severe></Severe>
-		<Severe></Severe>
-		<Severe></Severe>
-		<Severe></Severe>
-		<Severe></Severe>
+		<Severe/>
+		<Severe/>
+		<Severe/>
+		<Severe/>
+		<Severe/>
 	</SEVERES>
 	<INFOS>
 		<Info>Rule publish DateTime</Info>
 		<Info>Initializing ProtocolHandler</Info>
 		<Info>The web application [/ActiveQuote] created a ThreadLocal</Info>
 		<Info>Tried to run rules for broker</Info>
-	</INFOS>
+		<Info>Yes you can!</Info>
+		<Info>Ricardo es o maior so porque sim ok: 1213!</Info>
+	<Info>Can't stop the feeling!</Info></INFOS>
 	<WARNINGS>
 	</WARNINGS>
 </Hits>
