@@ -4,9 +4,9 @@ public abstract class LogData {
 
 	private String logTime;
 	private String severityInfo;
-	private LogType type;
+	private LogEntryType type;
 	
-	public LogData(String logTime, String severityInfo, LogType type) {
+	public LogData(String logTime, String severityInfo, LogEntryType type) {
 		this.logTime = logTime;
 		this.severityInfo = severityInfo;
 		this.setType(type);
@@ -32,14 +32,14 @@ public abstract class LogData {
 	/**
 	 * @return the type
 	 */
-	public LogType getType() {
+	public LogEntryType getType() {
 		return type;
 	}
 
 	/**
 	 * @param type the type to set
 	 */
-	public void setType(LogType type) {
+	public void setType(LogEntryType type) {
 		this.type = type;
 	}
 

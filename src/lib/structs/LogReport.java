@@ -35,11 +35,11 @@ public class LogReport {
 	
 	public void countHits() {
 		for(LogData data : logData) {
-			if(data.getType() == LogType.SEVERE)
+			if(data.getType() == LogEntryType.SEVERE)
 				hits.replace("SEVERE", hits.get("SEVERE")+1);
-			if(data.getType() == LogType.INFO)
+			if(data.getType() == LogEntryType.INFO)
 				hits.replace("INFO", hits.get("INFO")+1);
-			if(data.getType() == LogType.WARNING)
+			if(data.getType() == LogEntryType.WARNING)
 				hits.replace("WARNING", hits.get("WARNING")+1);
 		}
 	}

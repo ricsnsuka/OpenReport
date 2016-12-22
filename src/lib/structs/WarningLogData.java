@@ -1,7 +1,7 @@
 package lib.structs;
 
 public class WarningLogData extends LogData {
-	public final static LogType type = LogType.WARNING;
+	public final static LogEntryType type = LogEntryType.WARNING;
 	public WarningLogData(String logDate, String severityInfo) {
 		super(logDate, severityInfo, type);
 	}

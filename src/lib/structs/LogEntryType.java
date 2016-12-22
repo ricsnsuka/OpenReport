@@ -1,6 +1,6 @@
 package lib.structs;
 
-public enum LogType {
+public enum LogEntryType {
 	SEVERE,
 	INFO,
 	WARNING;

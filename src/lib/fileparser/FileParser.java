@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import lib.exceptions.OpenReportException;
 import lib.structs.LogData;
 import lib.structs.LogDataFactory;
+import lib.structs.LogEntryType;
 
 public class FileParser {
 	public FileParser() {
@@ -18,15 +19,16 @@ public class FileParser {
 
 	public ArrayList<LogData> parse(String filename) {
 		ArrayList<LogData> logDataCollection = new ArrayList<>();
+		XMLParser parser = new XMLParser();
 		try {
 			boolean ready = false;
 			String timestamp = null;
-			
+
 			Charset charset = Charset.forName("US-ASCII");
 			Path path = FileSystems.getDefault().getPath("src\\resources", filename);
 			BufferedReader br = Files.newBufferedReader(path, charset);
-			
-			
+
+
 			String line = null;
 			while((line = br.readLine()) != null) {
 				if(startsWithMonth(line)) {
@@ -35,12 +37,17 @@ public class FileParser {
 				}
 				else {
 					if (ready) {
-						  if(hasSeverity(line)) {
-							  String[] severity = extractSeverityInfo(line);
-							  LogData logData = LogDataFactory.generateLogData(severity[0], timestamp, severity[1]);
-							  logDataCollection.add(logData);
-							  ready = false;
-						  }
+						if(hasSeverity(line)) {
+							String[] severity = extractSeverityInfo(line);
+							LogData logData = LogDataFactory.generateLogData(severity[0], timestamp, severity[1]);
+							LogEntryType currentLogEntryType = logData.getType();
+							String currentEntrySeverityInfo = logData.getSeverityInfo();
+							logDataCollection.add(logData);
+							if(!parser.exists(currentLogEntryType, currentEntrySeverityInfo)) {
+								parser.addInfoToXML(currentLogEntryType, currentEntrySeverityInfo);
+							}
+							ready = false;
+						}
 					}
 				}
 			}
@@ -55,15 +62,15 @@ public class FileParser {
 		}
 		return logDataCollection;
 	}
-	
-	
+
+
 
 	private boolean startsWithMonth(String line) {
 		return  line.startsWith("Jan") || line.startsWith("Feb") || line.startsWith("Mar") || line.startsWith("Apr")
 				|| line.startsWith("May") || line.startsWith("Jun") || line.startsWith("Jul") || line.startsWith("Aug")
 				|| line.startsWith("Sep") || line.startsWith("Oct") || line.startsWith("Nov") || line.startsWith("Dec");
 	}
-	
+
 	private String extractTimestamp(String line) {
 		String[] splittedLine = line.split(" ");
 		String ret = "";
@@ -76,13 +83,13 @@ public class FileParser {
 	private boolean hasSeverity(String line) {
 		return line.startsWith("SEVERE") || line.startsWith("INFO") || line.startsWith("WARNING");
 	}
-	
+
 	private String[] extractSeverityInfo(String line) {
 		String[] splittedLine = line.split(" ");
 		String[] ret = {determineLogType(splittedLine[0]), line.substring(splittedLine[0].length() + 1)};
 		return ret;
 	}
-	
+
 	private String determineLogType(String logType) {
 		if(logType.equalsIgnoreCase("severe:"))
 			return "SEVERE";
