@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import lib.structs.LogData;
-import lib.structs.LogEntryType;
 import lib.structs.SevereLogData;
 
 public class LogDataTest {

@@ -1,12 +1,9 @@
 package lib.fileparser;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import lib.exceptions.OpenReportException;
 import lib.structs.LogData;
@@ -20,17 +17,19 @@ public class FileParser {
 	public ArrayList<LogData> parse(String filename) {
 		ArrayList<LogData> logDataCollection = new ArrayList<>();
 		XMLParser parser = new XMLParser();
-		try {
-			boolean ready = false;
-			String timestamp = null;
 
-			Charset charset = Charset.forName("US-ASCII");
-			Path path = FileSystems.getDefault().getPath("src\\resources", filename);
-			BufferedReader br = Files.newBufferedReader(path, charset);
+		boolean ready = false;
+		String timestamp = null;
+		String exception = "";
 
-
+//		Charset charset = Charset.forName("windows-1250");
+//		Path path = FileSystems.getDefault().getPath("src\\resources", filename);
+		//			BufferedReader br = Files.newBufferedReader(path, charset);
+		int i = 0;
+		try (Scanner scan = new Scanner(new File("src\\resources\\"+filename))) {
 			String line = null;
-			while((line = br.readLine()) != null) {
+			while(scan.hasNextLine()) {
+				exception = (line = scan.nextLine());
 				if(startsWithMonth(line)) {
 					ready = true;
 					timestamp = extractTimestamp(line);
@@ -50,14 +49,21 @@ public class FileParser {
 						}
 					}
 				}
+				if((i % 359500) == 0) {
+					System.out.println(i);
+					
+				}
+				i++;
+				
 			}
-			br.close();
+			scan.close();
 		}catch(OpenReportException ex) {
 			//LOG?
 			ex.printStackTrace();
 
-		}catch(IOException e) {
-			//LOG?
+		}catch(IOException e ) {
+			System.out.println(exception);
+			System.err.println(e.getMessage());
 			e.printStackTrace();
 		}
 		return logDataCollection;

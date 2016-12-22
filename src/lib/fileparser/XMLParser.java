@@ -20,9 +20,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import uk.ac.shef.wit.simmetrics.similaritymetrics.*;
-
 import lib.structs.LogEntryType;
+import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 
 public class XMLParser {
 	private static final String filepath = "src\\resources\\test.xml";
@@ -62,16 +61,23 @@ public class XMLParser {
 	public boolean exists(LogEntryType type, String severityInfo) {
 		NodeList nList = document.getElementsByTagName(tagNames.get(type));
 		JaroWinkler algorithm = new JaroWinkler();
+		double similarity;
+		int j;
+		String textContent;
 
 		for(int i = 0; i < nList.getLength(); i++) {
 			Node node = nList.item(i);
 			if(node.getNodeType() == Node.ELEMENT_NODE) {
 				NodeList nList2 = ((Element) node).getChildNodes();
-				int j = 0;
+				j = 0;
 				while(j < nList2.getLength()) {
 					if(nList2.item(j).getNodeType() == Node.ELEMENT_NODE) {
-						double similarity = algorithm.getSimilarity(severityInfo, nList2.item(j).getTextContent());
-						System.out.println("Comparing strings::\n\t" + severityInfo + "\nwith\n\t " + nList2.item(j).getTextContent() + "\n\nResult::" + similarity);
+						textContent = nList2.item(j).getTextContent();
+						if(severityInfo.contains(textContent)) {
+							return true;
+						}
+						similarity = algorithm.getSimilarity(severityInfo, textContent);
+//						System.out.println("Comparing strings::\n\t" + severityInfo + "\nwith\n\t " + nList2.item(j).getTextContent() + "\n\nResult::" + similarity);
 						if(similarity > 0.93) {
 							return true;
 						}

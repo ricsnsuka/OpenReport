@@ -14,10 +14,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import uk.ac.shef.wit.simmetrics.similaritymetrics.*;
-
 import lib.structs.InfoLogData;
 import lib.structs.LogData;
+import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 
 public class WriteXML {
 
