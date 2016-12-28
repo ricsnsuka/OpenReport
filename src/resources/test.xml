@@ -3,55 +3,56 @@
 	<SEVERES>
 		<SEVERE>caught throwable</SEVERE>
 		<SEVERE>Cannot read salt for user</SEVERE>
-		<SEVERE>Encryption for user:</SEVERE>
-	<SEVERE>IllegalArgumentException - source parameter is null or empty.</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/Sabre/SABR902/B01579/Branch_0/W/WA/WAB/WABY/WABY36/GoGirl/PC01/documents/36360729_GG Policy summary.ogi (No such file or directory)</SEVERE>
-        <SEVERE>Error processing DocumentViewer request</SEVERE>
-        <SEVERE>null</SEVERE>
-        <SEVERE>java.lang.Exception: Failed to get MLSClientDir setting from tripos for branch 3	at com.opengi.exceptions.OGIException.&lt;init&gt;(OGIException.java:217)	at com.opengi.exceptions.OGIException.&lt;init&gt;(OGIException.java:158)	at com.opengi.customerportal.CustomerPortal.saveDocumentsToOpenAttach(CustomerPortal.java:152)	at com.opengi.customerportal.CustomerPortal.processMessage(CustomerPortal.java:78)	at com.opengi.oicc.MessageProcessor.run(MessageProcessor.java:98)	at com.opengi.oicc.BoundedExecutor$1.run(BoundedExecutor.java:43)	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)	at java.lang.Thread.run(Thread.java:745)</SEVERE>
-        <SEVERE>EmailManager:: unable to send renewal email for event: DocPortalActivateUser with subject: Please activate your account</SEVERE>
-        <SEVERE>Error validating secret keyword answer.</SEVERE>
-        <SEVERE>No email address in session</SEVERE>
-        <SEVERE>No BrandID in session</SEVERE>
-        <SEVERE>Cannot read password salt for user 25:armouredpies@outlook.com</SEVERE>
-        <SEVERE>java.lang.Exception: Call to OpenSpecifiedConnection service failed. Due to: (Failed to establish connection with Tripos - Error unknown)	at com.opengi.bdm.BDMConnector.openConnection(BDMConnector.java:154)	at com.opengi.bdm.BDMConnector.makeCall(BDMConnector.java:60)	at com.opengi.bdm.BDMConnector.makeCall(BDMConnector.java:44)	at com.opengi.customerportal.CustomerPortal.createDiaryNote(CustomerPortal.java:241)	at com.opengi.customerportal.CustomerPortal.processMessage(CustomerPortal.java:74)	at com.opengi.oicc.MessageProcessor.run(MessageProcessor.java:98)	at com.opengi.oicc.BoundedExecutor$1.run(BoundedExecutor.java:43)	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)	at java.lang.Thread.run(Thread.java:745)</SEVERE>
-        <SEVERE>110: Error - Timed out, Request not picked up</SEVERE>
-        <SEVERE>Cannot read password salt for user 21:naveed_786_2003@yahoo.com</SEVERE>
-        <SEVERE>Cannot read password salt for user 21:jadebplumbingandheatingltd@gmail.com</SEVERE>
-        <SEVERE>Error waiting for multi-thread deployment of WAR files to complete</SEVERE>
-        <SEVERE>Cannot find specified temporary folder at /opt/opencustomerportal/temp</SEVERE>
-        <SEVERE>111: Error - Timed out, Response not returned</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/mceinsurance/EDMC008/B02621/Branch_3/C/CU/CUP/CUPZ/CUPZ42/MCE Insurance/MC01/documents/37544085_Your MCE Options Policy.ogi (No such file or directory)</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/Sabre/SABR902/B01579/Branch_0/E/EA/EAT/EATX/EATX22/GoGirl/PC01/documents/37567543_GG Motor Welcome Letter.ogi (No such file or directory)</SEVERE>
-        <SEVERE>Unable to Populate email template</SEVERE>
-        <SEVERE>EmailManager:: unable to send renewal email for event: RenewalConfirmCC with subject: Renewal Confirmation for RP01</SEVERE>
-        <SEVERE>Encryption exception - Given final block not properly padded</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/churchillvan/COMM008/B02647/Branch_0/E/ED/EDD/EDDW/EDDW03/CVD/TW03/documents/36479769_Certificate.ogi (No such file or directory)</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/mceinsurance/EDMC008/B02621/Branch_3/K/KI/KIM/KIMC/KIMC66/MCE Insurance/MC01/documents/36037041_OW-E-CoveringLetterNB.ogi (No such file or directory)</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/Sabre/SABR902/B01579/Branch_0/C/CU/CUK/CUKX/CUKX71/GoGirl/PC01/documents/36389347_Certificate.ogi (No such file or directory)</SEVERE>
-        <SEVERE>No userBean in session when attempting to change password.</SEVERE>
+		<SEVERE>Encryption for user</SEVERE>
+		<SEVERE>IllegalArgumentException - source parameter is null or empty.
+		</SEVERE>
+		<SEVERE>Cannot read password salt for user</SEVERE>
+		<SEVERE>Encryption exception</SEVERE>
+		<SEVERE>The web application [/CoreQuote] created a ThreadLocal with
+			key of type [java.lang.ThreadLocal]</SEVERE>
+		<SEVERE>Failed to get MLSClientDir setting from tripos</SEVERE>
+		<SEVERE>Error processing DocumentViewer request</SEVERE>
+		<SEVERE>null</SEVERE>
+		<SEVERE>Failed to get MLSClientDir setting from tripos</SEVERE>
+		<SEVERE>unable to send renewal email for event: DocPortalActivateUser with subject: Please activate your account</SEVERE>
+		<SEVERE>Error validating secret keyword answer.</SEVERE>
+		<SEVERE>No email address in session</SEVERE>
+		<SEVERE>No BrandID in session</SEVERE>
+		<SEVERE>Call to OpenSpecifiedConnection service failed</SEVERE>
+		<SEVERE>110: Error - Timed out, Request not picked up</SEVERE>
+		<SEVERE>Timed out</SEVERE>
+		<SEVERE>Unable to Populate email template</SEVERE>
+		<SEVERE>unable to send renewal email for event</SEVERE>
+		<SEVERE>No userBean in session when attempting to change password</SEVERE>
+		<SEVERE>Payment callback received for case that is already purchased</SEVERE>
+		<SEVERE>Content of email is empty.</SEVERE>
+        <SEVERE>AjaxHandler.do fatal error</SEVERE>
+        <SEVERE>Error getting DatabaseUtility</SEVERE>
+		<SEVERE>Cannot find specified temporary folder at /opt/activequote/temp</SEVERE>
+        <SEVERE>AbstractActiveQuoteProcessor::RuleSetDef references 88 but no corresponding class was found</SEVERE>
+        <SEVERE>Couldn't create SOAP message due to exception: Unable to create StAX reader or writer</SEVERE>
+        <SEVERE>Failed to instantiate and run rule assessor class</SEVERE>
+        <SEVERE>AbstractActiveQuoteProcessor::Caught Throwable loading rule for IC = 241</SEVERE>
+        <SEVERE>The web application [/ActiveQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.ClassFactory$1] (value [com.sun.xml.bind.v2.ClassFactory$1@2f016c65]) and a value of type [java.util.WeakHashMap] (value [{class com.opengi.activequote.bufferhandling.buffermanager.motor.benbuffer.BrokerEnrichmentData=java.lang.ref.WeakReference@347b2a41, class com.opengi.activequote.webservice.jaxws.GetQuote=java.lang.ref.WeakReference@2132c52, class com.opengi.activequote.bufferhandling.buffermanager.motor.benbuffer.Ben=java.lang.ref.WeakReference@38c2bc8e}]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
+        <SEVERE>The web application [/ActiveQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.runtime.Coordinator$1] (value [com.sun.xml.bind.v2.runtime.Coordinator$1@78e92bbe]) and a value of type [java.lang.Object[]] (value [[Ljava.lang.Object;@143704f6]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
+        <SEVERE>The web application [] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.</SEVERE>
+        <SEVERE>The web application [] created a ThreadLocal with key of type [com.sun.xml.bind.v2.ClassFactory$1] (value [com.sun.xml.bind.v2.ClassFactory$1@7d6b2dd2]) and a value of type [java.util.WeakHashMap] (value [{class com.opengi.activequote.webservice.jaxws.GetQuote=java.lang.ref.WeakReference@78d7652}]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
+    	<SEVERE>Error waiting for multi-thread deployment of WAR files to complete</SEVERE>
         <SEVERE>CustomerDocumentOINCMessageGateway: Unable to send message with OpenInterchangeSoap</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/mceinsurance/EDMC008/B02621/Branch_3/H/HO/HOH/HOHZ/HOHZ02/MCE Insurance/MC01/documents/39131698_Payment Plan - RP Letter.ogi (No such file or directory)</SEVERE>
+        <SEVERE>java.lang.Exception: MFTP Error receiving file 3: {1}	at com.opengi.exceptions.OGIException.&lt;init&gt;(OGIException.java:217)	at com.opengi.exceptions.OGIException.&lt;init&gt;(OGIException.java:158)	at com.opengi.customerportal.CustomerPortal.saveDocumentsToOpenAttach(CustomerPortal.java:152)	at com.opengi.customerportal.CustomerPortal.processMessage(CustomerPortal.java:78)	at com.opengi.oicc.MessageProcessor.run(MessageProcessor.java:98)	at com.opengi.oicc.BoundedExecutor$1.run(BoundedExecutor.java:43)	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)	at java.lang.Thread.run(Thread.java:745)</SEVERE>
         <SEVERE>Compilation error</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/justmotorinsurance/NACX001/B02052/Branch_5/P/PE/PEM/PEMX/PEMX02/justmotorinsurance/PC01/documents/39971599_Portal - ED.ogi (No such file or directory)</SEVERE>
         <SEVERE>RenewalOINCMessageGateway: Unable to send message with OpenInterchangeSoap</SEVERE>
-        <SEVERE>Encryption exception - Input length must be multiple of 8 when decrypting with padded cipher</SEVERE>
         <SEVERE>Failure loading EB3 config for repository=taagl</SEVERE>
         <SEVERE>Error filterStart</SEVERE>
         <SEVERE>Context [/OpenCustomerPortalAdmin] startup failed due to previous errors</SEVERE>
         <SEVERE>IOException while saving persisted sessions: java.io.FileNotFoundException: /opt/opencustomerportal/work/Catalina/localhost/_/SESSIONS.ser (No such file or directory)</SEVERE>
         <SEVERE>Exception unloading sessions to persistent storage</SEVERE>
         <SEVERE>Context [] startup failed due to previous errors</SEVERE>
-        <SEVERE>The web application [] appears to have started a thread named [Renewal_Resender] but has failed to stop it. This is very likely to create a memory leak.</SEVERE>
         <SEVERE>Failed to initialize end point associated with ProtocolHandler ["http-bio-10.170.53.33-443"]</SEVERE>
         <SEVERE>Failed to initialize connector [Connector[HTTP/1.1-443]]</SEVERE>
         <SEVERE>Database Exception - Column 'MtaActivated' not found.</SEVERE>
         <SEVERE>Error processing payment callback</SEVERE>
-    <SEVERE>java.lang.Exception: Error in BDMInterface::BRDM23_class com.opengi.bdm.commands.brdm23.AddDiaryNote. Failed to initialise diary record. Error code [8001]	at com.opengi.bdm.commands.BDMCommand.run(BDMCommand.java:121)	at java.lang.Thread.run(Thread.java:745)</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/Sabre/SABR902/B01579/Branch_0/K/KE/KEJ/KEJZ/KEJZ45/Insure2Drive/PC01/documents/37742241_I2D Policy summary.ogi (No such file or directory)</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/footmanjames/FOOT001/B01759/Branch_0/E/EL/ELJ/ELJZ/ELJZ26/Footman James/CC01/documents/39467232_Action Req - Miles.ogi (No such file or directory)</SEVERE>
         <SEVERE>Failed to load subdomainMappings</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/freshinsurance/FRES001/B02624/Branch_0/A/AT/ATA/ATAX/ATAX32/Ladybird/PC01/documents/40315805_Proposal.ogi (No such file or directory)</SEVERE>
         <SEVERE>Database Exception - Communications link failure</SEVERE>
         <SEVERE>Database Error getting failed messages</SEVERE>
         <SEVERE>GatewayResender - Unknown Exception</SEVERE>
@@ -62,35 +63,22 @@
         <SEVERE>Failure loading wording for repository=monitor{0}, filename=wording.xml</SEVERE>
         <SEVERE>Failure loading email configuration for repository=branddefault, filename=defaultemailconfig.xml</SEVERE>
         <SEVERE>Error calling/updating database</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/Sabre/SABR902/B01579/Branch_0/W/WO/WOS/WOSX/WOSX71/Insure2Drive/PC01/documents/37289931_RAC Cert renewal.ogi (No such file or directory)</SEVERE>
-    <SEVERE>Database Exception - Data truncation: Data too long for column '_EmailAddress' at row 1</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/completecovergroup/ALLE003/B01950/Branch_4/C/CH/CHJ/CHJM/CHJM01/A&amp;A Group/PC01/documents/40669513_Certificate.ogi (No such file or directory)</SEVERE>
-        <SEVERE>java.lang.Exception: Failed to create OpenAttach directory in vault /opengi/docs/oa-mount/F/FO/FOS/FOSX/FOSX37/FOSX37PC01/DIARY_23. Branch = 00, Client = FOSX37PC01, Diary = 23	at com.opengi.exceptions.OGIException.&lt;init&gt;(OGIException.java:217)	at com.opengi.exceptions.OGIException.&lt;init&gt;(OGIException.java:158)	at com.opengi.customerportal.CustomerPortal.constructOpenAttachFilePath(CustomerPortal.java:339)	at com.opengi.customerportal.CustomerPortal.saveDocumentsToOpenAttach(CustomerPortal.java:156)	at com.opengi.customerportal.CustomerPortal.processMessage(CustomerPortal.java:78)	at com.opengi.oicc.MessageProcessor.run(MessageProcessor.java:98)	at com.opengi.oicc.BoundedExecutor$1.run(BoundedExecutor.java:43)	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)	at java.lang.Thread.run(Thread.java:745)</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/mceinsurance/EDMC008/B02621/Branch_3/D/DM/DMP/DMPX/DMPX01/MCE Insurance/MC01/documents/38211923_Policy Schedules.ogi (No such file or directory)</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/footmanjames/FOOT001/B01759/Branch_0/K/KI/KII/KIIX/KIIX58/Footman James/CC02/documents/41184917_Policy Document - Change.ogi (No such file or directory)</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/churchillvan/COMM008/B02647/Branch_0/F/FR/FRJ/FRJY/FRJY49/CVD/TW03/documents/41171721_MTASchedule.ogi (No such file or directory)</SEVERE>
+        <SEVERE>Database Exception - Data truncation: Data too long for column '_EmailAddress' at row 1</SEVERE>
+        <SEVERE>Failed to create OpenAttach directory</SEVERE>
         <SEVERE>Broker Resource: config/htmltemplates/emailtemplate/broker_message_callmeback.html not found in Brand XML</SEVERE>
         <SEVERE>Failed to reach Information Service for 'isAlive' check</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/footmanjames/FOOT001/B01759/Branch_0/M/MC/MCM/MCMD/MCMD92/Footman James/MO01/documents/41374999_SummaryV2101.ogi (No such file or directory)</SEVERE>
-        <SEVERE>UnitMeter Unavailable - connect timed out</SEVERE>
+        <SEVERE>UnitMeter Unavailable</SEVERE>
         <SEVERE>Error initialising BrandJarResource</SEVERE>
         <SEVERE>User:: An error occured when calling getMTARisk for this policy: SMSE08PC01</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/goskippy/ELDO001/B02014/Branch_0/S/SM/SMS/SMSE/SMSE08/GoSkippy/PC02/documents/42263647_GS Car Welcome Letter.ogi (No such file or directory)</SEVERE>
-        <SEVERE>Encryption exception - /data/documents/completecovergroup/ALLE003/B01950/Branch_8/T/TE/TES/TEST/TEST01/Insure Your Motor/PC01/documents/42266687_IYM On Cover Letter (NB).ogi (No such file or directory)</SEVERE>
-        <SEVERE>The web application [/CoreQuote] appears to have started a thread named [CC1] but has failed to stop it. This is very likely to create a memory leak.</SEVERE>
+        <SEVERE>The web application [/CoreQuote] appears to have started a thread named [GR1] but has failed to stop it. This is very likely to create a memory leak.</SEVERE>
         <SEVERE>Passed Tomcat session ID didn't match from deeplink URL: https://goskippy.opencustomerportal.co.uk/CoreQuote/MTAStart.dq</SEVERE>
         <SEVERE>Error processing PageInitiator:</SEVERE>
-        <SEVERE>OpenInterchangeXStream: Retrying due to: &lt;xmlreply&gt;&lt;messages&gt;&lt;result&gt;error&lt;/result&gt;&lt;error&gt;OICXS: Timed out waiting for response&lt;/error&gt;&lt;/messages&gt;&lt;/xmlreply&gt;</SEVERE>
         <SEVERE>The web application [/CoreQuote] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@5110f078]) and a value of type [com.sun.xml.stream.writers.XMLStreamWriterImpl] (value [com.sun.xml.stream.writers.XMLStreamWriterImpl@5a201f3d]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
         <SEVERE>The web application [/CoreQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.runtime.Coordinator$1] (value [com.sun.xml.bind.v2.runtime.Coordinator$1@57cf0500]) and a value of type [com.sun.xml.bind.v2.runtime.Coordinator[]] (value [[Lcom.sun.xml.bind.v2.runtime.Coordinator;@dcc2133]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
-        <SEVERE>OpenInterchangeXStream: Retrying due to: &lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;xmlreply&gt;&lt;messages&gt;&lt;Branch&gt;0&lt;/Branch&gt;&lt;PolicyRef&gt;SMSE08PC05&lt;/PolicyRef&gt;&lt;result&gt;Error&lt;/result&gt;&lt;error&gt;OICXS: Policy Last Day&lt;/error&gt;&lt;/messages&gt;&lt;usageremaining&gt;&lt;broomscreate&gt;0&lt;/broomscreate&gt;&lt;broomsupdate&gt;5000&lt;/broomsupdate&gt;&lt;broomsread&gt;0&lt;/broomsread&gt;&lt;apmcreate&gt;0&lt;/apmcreate&gt;&lt;apmupdate&gt;0&lt;/apmupdate&gt;&lt;apmconvert&gt;0&lt;/apmconvert&gt;&lt;apmread&gt;0&lt;/apmread&gt;&lt;AQnonEDI&gt;0&lt;/AQnonEDI&gt;&lt;/usageremaining&gt;&lt;/xmlreply&gt;</SEVERE>
-        <SEVERE>SessionReference: 171997934 Payment callback received for case that is already purchased. QueryString=webref=171997934&amp;transactionamount=35.00&amp;cardnumber=%2A%2A%2A%2A+%2A%2A%2A%2A+%2A%2A%2A%2A+9510+&amp;cardexpiremonth=02&amp;cardexpireyear=19&amp;cardholdersname=Emma+Howells&amp;cv2avsresult=ALL+MATCH&amp;upgcardtype=Visa+Debit&amp;upgauthcode=002294&amp;verify=510822ab34a8c7966a297f09ba2583ed36715451&amp;transactionnumber=98426701&amp;transactiontime=2016-12-02+11%3A51%3A18&amp;transactionnumber=98426701&amp;transactiontime=2016-12-02+11%3A51%3A18</SEVERE>
+        <SEVERE>OpenInterchangeXStream</SEVERE>
+        <SEVERE>Payment callback received for case that is already purchased</SEVERE>
         <SEVERE>OpenInterchangeXStream: Unable to sendXStream message</SEVERE>
         <SEVERE>User: Unable to unmarshal mta risk data for this policy. Policy Ref: PC01</SEVERE>
-        <SEVERE>SessionReference: 171481573 Content of email is empty.</SEVERE>
-        <SEVERE>SessionReference: 171711281 Payment callback received for case that is already purchased. QueryString=webref=171711281&amp;transactionamount=35.00&amp;cardnumber=%2A%2A%2A%2A+%2A%2A%2A%2A+%2A%2A%2A%2A+2801+&amp;cardexpiremonth=11&amp;cardexpireyear=18&amp;cardholdersname=George+Ritchie&amp;cv2avsresult=ALL+MATCH&amp;upgcardtype=Visa+Debit&amp;upgauthcode=543968&amp;verify=fcae35933762eaa12ed7b6eef95834c3f98225e9&amp;transactionnumber=98626752&amp;transactiontime=2016-12-09+14%3A10%3A32&amp;transactionnumber=98626752&amp;transactiontime=2016-12-09+14%3A10%3A32</SEVERE>
-        <SEVERE>AjaxHandler.do fatal error</SEVERE>
-        <SEVERE>Error getting DatabaseUtility</SEVERE>
         <SEVERE>EmailManager attempted to send email with empty toAddress</SEVERE>
     </SEVERES>
 	<INFOS>
@@ -100,53 +88,48 @@
 		<INFO>### Attempt to encrypt the password</INFO>
 		<INFO>### Authentication result</INFO>
 		<INFO>### Selected algorithm</INFO>
-		<INFO>Tried to run rules for broker:</INFO>
-	<INFO>Error retrieving resource from brand - brand_config/gogirl/config/emailconfig.xml</INFO>
-        <INFO>It appears the path ends with '/' or contains '..': /gogirl/</INFO>
-        <INFO>Path is Invalid: /gogirl/</INFO>
-        <INFO>Path is Invalid: /footmanjames/</INFO>
-        <INFO>Path is Invalid: /mceinsurance/page_background.png</INFO>
-        <INFO>Unable to find or access jarFile: /opt/opencustomerportal/brands/monitor.jar</INFO>
-        <INFO>Path is Invalid: /commercialvehicledirect/</INFO>
-        <INFO>IOException occurred in UserInfoServiceClient. Connection issue.sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</INFO>
-        <INFO>User jeancedgar@yahoo.co.uk is locked out until 2016-08-01 10:45:34.000 after 5 failed login attempts.</INFO>
+		<INFO>Tried to run rules for broker</INFO>
+		<INFO>Path is Invalid</INFO>
+		<INFO>5 failed login attempts</INFO>
+		<INFO>unable to find valid certification path to requested target</INFO>
+		<INFO>Unable to find or access jarFile</INFO>
+		<INFO>BrandName in URL does not match detected subDomain</INFO>
+		<INFO>Error retrieving resource from brand</INFO>
+		<INFO>Server startup</INFO>
+		<INFO>Initialization processed</INFO>
+		<INFO>Trigger file timestamp has changed so force cache to reload rules jar</INFO>
+        <INFO>Failed to get RuleSetDef after 5 retries for class base</INFO>
+        <INFO>ExipryCache: object now valid again key=PUBDATETTME</INFO>
+        <INFO>Initializing ProtocolHandler ["http-bio-10.170.25.110-80"]</INFO>
+        <INFO>Starting service Catalina</INFO>
+        <INFO>Starting Servlet Engine: Apache Tomcat/7.0.52</INFO>
+        <INFO>WSSERVLET12: JAX-WS context listener initializing</INFO>
+        <INFO>Metro monitoring rootname successfully set</INFO>
+        <INFO>ContextListener startup: ListCache Size=162 codelists</INFO>
+        <INFO>ContextListener startup: process time=6094ms</INFO>
+        <INFO>Deploying web application archive /opt/activequote/webapps/ActiveQuote.war</INFO>
+        <INFO>Communications link failure</INFO>
+        <INFO>Undeploying context</INFO>
+        <INFO>WSSERVLET15: JAX-WS servlet destroyed</INFO>
+        <INFO>Starting ProtocolHandler</INFO>
+        <INFO>Pausing ProtocolHandler</INFO>
+        <INFO>Stopping service Catalina</INFO>
+        <INFO>Stopping ProtocolHandler</INFO>
+        <INFO>Destroying ProtocolHandler</INFO>
+    	<INFO>It appears the path ends with '/' or contains '..': /gogirl/</INFO>
         <INFO>Total extra time in milliseconds to refresh scheduled tasks from site 0</INFO>
-        <INFO>User roywinter1@hotmail.co.uk is locked out until 2016-08-01 10:53:05.000 after 5 failed login attempts.</INFO>
-        <INFO>User maryjrob@yahoo.co.uk is locked out until 2016-08-01 11:24:45.000 after 5 failed login attempts.</INFO>
-        <INFO>User michaelpeavoy@me.com is locked out until 2016-08-01 11:33:30.000 after 5 failed login attempts.</INFO>
-        <INFO>User stuartpop_89@yahoo.in is locked out until 2016-08-01 11:53:03.000 after 5 failed login attempts.</INFO>
-        <INFO>User cleytonbr@live.com is locked out until 2016-08-01 12:13:32.000 after 5 failed login attempts.</INFO>
-        <INFO>User mk.cc@hotmail.co.uk is locked out until 2016-08-01 12:37:23.000 after 5 failed login attempts.</INFO>
-        <INFO>User  is locked out until 2016-08-01 13:40:12.000 after 5 failed login attempts.</INFO>
-        <INFO>User ronmills1@eircom.net is locked out until 2016-08-01 13:41:19.000 after 5 failed login attempts.</INFO>
-        <INFO>Path is Invalid: /churchillvaninsurance/</INFO>
-        <INFO>User davep63@btinternet.com is locked out until 2016-08-01 16:39:46.000 after 5 failed login attempts.</INFO>
-        <INFO>User gerald.knight1@btopenworld.com is locked out until 2016-08-01 19:41:06.000 after 5 failed login attempts.</INFO>
-        <INFO>User rayfisher58@outlook.com is locked out until 2016-08-01 19:55:36.000 after 5 failed login attempts.</INFO>
-        <INFO>User sean@sean-obrien.org is locked out until 2016-08-01 22:36:47.000 after 5 failed login attempts.</INFO>
-        <INFO>User marctyrrell22@googlemail.com is locked out until 2016-08-01 22:50:11.000 after 5 failed login attempts.</INFO>
-        <INFO>BrandName in URL does not match detected subDomain: brandName:resources subDomain: mceinsurance</INFO>
-        <INFO>Path is Invalid: /resources/css/portal.css</INFO>
-        <INFO>Path is Invalid: /resources/js/jQuery/1.8.1/jquery.js</INFO>
-        <INFO>User ricardo.luis28@hotmail.com is locked out until 2016-08-02 09:13:54.000 after 5 failed login attempts.</INFO>
-        <INFO>User cotterill163@gmail.com is locked out until 2016-08-02 10:21:30.000 after 5 failed login attempts.</INFO>
         <INFO>Jar Updated: Try 1 /opt/brand/opencustomerportalebroker_brands.jar New timestamp: Tue Aug 02 12:08:58 BST 2016</INFO>
-        <INFO>Undeploying context [/OpenCustomerPortalViewer]</INFO>
         <INFO>Deploying web application archive /opt/opencustomerportal/webapps/OpenCustomerPortalViewer.war</INFO>
         <INFO>CreateScheduledTasks: null</INFO>
         <INFO>At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.</INFO>
-        <INFO>Undeploying context [/BrokerAdmin]</INFO>
         <INFO>validateJarFile(/opt/opencustomerportal/webapps/BrokerAdmin/WEB-INF/lib/tomcat-servlet-api-7.0.47.jar) - jar not loaded. See Servlet Spec 3.0, section 10.7.2. Offending class: javax/servlet/Servlet.class</INFO>
-        <INFO>Pausing ProtocolHandler ["http-bio-10.170.53.33-8443"]</INFO>
         <INFO>Thread=3737 entered createBrandCache</INFO>
         <INFO>Creating BrandCache for Thread=3737</INFO>
-        <INFO>Stopping service Catalina</INFO>
         <INFO>Creating LookupCache for Thread=3737</INFO>
         <INFO>Stopping scheduled task - Gateway Resender Renewal Portal</INFO>
         <INFO>ScheduledTaskListMonitor::Shutting down</INFO>
         <INFO>Gateway Resender Renewal Portal interrupted</INFO>
         <INFO>Scheduled task 'Gateway Resender Renewal Portal' stopped</INFO>
-        <INFO>WSSERVLET15: JAX-WS servlet destroyed</INFO>
         <INFO>CoreQuoteContextListener:Shutting down.. path=/CoreQuote</INFO>
         <INFO>Stopping scheduled task - Cache Auto Clearer</INFO>
         <INFO>Gateway Resender interrupted</INFO>
@@ -162,35 +145,29 @@
         <INFO>Remote HTML Persistent Cache Reloader interrupted</INFO>
         <INFO>Context Extras Files Reloader interrupted</INFO>
         <INFO>Scheduled task 'Context Extras Files Reloader' stopped</INFO>
-        <INFO>Stopping ProtocolHandler ["http-bio-10.170.53.33-8443"]</INFO>
-        <INFO>Destroying ProtocolHandler ["http-bio-10.170.53.33-8443"]</INFO>
-        <INFO>Initializing ProtocolHandler ["http-bio-10.170.53.33-8443"]</INFO>
-        <INFO>Initialization processed in 1313 ms</INFO>
-        <INFO>Starting service Catalina</INFO>
-        <INFO>Starting Servlet Engine: Apache Tomcat/7.0.52</INFO>
         <INFO>ScheduledTaskList ThreadID: (15) creating Tasks - check If it is my job</INFO>
         <INFO>Suspicious url pattern: "*.*" in context [/CoreQuote] - see section SRV.11.2 of the Servlet specification</INFO>
         <INFO>TLD skipped. URI: http://velocity.apache.org/velocity-view is already defined</INFO>
         <INFO>CoreQuoteContextListener:Starting Scheduled Tasks</INFO>
         <INFO>Thread=15 entered createLookupcache </INFO>
-        <INFO>WSSERVLET12: JAX-WS context listener initializing</INFO>
         <INFO>Dynamically creating request wrapper Class com.opengi.ecommerce.corequote.webservices.jaxws.PrepopulateQuote</INFO>
         <INFO/>
     </INFOS>
 	<WARNINGS>
-		<WARNING>Received WS-I BP non-conformant Unquoted SoapAction HTTP
-			header: </WARNING>
 		<WARNING>Rule publish DateTime</WARNING>
-	<WARNING>[SetAllPropertiesRule]{Server/Service/Connector} Setting property 'maxSpareThreads' to '75' did not find a matching property.</WARNING>
+		<WARNING>Received WS-I BP non-conformant Unquoted SoapAction HTTP header</WARNING>
+        <WARNING>[SetAllPropertiesRule]{Server/Service/Connector} Setting property 'maxSpareThreads' to '75' did not find a matching property.</WARNING>
         <WARNING>[SetPropertiesRule]{Server/Service/Engine/Host} Setting property 'xmlValidation' to 'false' did not find a matching property.</WARNING>
-        <WARNING>[SetPropertiesRule]{Server/Service/Engine/Host/Context/Realm/Realm} Setting property 'connectionURL' to 'jdbc:mysql://MYSQL/live-odp' did not find a matching property.</WARNING>
+        <WARNING>WSSERVLET17: duplicate endpoint name</WARNING>
+        <WARNING>WSSERVLET26: duplicate URL pattern in endpoint: ActiveQuoteService</WARNING>
+    	<WARNING>[SetPropertiesRule]{Server/Service/Engine/Host/Context/Realm/Realm} Setting property 'connectionURL' to 'jdbc:mysql://MYSQL/live-odp' did not find a matching property.</WARNING>
         <WARNING>Security role name ActiveQuoteTester used in an &lt;auth-constraint&gt; without being defined in a &lt;security-role&gt;</WARNING>
         <WARNING>[ComponentRule]{faces-config/component} Merge(com.sun.rave.web.ui.Time)</WARNING>
         <WARNING>[ConverterRule]{faces-config/converter} Merge(null,java.math.BigDecimal)</WARNING>
         <WARNING>[ManagedBeanRule]{faces-config/managed-bean} Merge(PaymentResponse)</WARNING>
         <WARNING>Exception serving shared resource: /opencustomerportalebroker/css/common_stylesheet.css</WARNING>
-    <WARNING>An attempt was made to authenticate the locked user "ecom"</WARNING>
-    <WARNING>Attempt to access undefined subdomain: qatest</WARNING>
+        <WARNING>An attempt was made to authenticate the locked user "ecom"</WARNING>
+        <WARNING>Attempt to access undefined subdomain: qatest</WARNING>
         <WARNING>Unexpected error forwarding to login page</WARNING>
     </WARNINGS>
 </Hits>

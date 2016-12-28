@@ -20,6 +20,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import lib.others.MutableString;
 import lib.structs.LogEntryType;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 
@@ -58,8 +59,9 @@ public class XMLParser {
 		}
 	}
 
-	public boolean exists(LogEntryType type, String severityInfo) {
+	public boolean exists(LogEntryType type, String severityInfo, MutableString mutable) {
 		NodeList nList = document.getElementsByTagName(tagNames.get(type));
+		//This can and should be easily replaced
 		JaroWinkler algorithm = new JaroWinkler();
 		double similarity;
 		int j;
@@ -74,11 +76,12 @@ public class XMLParser {
 					if(nList2.item(j).getNodeType() == Node.ELEMENT_NODE) {
 						textContent = nList2.item(j).getTextContent();
 						if(severityInfo.contains(textContent)) {
+							mutable.setString(textContent);
 							return true;
 						}
 						similarity = algorithm.getSimilarity(severityInfo, textContent);
-//						System.out.println("Comparing strings::\n\t" + severityInfo + "\nwith\n\t " + nList2.item(j).getTextContent() + "\n\nResult::" + similarity);
 						if(similarity > 0.93) {
+							mutable.setString(textContent);
 							return true;
 						}
 					}
@@ -105,7 +108,6 @@ public class XMLParser {
 	private void rewriteDocument() {
 		try{
 			document.normalize();
-
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();

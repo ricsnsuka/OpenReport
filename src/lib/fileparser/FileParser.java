@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import lib.exceptions.OpenReportException;
+import lib.others.MutableString;
 import lib.structs.LogData;
 import lib.structs.LogDataFactory;
 import lib.structs.LogEntryType;
@@ -41,16 +42,19 @@ public class FileParser {
 							LogData logData = LogDataFactory.generateLogData(severity[0], timestamp, severity[1]);
 							LogEntryType currentLogEntryType = logData.getType();
 							String currentEntrySeverityInfo = logData.getSeverityInfo();
+							MutableString mutable = new MutableString();
 							logDataCollection.add(logData);
-							if(!parser.exists(currentLogEntryType, currentEntrySeverityInfo)) {
+							if(!parser.exists(currentLogEntryType, currentEntrySeverityInfo, mutable)) {
 								parser.addInfoToXML(currentLogEntryType, currentEntrySeverityInfo);
+							} else {
+								logData.setSeverityInfo(mutable.getString());
 							}
 							ready = false;
 						}
 					}
 				}
 				if((i % 359500) == 0) {
-					System.out.println(i);
+					System.out.println(i/359500);
 					
 				}
 				i++;

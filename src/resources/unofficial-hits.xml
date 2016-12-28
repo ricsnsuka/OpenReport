@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Hits>
+	<SEVERES>
+		<SEVERE>caught throwable</SEVERE>
+		<SEVERE>Cannot read salt for user</SEVERE>
+		<SEVERE>Encryption for user:</SEVERE>
+		<SEVERE>IllegalArgumentException - source parameter is null or empty.
+		</SEVERE>
+		<SEVERE>Cannot read password salt for user</SEVERE>
+		<SEVERE>Encryption exception</SEVERE>
+		<SEVERE>The web application [/CoreQuote] created a ThreadLocal with
+			key of type [java.lang.ThreadLocal]</SEVERE>
+		<SEVERE>Failed to get MLSClientDir setting from
+			tripos</SEVERE>
+	</SEVERES>
+	<INFOS>
+		<INFO>### Authentication attempt username</INFO>
+		<INFO>### Encrypted password</INFO>
+		<INFO>### String to be encrypted</INFO>
+		<INFO>### Attempt to encrypt the password</INFO>
+		<INFO>### Authentication result</INFO>
+		<INFO>### Selected algorithm</INFO>
+		<INFO>Tried to run rules for broker:</INFO>
+		<INFO>Error retrieving resource from brand -
+			brand_config/gogirl/config/emailconfig.xml</INFO>
+		<INFO>It appears the path ends with '/' or contains '..': /gogirl/
+		</INFO>
+		<INFO>Path is Invalid</INFO>
+		<INFO>5 failed login attempts</INFO>
+		<INFO>Path is Invalid: /gogirl/</INFO>
+		<INFO>Path is Invalid: /footmanjames/</INFO>
+		<INFO>Path is Invalid: /mceinsurance/page_background.png</INFO>
+		<INFO>unable to find valid certification path to requested target</INFO>
+		<INFO>Unable to find or access jarFile</INFO>
+	</INFOS>
+	<WARNINGS>
+	</WARNINGS>
+</Hits>

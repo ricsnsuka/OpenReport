@@ -31,6 +31,15 @@ public class LogReport {
 	public void generateReport(String filename) {
 		FileParser parser = new FileParser();
 		logData = parser.parse(filename);
+		String sevInfo = "";
+		for(LogData data : logData) {
+			sevInfo = data.getSeverityInfo();
+			if(logDataHits.containsKey(sevInfo)) {
+				logDataHits.replace(sevInfo, logDataHits.get(sevInfo)+1);
+			} else {
+				logDataHits.put(sevInfo, 1);
+			}
+		}
 	}
 	
 	public void countHits() {
@@ -44,19 +53,12 @@ public class LogReport {
 		}
 	}
 	
-	public HashMap<String, Integer> getHits() {
-		return this.hits;
+	public int countHits(String sevInfo) {
+		return logDataHits.get(sevInfo);
 	}
 	
-	public void beautify() {
-		for(LogData data: logData) {
-			if(!logDataHits.containsKey(data)) {
-				logDataHits.put(data.getSeverityInfo(), 1);
-			}
-			else {
-				logDataHits.replace(data.getSeverityInfo(), logDataHits.get(data)+1);
-			}
-		}
+	public HashMap<String, Integer> getHits() {
+		return this.hits;
 	}
 	
 	public HashMap<String, Integer> getLogDataHits() {
