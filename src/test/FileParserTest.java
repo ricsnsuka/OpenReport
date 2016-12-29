@@ -11,7 +11,7 @@ public class FileParserTest {
 		
 		long start = System.currentTimeMillis();
 		LogReport report = new LogReport();
-		report.generateReport("ocp log\\catalina.out");
+		report.generateReport("catalina.out");
 		report.countHits();
 		HashMap<String, Integer> hits = report.getHits();
 		

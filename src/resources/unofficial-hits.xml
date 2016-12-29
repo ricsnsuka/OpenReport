@@ -3,16 +3,73 @@
 	<SEVERES>
 		<SEVERE>caught throwable</SEVERE>
 		<SEVERE>Cannot read salt for user</SEVERE>
-		<SEVERE>Encryption for user:</SEVERE>
-		<SEVERE>IllegalArgumentException - source parameter is null or empty.
-		</SEVERE>
+		<SEVERE>Encryption for user</SEVERE>
+		<SEVERE>IllegalArgumentException - source parameter is null or empty.</SEVERE>
 		<SEVERE>Cannot read password salt for user</SEVERE>
 		<SEVERE>Encryption exception</SEVERE>
-		<SEVERE>The web application [/CoreQuote] created a ThreadLocal with
-			key of type [java.lang.ThreadLocal]</SEVERE>
-		<SEVERE>Failed to get MLSClientDir setting from
-			tripos</SEVERE>
-	</SEVERES>
+		<SEVERE>Failed to get MLSClientDir setting from tripos</SEVERE>
+		<SEVERE>Error processing DocumentViewer request</SEVERE>
+		<SEVERE>null</SEVERE>
+		<SEVERE>Failed to get MLSClientDir setting from tripos</SEVERE>
+		<SEVERE>Error validating secret keyword answer.</SEVERE>
+		<SEVERE>No email address in session</SEVERE>
+		<SEVERE>No BrandID in session</SEVERE>
+		<SEVERE>Call to OpenSpecifiedConnection service failed</SEVERE>
+		<SEVERE>Timed out</SEVERE>
+		<SEVERE>Unable to Populate email template</SEVERE>
+		<SEVERE>unable to send renewal email for event</SEVERE>
+		<SEVERE>No userBean in session when attempting to change password</SEVERE>
+		<SEVERE>OpenInterchangeXStream</SEVERE>
+        <SEVERE>Payment callback received for case that is already purchased</SEVERE>
+        <SEVERE>Unable to unmarshal mta risk data for this policy</SEVERE>
+        <SEVERE>EmailManager attempted to send email with empty toAddress</SEVERE>
+		<SEVERE>Content of email is empty.</SEVERE>
+        <SEVERE>AjaxHandler.do fatal error</SEVERE>
+        <SEVERE>Error getting DatabaseUtility</SEVERE>
+		<SEVERE>Cannot find specified temporary folder</SEVERE>
+        <SEVERE>AbstractActiveQuoteProcessor</SEVERE>
+        <SEVERE>Couldn't create SOAP message due to exception: Unable to create StAX reader or writer</SEVERE>
+        <SEVERE>Failed to instantiate and run rule assessor class</SEVERE>
+        <SEVERE>Caught Throwable</SEVERE>
+    	<SEVERE>Error waiting for multi-thread deployment of WAR files to complete</SEVERE>
+        <SEVERE>Unable to send message with OpenInterchangeSoap</SEVERE>
+        <SEVERE>MFTP Error receiving file</SEVERE>
+        <SEVERE>Compilation error</SEVERE>
+        <SEVERE>Failure loading EB3 config</SEVERE>
+        <SEVERE>Error filterStart</SEVERE>
+        <SEVERE>Context [/OpenCustomerPortalAdmin] startup failed due to previous errors</SEVERE>
+        <SEVERE>FileNotFoundException</SEVERE>
+        <SEVERE>Exception unloading sessions to persistent storage</SEVERE>
+        <SEVERE>Failed to initialize end point associated with ProtocolHandler</SEVERE>
+        <SEVERE>Failed to initialize connector</SEVERE>
+        <SEVERE>Error processing payment callback</SEVERE>
+        <SEVERE>Failed to load subdomainMappings</SEVERE>
+        <SEVERE>Database Error getting failed messages</SEVERE>
+        <SEVERE>GatewayResender - Unknown Exception</SEVERE>
+        <SEVERE>Failed to load broker properties</SEVERE>
+        <SEVERE>Unable to start Scheduled Tasks</SEVERE>
+        <SEVERE>Brand not defined</SEVERE>
+        <SEVERE>Failure loading config</SEVERE>
+        <SEVERE>Failure loading wording </SEVERE>
+        <SEVERE>Failure loading email configuration</SEVERE>
+        <SEVERE>Error calling/updating database</SEVERE>
+        <SEVERE>Database Exception</SEVERE>
+        <SEVERE>Failed to create OpenAttach directory</SEVERE>
+        <SEVERE>Broker Resource: config/htmltemplates/emailtemplate/broker_message_callmeback.html not found in Brand XML</SEVERE>
+        <SEVERE>Failed to reach Information Service for 'isAlive' check</SEVERE>
+        <SEVERE>UnitMeter Unavailable</SEVERE>
+        <SEVERE>Error initialising BrandJarResource</SEVERE>
+        <SEVERE>An error occured when calling getMTARisk for this policy</SEVERE>
+        <SEVERE>Error processing PageInitiator</SEVERE>
+        <SEVERE>The web application [/ActiveQuote] created a ThreadLocal</SEVERE>
+        <SEVERE>The web application [] appears to have started a thread</SEVERE>
+        <SEVERE>The web application [] created a ThreadLocal</SEVERE>
+    	<SEVERE>The web application [/CoreQuote] created a ThreadLocal</SEVERE>
+    	<SEVERE>Context [] startup failed due to previous errors</SEVERE>
+        <SEVERE>Error in BDMInterface</SEVERE>
+        <SEVERE>The web application [/CoreQuote] appears to have started a thread</SEVERE>
+        <SEVERE>Passed Tomcat session ID didn't match from deeplink URL</SEVERE>
+    </SEVERES>
 	<INFOS>
 		<INFO>### Authentication attempt username</INFO>
 		<INFO>### Encrypted password</INFO>
@@ -20,19 +77,85 @@
 		<INFO>### Attempt to encrypt the password</INFO>
 		<INFO>### Authentication result</INFO>
 		<INFO>### Selected algorithm</INFO>
-		<INFO>Tried to run rules for broker:</INFO>
-		<INFO>Error retrieving resource from brand -
-			brand_config/gogirl/config/emailconfig.xml</INFO>
-		<INFO>It appears the path ends with '/' or contains '..': /gogirl/
-		</INFO>
+		<INFO>Tried to run rules for broker</INFO>
 		<INFO>Path is Invalid</INFO>
 		<INFO>5 failed login attempts</INFO>
-		<INFO>Path is Invalid: /gogirl/</INFO>
-		<INFO>Path is Invalid: /footmanjames/</INFO>
-		<INFO>Path is Invalid: /mceinsurance/page_background.png</INFO>
 		<INFO>unable to find valid certification path to requested target</INFO>
 		<INFO>Unable to find or access jarFile</INFO>
-	</INFOS>
+		<INFO>BrandName in URL does not match detected subDomain</INFO>
+		<INFO>Error retrieving resource from brand</INFO>
+		<INFO>Server startup</INFO>
+		<INFO>Initialization processed</INFO>
+		<INFO>Trigger file timestamp has changed so force cache to reload rules jar</INFO>
+        <INFO>Failed to get RuleSetDef after 5 retries for class base</INFO>
+        <INFO>ExipryCache: object now valid again key=PUBDATETTME</INFO>
+        <INFO>Initializing ProtocolHandler ["http-bio-10.170.25.110-80"]</INFO>
+        <INFO>Starting service Catalina</INFO>
+        <INFO>Starting Servlet Engine: Apache Tomcat/7.0.52</INFO>
+        <INFO>WSSERVLET12: JAX-WS context listener initializing</INFO>
+        <INFO>Metro monitoring rootname successfully set</INFO>
+        <INFO>ContextListener startup: ListCache Size=162 codelists</INFO>
+        <INFO>ContextListener startup: process time=6094ms</INFO>
+        <INFO>Deploying web application archive /opt/activequote/webapps/ActiveQuote.war</INFO>
+        <INFO>Communications link failure</INFO>
+        <INFO>Undeploying context</INFO>
+        <INFO>WSSERVLET15: JAX-WS servlet destroyed</INFO>
+        <INFO>Starting ProtocolHandler</INFO>
+        <INFO>Pausing ProtocolHandler</INFO>
+        <INFO>Stopping service Catalina</INFO>
+        <INFO>Stopping ProtocolHandler</INFO>
+        <INFO>Destroying ProtocolHandler</INFO>
+    	<INFO>It appears the path ends with '/' or contains '..': /gogirl/</INFO>
+        <INFO>Total extra time in milliseconds to refresh scheduled tasks from site 0</INFO>
+        <INFO>Jar Updated: Try 1 /opt/brand/opencustomerportalebroker_brands.jar New timestamp: Tue Aug 02 12:08:58 BST 2016</INFO>
+        <INFO>Deploying web application archive /opt/opencustomerportal/webapps/OpenCustomerPortalViewer.war</INFO>
+        <INFO>CreateScheduledTasks: null</INFO>
+        <INFO>At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.</INFO>
+        <INFO>validateJarFile(/opt/opencustomerportal/webapps/BrokerAdmin/WEB-INF/lib/tomcat-servlet-api-7.0.47.jar) - jar not loaded. See Servlet Spec 3.0, section 10.7.2. Offending class: javax/servlet/Servlet.class</INFO>
+        <INFO>Thread=3737 entered createBrandCache</INFO>
+        <INFO>Creating BrandCache for Thread=3737</INFO>
+        <INFO>Creating LookupCache for Thread=3737</INFO>
+        <INFO>Stopping scheduled task - Gateway Resender Renewal Portal</INFO>
+        <INFO>ScheduledTaskListMonitor::Shutting down</INFO>
+        <INFO>Gateway Resender Renewal Portal interrupted</INFO>
+        <INFO>Scheduled task 'Gateway Resender Renewal Portal' stopped</INFO>
+        <INFO>CoreQuoteContextListener:Shutting down.. path=/CoreQuote</INFO>
+        <INFO>Stopping scheduled task - Cache Auto Clearer</INFO>
+        <INFO>Gateway Resender interrupted</INFO>
+        <INFO>Stopping scheduled task - Persistent Software Version Cache</INFO>
+        <INFO>PCL PersistentCache Reloader interrupted</INFO>
+        <INFO>Scheduled task 'PCL PersistentCache Reloader' stopped</INFO>
+        <INFO>Persistent Software Version Cache interrupted</INFO>
+        <INFO>Cache Auto Clearer interrupted</INFO>
+        <INFO>Scheduled task 'Persistent Software Version Cache' stopped</INFO>
+        <INFO>Scheduled task 'Cache Auto Clearer' stopped</INFO>
+        <INFO>Persistent List Cache Reloader interrupted</INFO>
+        <INFO>Stopping scheduled task - Remote HTML Persistent Cache Reloader</INFO>
+        <INFO>Remote HTML Persistent Cache Reloader interrupted</INFO>
+        <INFO>Context Extras Files Reloader interrupted</INFO>
+        <INFO>Scheduled task 'Context Extras Files Reloader' stopped</INFO>
+        <INFO>ScheduledTaskList ThreadID: (15) creating Tasks - check If it is my job</INFO>
+        <INFO>Suspicious url pattern</INFO>
+        <INFO>TLD skipped</INFO>
+        <INFO>CoreQuoteContextListener:Starting Scheduled Tasks</INFO>
+        <INFO>Thread=15 entered createLookupcache </INFO>
+        <INFO>Dynamically creating request wrapper</INFO>
+        <INFO/>
+    </INFOS>
 	<WARNINGS>
-	</WARNINGS>
+		<WARNING>Rule publish DateTime</WARNING>
+		<WARNING>Received WS-I BP non-conformant Unquoted SoapAction HTTP header</WARNING>
+        <WARNING>SetAllPropertiesRule</WARNING>
+        <WARNING>SetPropertiesRule</WARNING>
+        <WARNING>duplicate endpoint name</WARNING>
+        <WARNING>duplicate URL pattern in endpoint</WARNING>
+        <WARNING>Security role name ActiveQuoteTester used</WARNING>
+        <WARNING>ComponentRule</WARNING>
+        <WARNING>ConverterRule</WARNING>
+        <WARNING>ManagedBeanRule</WARNING>
+        <WARNING>Exception serving shared resource</WARNING>
+        <WARNING>An attempt was made to authenticate the locked user</WARNING>
+        <WARNING>Attempt to access undefined subdomain</WARNING>
+        <WARNING>Unexpected error forwarding to login page</WARNING>
+    </WARNINGS>
 </Hits>
