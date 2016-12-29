@@ -28,9 +28,7 @@ public class LogReport {
 		hits.put("WARNING", 0);
 	}
 	
-	public void generateReport(String filename) {
-		FileParser parser = new FileParser();
-		logData = parser.parse(filename);
+	public void generateReport() {
 		String sevInfo = "";
 		for(LogData data : logData) {
 			sevInfo = data.getSeverityInfo();
@@ -40,6 +38,12 @@ public class LogReport {
 				logDataHits.put(sevInfo, 1);
 			}
 		}
+	}
+	
+	public void generateReport(String filename) {
+		FileParser parser = new FileParser();
+		logData = parser.parse(filename);
+		generateReport();
 	}
 	
 	public void countHits() {

@@ -7,7 +7,6 @@
 		<SEVERE>IllegalArgumentException - source parameter is null or empty.</SEVERE>
 		<SEVERE>Cannot read password salt for user</SEVERE>
 		<SEVERE>Encryption exception</SEVERE>
-		<SEVERE>The web application [/CoreQuote] created a ThreadLocal with key of type [java.lang.ThreadLocal]</SEVERE>
 		<SEVERE>Failed to get MLSClientDir setting from tripos</SEVERE>
 		<SEVERE>Error processing DocumentViewer request</SEVERE>
 		<SEVERE>null</SEVERE>
@@ -16,7 +15,6 @@
 		<SEVERE>No email address in session</SEVERE>
 		<SEVERE>No BrandID in session</SEVERE>
 		<SEVERE>Call to OpenSpecifiedConnection service failed</SEVERE>
-		<SEVERE>Error - Timed out, Request not picked up</SEVERE>
 		<SEVERE>Timed out</SEVERE>
 		<SEVERE>Unable to Populate email template</SEVERE>
 		<SEVERE>unable to send renewal email for event</SEVERE>
@@ -28,30 +26,27 @@
 		<SEVERE>Content of email is empty.</SEVERE>
         <SEVERE>AjaxHandler.do fatal error</SEVERE>
         <SEVERE>Error getting DatabaseUtility</SEVERE>
-		<SEVERE>Cannot find specified temporary folder at /opt/activequote/temp</SEVERE>
+		<SEVERE>Cannot find specified temporary folder</SEVERE>
         <SEVERE>AbstractActiveQuoteProcessor</SEVERE>
         <SEVERE>Couldn't create SOAP message due to exception: Unable to create StAX reader or writer</SEVERE>
         <SEVERE>Failed to instantiate and run rule assessor class</SEVERE>
-        <SEVERE>AbstractActiveQuoteProcessor::Caught Throwable</SEVERE>
+        <SEVERE>Caught Throwable</SEVERE>
     	<SEVERE>Error waiting for multi-thread deployment of WAR files to complete</SEVERE>
-        <SEVERE>CustomerDocumentOINCMessageGateway: Unable to send message with OpenInterchangeSoap</SEVERE>
+        <SEVERE>Unable to send message with OpenInterchangeSoap</SEVERE>
         <SEVERE>MFTP Error receiving file</SEVERE>
         <SEVERE>Compilation error</SEVERE>
-        <SEVERE>RenewalOINCMessageGateway: Unable to send message with OpenInterchangeSoap</SEVERE>
-        <SEVERE>Failure loading EB3 config for repository=taagl</SEVERE>
+        <SEVERE>Failure loading EB3 config</SEVERE>
         <SEVERE>Error filterStart</SEVERE>
         <SEVERE>Context [/OpenCustomerPortalAdmin] startup failed due to previous errors</SEVERE>
         <SEVERE>FileNotFoundException</SEVERE>
         <SEVERE>Exception unloading sessions to persistent storage</SEVERE>
         <SEVERE>Failed to initialize end point associated with ProtocolHandler</SEVERE>
         <SEVERE>Failed to initialize connector</SEVERE>
-        <SEVERE>Database Exception - Column 'MtaActivated' not found.</SEVERE>
         <SEVERE>Error processing payment callback</SEVERE>
         <SEVERE>Failed to load subdomainMappings</SEVERE>
-        <SEVERE>Database Exception - Communications link failure</SEVERE>
         <SEVERE>Database Error getting failed messages</SEVERE>
         <SEVERE>GatewayResender - Unknown Exception</SEVERE>
-        <SEVERE>DatabaseUtility.getInitialParameterMap() Failed to load broker properties</SEVERE>
+        <SEVERE>Failed to load broker properties</SEVERE>
         <SEVERE>Unable to start Scheduled Tasks</SEVERE>
         <SEVERE>Brand not defined</SEVERE>
         <SEVERE>Failure loading config</SEVERE>
@@ -66,15 +61,14 @@
         <SEVERE>Error initialising BrandJarResource</SEVERE>
         <SEVERE>An error occured when calling getMTARisk for this policy</SEVERE>
         <SEVERE>Error processing PageInitiator</SEVERE>
-    <SEVERE>The web application [/ActiveQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.ClassFactory$1] (value [com.sun.xml.bind.v2.ClassFactory$1@2f016c65]) and a value of type [java.util.WeakHashMap] (value [{class com.opengi.activequote.bufferhandling.buffermanager.motor.benbuffer.BrokerEnrichmentData=java.lang.ref.WeakReference@347b2a41, class com.opengi.activequote.webservice.jaxws.GetQuote=java.lang.ref.WeakReference@2132c52, class com.opengi.activequote.bufferhandling.buffermanager.motor.benbuffer.Ben=java.lang.ref.WeakReference@38c2bc8e}]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
-        <SEVERE>The web application [/ActiveQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.runtime.Coordinator$1] (value [com.sun.xml.bind.v2.runtime.Coordinator$1@78e92bbe]) and a value of type [java.lang.Object[]] (value [[Ljava.lang.Object;@143704f6]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
-        <SEVERE>The web application [] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.</SEVERE>
-        <SEVERE>The web application [] created a ThreadLocal with key of type [com.sun.xml.bind.v2.ClassFactory$1] (value [com.sun.xml.bind.v2.ClassFactory$1@7d6b2dd2]) and a value of type [java.util.WeakHashMap] (value [{class com.opengi.activequote.webservice.jaxws.GetQuote=java.lang.ref.WeakReference@78d7652}]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
-    <SEVERE>Context [] startup failed due to previous errors</SEVERE>
-        <SEVERE>java.lang.Exception: Error in BDMInterface::BRDM23_class com.opengi.bdm.commands.brdm23.AddDiaryNote. Failed to initialise diary record. Error code [8001]	at com.opengi.bdm.commands.BDMCommand.run(BDMCommand.java:121)	at java.lang.Thread.run(Thread.java:745)</SEVERE>
-        <SEVERE>The web application [/CoreQuote] appears to have started a thread named [GR1] but has failed to stop it. This is very likely to create a memory leak.</SEVERE>
-        <SEVERE>Passed Tomcat session ID didn't match from deeplink URL: https://goskippy.opencustomerportal.co.uk/CoreQuote/MTAStart.dq</SEVERE>
-        <SEVERE>The web application [/CoreQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.runtime.Coordinator$1] (value [com.sun.xml.bind.v2.runtime.Coordinator$1@57cf0500]) and a value of type [com.sun.xml.bind.v2.runtime.Coordinator[]] (value [[Lcom.sun.xml.bind.v2.runtime.Coordinator;@dcc2133]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
+        <SEVERE>The web application [/ActiveQuote] created a ThreadLocal</SEVERE>
+        <SEVERE>The web application [] appears to have started a thread</SEVERE>
+        <SEVERE>The web application [] created a ThreadLocal</SEVERE>
+    	<SEVERE>The web application [/CoreQuote] created a ThreadLocal</SEVERE>
+    	<SEVERE>Context [] startup failed due to previous errors</SEVERE>
+        <SEVERE>Error in BDMInterface</SEVERE>
+        <SEVERE>The web application [/CoreQuote] appears to have started a thread</SEVERE>
+        <SEVERE>Passed Tomcat session ID didn't match from deeplink URL</SEVERE>
     </SEVERES>
 	<INFOS>
 		<INFO>### Authentication attempt username</INFO>
@@ -141,28 +135,27 @@
         <INFO>Context Extras Files Reloader interrupted</INFO>
         <INFO>Scheduled task 'Context Extras Files Reloader' stopped</INFO>
         <INFO>ScheduledTaskList ThreadID: (15) creating Tasks - check If it is my job</INFO>
-        <INFO>Suspicious url pattern: "*.*" in context [/CoreQuote] - see section SRV.11.2 of the Servlet specification</INFO>
-        <INFO>TLD skipped. URI: http://velocity.apache.org/velocity-view is already defined</INFO>
+        <INFO>Suspicious url pattern</INFO>
+        <INFO>TLD skipped</INFO>
         <INFO>CoreQuoteContextListener:Starting Scheduled Tasks</INFO>
         <INFO>Thread=15 entered createLookupcache </INFO>
-        <INFO>Dynamically creating request wrapper Class com.opengi.ecommerce.corequote.webservices.jaxws.PrepopulateQuote</INFO>
+        <INFO>Dynamically creating request wrapper</INFO>
         <INFO/>
     </INFOS>
 	<WARNINGS>
 		<WARNING>Rule publish DateTime</WARNING>
 		<WARNING>Received WS-I BP non-conformant Unquoted SoapAction HTTP header</WARNING>
-        <WARNING>[SetAllPropertiesRule]{Server/Service/Connector} Setting property 'maxSpareThreads' to '75' did not find a matching property.</WARNING>
-        <WARNING>[SetPropertiesRule]{Server/Service/Engine/Host} Setting property 'xmlValidation' to 'false' did not find a matching property.</WARNING>
-        <WARNING>WSSERVLET17: duplicate endpoint name</WARNING>
-        <WARNING>WSSERVLET26: duplicate URL pattern in endpoint: ActiveQuoteService</WARNING>
-    	<WARNING>[SetPropertiesRule]{Server/Service/Engine/Host/Context/Realm/Realm} Setting property 'connectionURL' to 'jdbc:mysql://MYSQL/live-odp' did not find a matching property.</WARNING>
-        <WARNING>Security role name ActiveQuoteTester used in an &lt;auth-constraint&gt; without being defined in a &lt;security-role&gt;</WARNING>
-        <WARNING>[ComponentRule]{faces-config/component} Merge(com.sun.rave.web.ui.Time)</WARNING>
-        <WARNING>[ConverterRule]{faces-config/converter} Merge(null,java.math.BigDecimal)</WARNING>
-        <WARNING>[ManagedBeanRule]{faces-config/managed-bean} Merge(PaymentResponse)</WARNING>
-        <WARNING>Exception serving shared resource: /opencustomerportalebroker/css/common_stylesheet.css</WARNING>
-        <WARNING>An attempt was made to authenticate the locked user "ecom"</WARNING>
-        <WARNING>Attempt to access undefined subdomain: qatest</WARNING>
+        <WARNING>SetAllPropertiesRule</WARNING>
+        <WARNING>SetPropertiesRule</WARNING>
+        <WARNING>duplicate endpoint name</WARNING>
+        <WARNING>duplicate URL pattern in endpoint</WARNING>
+        <WARNING>Security role name ActiveQuoteTester used</WARNING>
+        <WARNING>ComponentRule</WARNING>
+        <WARNING>ConverterRule</WARNING>
+        <WARNING>ManagedBeanRule</WARNING>
+        <WARNING>Exception serving shared resource</WARNING>
+        <WARNING>An attempt was made to authenticate the locked user</WARNING>
+        <WARNING>Attempt to access undefined subdomain</WARNING>
         <WARNING>Unexpected error forwarding to login page</WARNING>
     </WARNINGS>
 </Hits>
