@@ -5,11 +5,4 @@ public class WarningLogData extends LogData {
 	public WarningLogData(String logDate, String severityInfo) {
 		super(logDate, severityInfo, type);
 	}
-
-	
-	@Override
-	public LogReport generateReport() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

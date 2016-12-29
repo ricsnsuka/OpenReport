@@ -6,22 +6,4 @@ public class SevereLogData extends LogData {
 		super(logDate, severityInfo, type);
 	}
 
-
-	@Override
-	public LogReport generateReport() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public boolean equals(Object object) {
-		if(object instanceof SevereLogData) {
-			if(((SevereLogData) object).getLogTime().equals(this.getLogTime()) &&
-					((SevereLogData) object).getSeverityInfo().equals(this.getSeverityInfo())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 }

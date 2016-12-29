@@ -6,10 +6,4 @@ public class InfoLogData extends LogData {
 		super(logDate, severityInfo, type);
 	}
 	
-	@Override
-	public LogReport generateReport() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

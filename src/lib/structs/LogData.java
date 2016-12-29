@@ -1,6 +1,6 @@
 package lib.structs;
 
-public abstract class LogData {
+public class LogData {
 
 	private String logTime;
 	private String severityInfo;
@@ -42,7 +42,5 @@ public abstract class LogData {
 	public void setType(LogEntryType type) {
 		this.type = type;
 	}
-
-	public abstract LogReport generateReport();
 
 }
