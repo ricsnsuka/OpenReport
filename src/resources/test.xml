@@ -4,52 +4,47 @@
 		<SEVERE>caught throwable</SEVERE>
 		<SEVERE>Cannot read salt for user</SEVERE>
 		<SEVERE>Encryption for user</SEVERE>
-		<SEVERE>IllegalArgumentException - source parameter is null or empty.
-		</SEVERE>
+		<SEVERE>IllegalArgumentException - source parameter is null or empty.</SEVERE>
 		<SEVERE>Cannot read password salt for user</SEVERE>
 		<SEVERE>Encryption exception</SEVERE>
-		<SEVERE>The web application [/CoreQuote] created a ThreadLocal with
-			key of type [java.lang.ThreadLocal]</SEVERE>
+		<SEVERE>The web application [/CoreQuote] created a ThreadLocal with key of type [java.lang.ThreadLocal]</SEVERE>
 		<SEVERE>Failed to get MLSClientDir setting from tripos</SEVERE>
 		<SEVERE>Error processing DocumentViewer request</SEVERE>
 		<SEVERE>null</SEVERE>
 		<SEVERE>Failed to get MLSClientDir setting from tripos</SEVERE>
-		<SEVERE>unable to send renewal email for event: DocPortalActivateUser with subject: Please activate your account</SEVERE>
 		<SEVERE>Error validating secret keyword answer.</SEVERE>
 		<SEVERE>No email address in session</SEVERE>
 		<SEVERE>No BrandID in session</SEVERE>
 		<SEVERE>Call to OpenSpecifiedConnection service failed</SEVERE>
-		<SEVERE>110: Error - Timed out, Request not picked up</SEVERE>
+		<SEVERE>Error - Timed out, Request not picked up</SEVERE>
 		<SEVERE>Timed out</SEVERE>
 		<SEVERE>Unable to Populate email template</SEVERE>
 		<SEVERE>unable to send renewal email for event</SEVERE>
 		<SEVERE>No userBean in session when attempting to change password</SEVERE>
-		<SEVERE>Payment callback received for case that is already purchased</SEVERE>
+		<SEVERE>OpenInterchangeXStream</SEVERE>
+        <SEVERE>Payment callback received for case that is already purchased</SEVERE>
+        <SEVERE>Unable to unmarshal mta risk data for this policy</SEVERE>
+        <SEVERE>EmailManager attempted to send email with empty toAddress</SEVERE>
 		<SEVERE>Content of email is empty.</SEVERE>
         <SEVERE>AjaxHandler.do fatal error</SEVERE>
         <SEVERE>Error getting DatabaseUtility</SEVERE>
 		<SEVERE>Cannot find specified temporary folder at /opt/activequote/temp</SEVERE>
-        <SEVERE>AbstractActiveQuoteProcessor::RuleSetDef references 88 but no corresponding class was found</SEVERE>
+        <SEVERE>AbstractActiveQuoteProcessor</SEVERE>
         <SEVERE>Couldn't create SOAP message due to exception: Unable to create StAX reader or writer</SEVERE>
         <SEVERE>Failed to instantiate and run rule assessor class</SEVERE>
-        <SEVERE>AbstractActiveQuoteProcessor::Caught Throwable loading rule for IC = 241</SEVERE>
-        <SEVERE>The web application [/ActiveQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.ClassFactory$1] (value [com.sun.xml.bind.v2.ClassFactory$1@2f016c65]) and a value of type [java.util.WeakHashMap] (value [{class com.opengi.activequote.bufferhandling.buffermanager.motor.benbuffer.BrokerEnrichmentData=java.lang.ref.WeakReference@347b2a41, class com.opengi.activequote.webservice.jaxws.GetQuote=java.lang.ref.WeakReference@2132c52, class com.opengi.activequote.bufferhandling.buffermanager.motor.benbuffer.Ben=java.lang.ref.WeakReference@38c2bc8e}]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
-        <SEVERE>The web application [/ActiveQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.runtime.Coordinator$1] (value [com.sun.xml.bind.v2.runtime.Coordinator$1@78e92bbe]) and a value of type [java.lang.Object[]] (value [[Ljava.lang.Object;@143704f6]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
-        <SEVERE>The web application [] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.</SEVERE>
-        <SEVERE>The web application [] created a ThreadLocal with key of type [com.sun.xml.bind.v2.ClassFactory$1] (value [com.sun.xml.bind.v2.ClassFactory$1@7d6b2dd2]) and a value of type [java.util.WeakHashMap] (value [{class com.opengi.activequote.webservice.jaxws.GetQuote=java.lang.ref.WeakReference@78d7652}]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
+        <SEVERE>AbstractActiveQuoteProcessor::Caught Throwable</SEVERE>
     	<SEVERE>Error waiting for multi-thread deployment of WAR files to complete</SEVERE>
         <SEVERE>CustomerDocumentOINCMessageGateway: Unable to send message with OpenInterchangeSoap</SEVERE>
-        <SEVERE>java.lang.Exception: MFTP Error receiving file 3: {1}	at com.opengi.exceptions.OGIException.&lt;init&gt;(OGIException.java:217)	at com.opengi.exceptions.OGIException.&lt;init&gt;(OGIException.java:158)	at com.opengi.customerportal.CustomerPortal.saveDocumentsToOpenAttach(CustomerPortal.java:152)	at com.opengi.customerportal.CustomerPortal.processMessage(CustomerPortal.java:78)	at com.opengi.oicc.MessageProcessor.run(MessageProcessor.java:98)	at com.opengi.oicc.BoundedExecutor$1.run(BoundedExecutor.java:43)	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)	at java.lang.Thread.run(Thread.java:745)</SEVERE>
+        <SEVERE>MFTP Error receiving file</SEVERE>
         <SEVERE>Compilation error</SEVERE>
         <SEVERE>RenewalOINCMessageGateway: Unable to send message with OpenInterchangeSoap</SEVERE>
         <SEVERE>Failure loading EB3 config for repository=taagl</SEVERE>
         <SEVERE>Error filterStart</SEVERE>
         <SEVERE>Context [/OpenCustomerPortalAdmin] startup failed due to previous errors</SEVERE>
-        <SEVERE>IOException while saving persisted sessions: java.io.FileNotFoundException: /opt/opencustomerportal/work/Catalina/localhost/_/SESSIONS.ser (No such file or directory)</SEVERE>
+        <SEVERE>FileNotFoundException</SEVERE>
         <SEVERE>Exception unloading sessions to persistent storage</SEVERE>
-        <SEVERE>Context [] startup failed due to previous errors</SEVERE>
-        <SEVERE>Failed to initialize end point associated with ProtocolHandler ["http-bio-10.170.53.33-443"]</SEVERE>
-        <SEVERE>Failed to initialize connector [Connector[HTTP/1.1-443]]</SEVERE>
+        <SEVERE>Failed to initialize end point associated with ProtocolHandler</SEVERE>
+        <SEVERE>Failed to initialize connector</SEVERE>
         <SEVERE>Database Exception - Column 'MtaActivated' not found.</SEVERE>
         <SEVERE>Error processing payment callback</SEVERE>
         <SEVERE>Failed to load subdomainMappings</SEVERE>
@@ -58,28 +53,28 @@
         <SEVERE>GatewayResender - Unknown Exception</SEVERE>
         <SEVERE>DatabaseUtility.getInitialParameterMap() Failed to load broker properties</SEVERE>
         <SEVERE>Unable to start Scheduled Tasks</SEVERE>
-        <SEVERE>Brand not defined for Mars Ref(%s), BNumber(%s), Branch(%s) - String index out of range: -2</SEVERE>
-        <SEVERE>Failure loading config for repository=branddefault{0}, filename=defaultconfig.xml</SEVERE>
-        <SEVERE>Failure loading wording for repository=monitor{0}, filename=wording.xml</SEVERE>
-        <SEVERE>Failure loading email configuration for repository=branddefault, filename=defaultemailconfig.xml</SEVERE>
+        <SEVERE>Brand not defined</SEVERE>
+        <SEVERE>Failure loading config</SEVERE>
+        <SEVERE>Failure loading wording </SEVERE>
+        <SEVERE>Failure loading email configuration</SEVERE>
         <SEVERE>Error calling/updating database</SEVERE>
-        <SEVERE>Database Exception - Data truncation: Data too long for column '_EmailAddress' at row 1</SEVERE>
+        <SEVERE>Database Exception</SEVERE>
         <SEVERE>Failed to create OpenAttach directory</SEVERE>
         <SEVERE>Broker Resource: config/htmltemplates/emailtemplate/broker_message_callmeback.html not found in Brand XML</SEVERE>
         <SEVERE>Failed to reach Information Service for 'isAlive' check</SEVERE>
         <SEVERE>UnitMeter Unavailable</SEVERE>
         <SEVERE>Error initialising BrandJarResource</SEVERE>
-        <SEVERE>User:: An error occured when calling getMTARisk for this policy: SMSE08PC01</SEVERE>
+        <SEVERE>An error occured when calling getMTARisk for this policy</SEVERE>
+        <SEVERE>Error processing PageInitiator</SEVERE>
+    <SEVERE>The web application [/ActiveQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.ClassFactory$1] (value [com.sun.xml.bind.v2.ClassFactory$1@2f016c65]) and a value of type [java.util.WeakHashMap] (value [{class com.opengi.activequote.bufferhandling.buffermanager.motor.benbuffer.BrokerEnrichmentData=java.lang.ref.WeakReference@347b2a41, class com.opengi.activequote.webservice.jaxws.GetQuote=java.lang.ref.WeakReference@2132c52, class com.opengi.activequote.bufferhandling.buffermanager.motor.benbuffer.Ben=java.lang.ref.WeakReference@38c2bc8e}]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
+        <SEVERE>The web application [/ActiveQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.runtime.Coordinator$1] (value [com.sun.xml.bind.v2.runtime.Coordinator$1@78e92bbe]) and a value of type [java.lang.Object[]] (value [[Ljava.lang.Object;@143704f6]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
+        <SEVERE>The web application [] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak.</SEVERE>
+        <SEVERE>The web application [] created a ThreadLocal with key of type [com.sun.xml.bind.v2.ClassFactory$1] (value [com.sun.xml.bind.v2.ClassFactory$1@7d6b2dd2]) and a value of type [java.util.WeakHashMap] (value [{class com.opengi.activequote.webservice.jaxws.GetQuote=java.lang.ref.WeakReference@78d7652}]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
+    <SEVERE>Context [] startup failed due to previous errors</SEVERE>
+        <SEVERE>java.lang.Exception: Error in BDMInterface::BRDM23_class com.opengi.bdm.commands.brdm23.AddDiaryNote. Failed to initialise diary record. Error code [8001]	at com.opengi.bdm.commands.BDMCommand.run(BDMCommand.java:121)	at java.lang.Thread.run(Thread.java:745)</SEVERE>
         <SEVERE>The web application [/CoreQuote] appears to have started a thread named [GR1] but has failed to stop it. This is very likely to create a memory leak.</SEVERE>
         <SEVERE>Passed Tomcat session ID didn't match from deeplink URL: https://goskippy.opencustomerportal.co.uk/CoreQuote/MTAStart.dq</SEVERE>
-        <SEVERE>Error processing PageInitiator:</SEVERE>
-        <SEVERE>The web application [/CoreQuote] created a ThreadLocal with key of type [java.lang.ThreadLocal] (value [java.lang.ThreadLocal@5110f078]) and a value of type [com.sun.xml.stream.writers.XMLStreamWriterImpl] (value [com.sun.xml.stream.writers.XMLStreamWriterImpl@5a201f3d]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
         <SEVERE>The web application [/CoreQuote] created a ThreadLocal with key of type [com.sun.xml.bind.v2.runtime.Coordinator$1] (value [com.sun.xml.bind.v2.runtime.Coordinator$1@57cf0500]) and a value of type [com.sun.xml.bind.v2.runtime.Coordinator[]] (value [[Lcom.sun.xml.bind.v2.runtime.Coordinator;@dcc2133]) but failed to remove it when the web application was stopped. Threads are going to be renewed over time to try and avoid a probable memory leak.</SEVERE>
-        <SEVERE>OpenInterchangeXStream</SEVERE>
-        <SEVERE>Payment callback received for case that is already purchased</SEVERE>
-        <SEVERE>OpenInterchangeXStream: Unable to sendXStream message</SEVERE>
-        <SEVERE>User: Unable to unmarshal mta risk data for this policy. Policy Ref: PC01</SEVERE>
-        <SEVERE>EmailManager attempted to send email with empty toAddress</SEVERE>
     </SEVERES>
 	<INFOS>
 		<INFO>### Authentication attempt username</INFO>

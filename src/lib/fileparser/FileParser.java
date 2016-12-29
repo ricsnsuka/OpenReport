@@ -29,6 +29,7 @@ public class FileParser {
 		int i = 0;
 		try (Scanner scan = new Scanner(new File("src\\resources\\"+filename))) {
 			String line = null;
+			System.out.println(" - SCANNING");
 			while(scan.hasNextLine()) {
 				exception = (line = scan.nextLine());
 				if(startsWithMonth(line)) {
@@ -54,12 +55,12 @@ public class FileParser {
 					}
 				}
 				if((i % 359500) == 0) {
-					System.out.println(i/359500);
-					
+					System.out.print(".");
 				}
 				i++;
 				
 			}
+			System.out.println(" - FINISHED");
 			scan.close();
 		}catch(OpenReportException ex) {
 			//LOG?
