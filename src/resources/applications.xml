@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applications>
+	<eBroker>
+		<site ebrokerVersion="3" name="Abbey" />
+		<site ebrokerVersion="3" name="Alan Boswell" />
+		<site ebrokerVersion="2" name="Allen & Allen" />
+		<site ebrokerVersion="3" name="APlan" />
+		<site ebrokerVersion="3" name="Buddies" />
+		<site ebrokerVersion="3" name="CarInsurer" />
+		<site ebrokerVersion="3" name="Clements" />
+		<site ebrokerVersion="3" name="Clements ROI" />
+		<site ebrokerVersion="3" name="CN Harley" />
+		<site ebrokerVersion="3" name="CN Scoot Commute" />
+		<site ebrokerVersion="3" name="CN.com" />
+		<site ebrokerVersion="3" name="Complete Cover" />
+		<site ebrokerVersion="3" name="County" />
+		<site ebrokerVersion="3" name="Debenhams" />
+		<site ebrokerVersion="3" name="Debenhams Home" />
+		<site ebrokerVersion="3" name="Deeside" />
+		<site ebrokerVersion="2" name="DNA" />
+		<site ebrokerVersion="3" name="DriveSmartInsurance" />
+		<site ebrokerVersion="2" name="EA Davies" />
+		<site ebrokerVersion="3" name="Eldon Insurance" />
+		<site ebrokerVersion="3" name="Endsleigh" />
+		<site ebrokerVersion="3" name="Entire Cover" />
+		<site ebrokerVersion="3" name="Essential" />
+		<site ebrokerVersion="3" name="Express" />
+		<site ebrokerVersion="3" name="First Ireland" />
+		<site ebrokerVersion="3" name="Footman James" />
+		<site ebrokerVersion="3" name="Fresh" />
+		<site ebrokerVersion="2" name="Geoffrey Simmons" />
+		<site ebrokerVersion="3" name="Group Asda" />
+		<site ebrokerVersion="3" name="Group Churchill" />
+		<site ebrokerVersion="3" name="Group Direct" />
+		<site ebrokerVersion="3" name="Group Natwest" />
+		<site ebrokerVersion="3" name="Hughes & Co" />
+		<site ebrokerVersion="3" name="Ignition" />
+		<site ebrokerVersion="2" name="IKube" />
+		<site ebrokerVersion="2" name="IKubePublic" />
+		<site ebrokerVersion="3" name="Insurance Factory Truck" />
+		<site ebrokerVersion="3" name="Insurance Online" />
+		<site ebrokerVersion="3" name="InsuranceChoice" />
+		<site ebrokerVersion="3" name="Intervest" />
+		<site ebrokerVersion="3" name="J Caulfied" />
+		<site ebrokerVersion="3" name="Just Motor Insurance" />
+		<site ebrokerVersion="2" name="KGJ" />
+		<site ebrokerVersion="3" name="Lancaster" />
+		<site ebrokerVersion="2" name="Mardon" />
+		<site ebrokerVersion="3" name="Markerstudy" />
+		<site ebrokerVersion="3" name="MarkRichards" />
+		<site ebrokerVersion="2" name="Mayfair" />
+		<site ebrokerVersion="3" name="MCE" />
+		<site ebrokerVersion="3" name="Moorhouse" />
+		<site ebrokerVersion="3" name="MSThamesCity" />
+		<site ebrokerVersion="3" name="MultibrokerSME" />
+		<site ebrokerVersion="2" name="Norton" />
+		<site ebrokerVersion="3" name="Oakland" />
+		<site ebrokerVersion="3" name="Octagon" />
+		<site ebrokerVersion="3" name="Park Bike" />
+		<site ebrokerVersion="3" name="Park Insurance" />
+		<site ebrokerVersion="3" name="Pat Britton" />
+		<site ebrokerVersion="3" name="PolicyShop" />
+		<site ebrokerVersion="3" name="PremiumChoice" />
+		<site ebrokerVersion="3" name="QuoteMeWeb" />
+		<site ebrokerVersion="3" name="R K Shipman" />
+		<site ebrokerVersion="3" name="Right Choice" />
+		<site ebrokerVersion="3" name="Robertson Low" />
+		<site ebrokerVersion="3" name="Sabre" />
+		<site ebrokerVersion="3" name="Saffron" />
+		<site ebrokerVersion="3" name="Sureterm Direct" />
+		<site ebrokerVersion="3" name="TG Connect" />
+		<site ebrokerVersion="3" name="Thames Bank Home" />
+		<site ebrokerVersion="2" name="Thames Bank Motor" />
+		<site ebrokerVersion="3" name="TheAA" />
+		<site ebrokerVersion="3" name="TowergateTPR" />
+		<site ebrokerVersion="3" name="Trade Direct" />
+		<site ebrokerVersion="2" name="Trident" />
+		<site ebrokerVersion="3" name="UDriveCover" />
+	</eBroker>
+	<openquote>
+		<server serverNumber="1" />
+		<server serverNumber="2" />
+		<server serverNumber="3" />
+	</openquote>
+	<activequote>
+		<server serverNumber="1" />
+		<server serverNumber="2" />
+		<server serverNumber="3" />
+	</activequote>
+	<opencostumerportal>
+		<server serverNumber="1" />
+		<server serverNumber="2" />
+		<server serverNumber="3" />
+	</opencostumerportal>
+</applications>
