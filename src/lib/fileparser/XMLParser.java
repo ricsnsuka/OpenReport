@@ -96,6 +96,8 @@ public class XMLParser {
 		Element root = document.getDocumentElement();
 		NodeList nList = root.getChildNodes();
 		int index = getIndex(nList, tagNames.get(type));
+		if(index == -1)
+			return;
 		Element element = document.createElement(type.toString());
 
 

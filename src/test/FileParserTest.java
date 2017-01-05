@@ -8,7 +8,11 @@ import lib.structs.LogReport;
 public class FileParserTest {
 
 	public static void main(String[] args) {
+		run();
 		
+	}
+	
+	public static void run() {
 		long start = System.currentTimeMillis();
 		LogReport report = new LogReport();
 		report.generateReport("catalina.out");

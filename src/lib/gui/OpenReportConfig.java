@@ -20,6 +20,9 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import test.FileParserTest;
+
 import java.awt.Panel;
 import java.awt.Checkbox;
 import java.awt.TextField;
@@ -34,6 +37,7 @@ import java.awt.Insets;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
 
 public class OpenReportConfig {
 
@@ -73,8 +77,8 @@ public class OpenReportConfig {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{634, 0};
 		gridBagLayout.rowHeights = new int[]{39, 50, 100, 0, 35, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 
 		Panel emailSetup = new Panel();
@@ -160,7 +164,7 @@ public class OpenReportConfig {
 
 		Checkbox chkbxSevere = new Checkbox("SEVERE");
 		GridBagConstraints gbc_chkbxSevere = new GridBagConstraints();
-		gbc_chkbxSevere.anchor = GridBagConstraints.NORTH;
+		gbc_chkbxSevere.anchor = GridBagConstraints.NORTHWEST;
 		gbc_chkbxSevere.insets = new Insets(0, 0, 0, 5);
 		gbc_chkbxSevere.gridx = 1;
 		gbc_chkbxSevere.gridy = 0;
@@ -176,7 +180,7 @@ public class OpenReportConfig {
 
 		Checkbox chkbxWarning = new Checkbox("WARNING");
 		GridBagConstraints gbc_chkbxWarning = new GridBagConstraints();
-		gbc_chkbxWarning.anchor = GridBagConstraints.NORTH;
+		gbc_chkbxWarning.anchor = GridBagConstraints.NORTHEAST;
 		gbc_chkbxWarning.gridx = 3;
 		gbc_chkbxWarning.gridy = 0;
 		typeChkbxPnl.add(chkbxWarning, gbc_chkbxWarning);
@@ -194,7 +198,7 @@ public class OpenReportConfig {
 		gbc_schedulePanel.gridy = 2;
 		frame.getContentPane().add(schedulePanel, gbc_schedulePanel);
 		GridBagLayout gbl_schedulePanel = new GridBagLayout();
-		gbl_schedulePanel.columnWidths = new int[]{15, 64, 450, 0};
+		gbl_schedulePanel.columnWidths = new int[]{15, 70, 450, 0};
 		gbl_schedulePanel.rowHeights = new int[]{35, 35, 0};
 		gbl_schedulePanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_schedulePanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
@@ -310,11 +314,30 @@ public class OpenReportConfig {
 		savePanel.add(btnSchedule, gbc_btnSchedule);
 
 		Button btnRunNow = new Button("RUN NOW");
+		btnRunNow.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FileParserTest.run();
+			}
+		});
 		GridBagConstraints gbc_btnRunNow = new GridBagConstraints();
 		gbc_btnRunNow.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnRunNow.gridx = 1;
 		gbc_btnRunNow.gridy = 0;
 		savePanel.add(btnRunNow, gbc_btnRunNow);
+		
+		JPanel runningJobsPanel = new JPanel();
+		runningJobsPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Running Jobs", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		GridBagConstraints gbc_runningJobsPanel = new GridBagConstraints();
+		gbc_runningJobsPanel.fill = GridBagConstraints.BOTH;
+		gbc_runningJobsPanel.gridx = 0;
+		gbc_runningJobsPanel.gridy = 5;
+		frame.getContentPane().add(runningJobsPanel, gbc_runningJobsPanel);
+		GridBagLayout gbl_runningJobsPanel = new GridBagLayout();
+		gbl_runningJobsPanel.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_runningJobsPanel.rowHeights = new int[]{0, 0, 0};
+		gbl_runningJobsPanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_runningJobsPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		runningJobsPanel.setLayout(gbl_runningJobsPanel);
 	}
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
