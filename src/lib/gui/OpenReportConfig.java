@@ -90,13 +90,13 @@ public class OpenReportConfig {
 		gbl_emailSetup.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		emailSetup.setLayout(gbl_emailSetup);
 
-		Label label_1 = new Label("Send to");
-		GridBagConstraints gbc_label_1 = new GridBagConstraints();
-		gbc_label_1.anchor = GridBagConstraints.NORTHWEST;
-		gbc_label_1.insets = new Insets(0, 0, 0, 5);
-		gbc_label_1.gridx = 0;
-		gbc_label_1.gridy = 0;
-		emailSetup.add(label_1, gbc_label_1);
+		Label sendTo = new Label("Send to");
+		GridBagConstraints gbc_sendTo = new GridBagConstraints();
+		gbc_sendTo.anchor = GridBagConstraints.NORTHWEST;
+		gbc_sendTo.insets = new Insets(0, 0, 0, 5);
+		gbc_sendTo.gridx = 0;
+		gbc_sendTo.gridy = 0;
+		emailSetup.add(sendTo, gbc_sendTo);
 
 		Checkbox checkbox = new Checkbox("Support DEVs");
 		checkbox.setState(true);
@@ -107,19 +107,19 @@ public class OpenReportConfig {
 		gbc_checkbox.gridy = 0;
 		emailSetup.add(checkbox, gbc_checkbox);
 
-		JPanel panel_8 = new JPanel();
-		GridBagConstraints gbc_panel_8 = new GridBagConstraints();
-		gbc_panel_8.anchor = GridBagConstraints.NORTHWEST;
-		gbc_panel_8.gridx = 2;
-		gbc_panel_8.gridy = 0;
-		emailSetup.add(panel_8, gbc_panel_8);
-		panel_8.setLayout(new BorderLayout(0, 0));
+		JPanel emailOthersText = new JPanel();
+		GridBagConstraints gbc_emailOthersText = new GridBagConstraints();
+		gbc_emailOthersText.anchor = GridBagConstraints.NORTHWEST;
+		gbc_emailOthersText.gridx = 2;
+		gbc_emailOthersText.gridy = 0;
+		emailSetup.add(emailOthersText, gbc_emailOthersText);
+		emailOthersText.setLayout(new BorderLayout(0, 0));
 
 		Label Others = new Label("Others");
-		panel_8.add(Others);
+		emailOthersText.add(Others);
 
 		TextField emailOthers = new TextField();
-		panel_8.add(emailOthers, BorderLayout.EAST);
+		emailOthersText.add(emailOthers, BorderLayout.EAST);
 		emailOthers.setColumns(35);
 
 		JPanel severityPanel = new JPanel();
@@ -133,30 +133,30 @@ public class OpenReportConfig {
 		frame.getContentPane().add(severityPanel, gbc_severityPanel);
 		severityPanel.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel_5 = new JPanel();
-		severityPanel.add(panel_5, BorderLayout.WEST);
-		GridBagLayout gbl_panel_5 = new GridBagLayout();
-		gbl_panel_5.columnWidths = new int[]{15, 70, 0};
-		gbl_panel_5.rowHeights = new int[]{22, 0};
-		gbl_panel_5.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_5.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		panel_5.setLayout(gbl_panel_5);
+		JPanel allChkbxPnl = new JPanel();
+		severityPanel.add(allChkbxPnl, BorderLayout.WEST);
+		GridBagLayout gbl_allChkbxPnl = new GridBagLayout();
+		gbl_allChkbxPnl.columnWidths = new int[]{15, 70, 0};
+		gbl_allChkbxPnl.rowHeights = new int[]{22, 0};
+		gbl_allChkbxPnl.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_allChkbxPnl.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		allChkbxPnl.setLayout(gbl_allChkbxPnl);
 
 		Checkbox chkbxAll = new Checkbox("ALL");
 		GridBagConstraints gbc_chkbxAll = new GridBagConstraints();
 		gbc_chkbxAll.anchor = GridBagConstraints.NORTHWEST;
 		gbc_chkbxAll.gridx = 1;
 		gbc_chkbxAll.gridy = 0;
-		panel_5.add(chkbxAll, gbc_chkbxAll);
+		allChkbxPnl.add(chkbxAll, gbc_chkbxAll);
 
-		Panel panel_6 = new Panel();
-		severityPanel.add(panel_6, BorderLayout.SOUTH);
-		GridBagLayout gbl_panel_6 = new GridBagLayout();
-		gbl_panel_6.columnWidths = new int[]{15, 70, 70, 70, 0};
-		gbl_panel_6.rowHeights = new int[]{22, 0};
-		gbl_panel_6.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_6.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		panel_6.setLayout(gbl_panel_6);
+		Panel typeChkbxPnl = new Panel();
+		severityPanel.add(typeChkbxPnl, BorderLayout.SOUTH);
+		GridBagLayout gbl_typeChkbxPnl = new GridBagLayout();
+		gbl_typeChkbxPnl.columnWidths = new int[]{15, 70, 70, 70, 0};
+		gbl_typeChkbxPnl.rowHeights = new int[]{22, 0};
+		gbl_typeChkbxPnl.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_typeChkbxPnl.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		typeChkbxPnl.setLayout(gbl_typeChkbxPnl);
 
 		Checkbox chkbxSevere = new Checkbox("SEVERE");
 		GridBagConstraints gbc_chkbxSevere = new GridBagConstraints();
@@ -164,7 +164,7 @@ public class OpenReportConfig {
 		gbc_chkbxSevere.insets = new Insets(0, 0, 0, 5);
 		gbc_chkbxSevere.gridx = 1;
 		gbc_chkbxSevere.gridy = 0;
-		panel_6.add(chkbxSevere, gbc_chkbxSevere);
+		typeChkbxPnl.add(chkbxSevere, gbc_chkbxSevere);
 
 		Checkbox chkbxInfo = new Checkbox("INFO");
 		GridBagConstraints gbc_chkbxInfo = new GridBagConstraints();
@@ -172,14 +172,14 @@ public class OpenReportConfig {
 		gbc_chkbxInfo.insets = new Insets(0, 0, 0, 5);
 		gbc_chkbxInfo.gridx = 2;
 		gbc_chkbxInfo.gridy = 0;
-		panel_6.add(chkbxInfo, gbc_chkbxInfo);
+		typeChkbxPnl.add(chkbxInfo, gbc_chkbxInfo);
 
 		Checkbox chkbxWarning = new Checkbox("WARNING");
 		GridBagConstraints gbc_chkbxWarning = new GridBagConstraints();
 		gbc_chkbxWarning.anchor = GridBagConstraints.NORTH;
 		gbc_chkbxWarning.gridx = 3;
 		gbc_chkbxWarning.gridy = 0;
-		panel_6.add(chkbxWarning, gbc_chkbxWarning);
+		typeChkbxPnl.add(chkbxWarning, gbc_chkbxWarning);
 
 
 
