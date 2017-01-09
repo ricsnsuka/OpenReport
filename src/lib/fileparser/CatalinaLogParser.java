@@ -11,8 +11,8 @@ import lib.structs.LogData;
 import lib.structs.LogDataFactory;
 import lib.structs.LogEntryType;
 
-public class FileParser {
-	public FileParser() {
+public class CatalinaLogParser {
+	public CatalinaLogParser() {
 	}
 
 	public ArrayList<LogData> parse(String filename) {
@@ -26,7 +26,6 @@ public class FileParser {
 //		Charset charset = Charset.forName("windows-1250");
 //		Path path = FileSystems.getDefault().getPath("src\\resources", filename);
 		//			BufferedReader br = Files.newBufferedReader(path, charset);
-		int i = 0;
 		try (Scanner scan = new Scanner(new File("src\\resources\\"+filename))) {
 			String line = null;
 			System.out.println(" - SCANNING");
@@ -44,7 +43,7 @@ public class FileParser {
 							LogEntryType currentLogEntryType = logData.getType();
 							String currentEntrySeverityInfo = logData.getSeverityInfo();
 							MutableString mutable = new MutableString();
-							logDataCollection.add(logData);
+							logDataCollection.add(logData); //mudar esta linha para a seguir ao if, caso o insercao no xml falhe, este nao pode ser adicionado a esta lista
 							if(!parser.exists(currentLogEntryType, currentEntrySeverityInfo, mutable)) {
 								parser.addInfoToXML(currentLogEntryType, currentEntrySeverityInfo);
 							} else {
@@ -54,11 +53,6 @@ public class FileParser {
 						}
 					}
 				}
-				if((i % 359500) == 0) {
-					System.out.print(".");
-				}
-				i++;
-				
 			}
 			System.out.println(" - FINISHED");
 			scan.close();

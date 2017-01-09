@@ -1,43 +1,31 @@
 package lib.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Checkbox;
 import java.awt.Choice;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Label;
+import java.awt.List;
+import java.awt.Panel;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.AbstractAction;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import test.FileParserTest;
-
-import java.awt.Panel;
-import java.awt.Checkbox;
-import java.awt.TextField;
-import java.awt.TextArea;
-import javax.swing.JTextField;
-import javax.swing.JSeparator;
-import javax.swing.JLayeredPane;
-import javax.swing.Box;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Button;
-import java.awt.event.ActionListener;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
 
 public class OpenReportConfig {
 
@@ -76,7 +64,7 @@ public class OpenReportConfig {
 		frame.setResizable(false);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{634, 0};
-		gridBagLayout.rowHeights = new int[]{39, 50, 100, 0, 35, 0, 0};
+		gridBagLayout.rowHeights = new int[]{40, 50, 100, 35, 35, 115, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
@@ -280,13 +268,82 @@ public class OpenReportConfig {
 		JPanel applicationPanel = new JPanel();
 		applicationPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Applications", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_applicationPanel = new GridBagConstraints();
+		gbc_applicationPanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_applicationPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_applicationPanel.anchor = GridBagConstraints.NORTH;
-		gbc_applicationPanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_applicationPanel.gridx = 0;
 		gbc_applicationPanel.gridy = 3;
 		frame.getContentPane().add(applicationPanel, gbc_applicationPanel);
 		applicationPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JPanel panel_3 = new JPanel();
+		applicationPanel.add(panel_3);
+		GridBagLayout gbl_panel_3 = new GridBagLayout();
+		gbl_panel_3.columnWidths = new int[]{15, 50, 465, 0};
+		gbl_panel_3.rowHeights = new int[]{30, 0};
+		gbl_panel_3.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_3.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_3.setLayout(gbl_panel_3);
+		
+		Label appName = new Label("eBroker");
+		appName.setEnabled(false);
+		GridBagConstraints gbc_appName = new GridBagConstraints();
+		gbc_appName.insets = new Insets(0, 0, 0, 5);
+		gbc_appName.gridx = 1;
+		gbc_appName.gridy = 0;
+		panel_3.add(appName, gbc_appName);
+		
+		Panel panel_4 = new Panel();
+		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+		gbc_panel_4.anchor = GridBagConstraints.WEST;
+		gbc_panel_4.gridx = 2;
+		gbc_panel_4.gridy = 0;
+		panel_3.add(panel_4, gbc_panel_4);
+		GridBagLayout gbl_panel_4 = new GridBagLayout();
+		gbl_panel_4.columnWidths = new int[]{49, 63, 0};
+		gbl_panel_4.rowHeights = new int[]{32, 0};
+		gbl_panel_4.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_4.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_4.setLayout(gbl_panel_4);
+		
+		Panel panel_5 = new Panel();
+		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
+		gbc_panel_5.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_5.gridx = 0;
+		gbc_panel_5.gridy = 0;
+		panel_4.add(panel_5, gbc_panel_5);
+		GridBagLayout gbl_panel_5 = new GridBagLayout();
+		gbl_panel_5.columnWidths = new int[]{39, 0};
+		gbl_panel_5.rowHeights = new int[]{22, 0};
+		gbl_panel_5.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_5.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_5.setLayout(gbl_panel_5);
+		
+		Checkbox checkbox_1 = new Checkbox("ALL");
+		GridBagConstraints gbc_checkbox_1 = new GridBagConstraints();
+		gbc_checkbox_1.anchor = GridBagConstraints.NORTHWEST;
+		gbc_checkbox_1.gridx = 0;
+		gbc_checkbox_1.gridy = 0;
+		panel_5.add(checkbox_1, gbc_checkbox_1);
+		
+		Panel panel_6 = new Panel();
+		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
+		gbc_panel_6.gridx = 1;
+		gbc_panel_6.gridy = 0;
+		panel_4.add(panel_6, gbc_panel_6);
+		GridBagLayout gbl_panel_6 = new GridBagLayout();
+		gbl_panel_6.columnWidths = new int[]{53, 0};
+		gbl_panel_6.rowHeights = new int[]{22, 0};
+		gbl_panel_6.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_6.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_6.setLayout(gbl_panel_6);
+		
+		Button button = new Button("Select...");
+		GridBagConstraints gbc_button = new GridBagConstraints();
+		gbc_button.anchor = GridBagConstraints.NORTHWEST;
+		gbc_button.gridx = 0;
+		gbc_button.gridy = 0;
+		panel_6.add(button, gbc_button);
 
 		Panel savePanel = new Panel();
 		GridBagConstraints gbc_savePanel = new GridBagConstraints();
@@ -338,13 +395,5 @@ public class OpenReportConfig {
 		gbl_runningJobsPanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_runningJobsPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		runningJobsPanel.setLayout(gbl_runningJobsPanel);
-	}
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-		}
 	}
 }

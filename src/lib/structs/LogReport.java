@@ -3,7 +3,7 @@ package lib.structs;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import lib.fileparser.FileParser;
+import lib.fileparser.CatalinaLogParser;
 
 public class LogReport {
 	private HashMap<String, Integer> hits;
@@ -16,19 +16,19 @@ public class LogReport {
 		init();
 	}
 	
-	public LogReport(ArrayList<LogData> logData) {
-		this();
-		this.logData = logData;
-		
-	}
-	
 	private void init() {
 		hits.put("SEVERE", 0);
 		hits.put("INFO", 0);
 		hits.put("WARNING", 0);
 	}
 	
-	public void generateReport() {
+	public void generateReport(String filename) {
+		CatalinaLogParser parser = new CatalinaLogParser();
+		logData = parser.parse(filename);
+		generateReport();
+	}
+	
+	private void generateReport() {
 		String sevInfo = "";
 		for(LogData data : logData) {
 			sevInfo = data.getSeverityInfo();
@@ -38,12 +38,6 @@ public class LogReport {
 				logDataHits.put(sevInfo, 1);
 			}
 		}
-	}
-	
-	public void generateReport(String filename) {
-		FileParser parser = new FileParser();
-		logData = parser.parse(filename);
-		generateReport();
 	}
 	
 	public void countHits() {

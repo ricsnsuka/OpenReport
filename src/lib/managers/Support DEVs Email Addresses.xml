@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Support>
+	<Developers>
+		<Developer name="Shin Lim">
+			<EmailAddress>shin.lim@opengi.co.uk</EmailAddress>
+		</Developer>
+		<Developer name="Michael Law">
+			<EmailAddress>michael.law@opengi.co.uk</EmailAddress>
+		</Developer>
+		<Developer name="Samuel Cole-Owens">
+			<EmailAddress>samuel.cole-owens@opengi.co.uk</EmailAddress>
+		</Developer>
+		<Developer name="Reza Haqiqi">
+			<EmailAddress>reza.haqiqi@opengi.co.uk</EmailAddress>
+		</Developer>
+	</Developers>
+</Support>

@@ -92,37 +92,39 @@ public class XMLParser {
 		return false;
 	}
 
-	public void addInfoToXML(LogEntryType type, String severityInfo) {
+	public boolean addInfoToXML(LogEntryType type, String severityInfo) {
 		Element root = document.getDocumentElement();
 		NodeList nList = root.getChildNodes();
 		int index = getIndex(nList, tagNames.get(type));
 		if(index == -1)
-			return;
-		Element element = document.createElement(type.toString());
+			return false;
+
+		try {
+			Element element = document.createElement(type.toString());
 
 
-		element.setTextContent(severityInfo);
-		nList.item(index).appendChild(element);
+			element.setTextContent(severityInfo);
+			nList.item(index).appendChild(element);
 
-		rewriteDocument();
+			rewriteDocument();
+		}catch(TransformerException ex)  {
+			return false;
+		}
+		return true;
 	}
 
-	private void rewriteDocument() {
-		try{
-			document.normalize();
+	private void rewriteDocument() throws TransformerException {
+		document.normalize();
 
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 
-			StreamResult result = new StreamResult(filepath);
-			DOMSource source = new DOMSource(document);
+		StreamResult result = new StreamResult(filepath);
+		DOMSource source = new DOMSource(document);
 
-			transformer.transform(source, result);
-		}catch(TransformerException ex) {
-
-		}
+		transformer.transform(source, result);
 	}
 
 	private int getIndex(NodeList nList, String nodeTagName) {
