@@ -46,6 +46,7 @@ public class OpenReportConfig {
 	private ScheduleAdapter scheduleController;
 	private ApplicationsAdapter applicationsController;
 	private JTextField txtXSelected;
+	private JTextField txtXSelected_1;
 
 	/**
 	 * Launch the application.
@@ -371,21 +372,20 @@ public class OpenReportConfig {
 		JPanel panel_4 = new JPanel();
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
 		gbc_panel_4.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_4.fill = GridBagConstraints.BOTH;
+		gbc_panel_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_4.gridx = 0;
 		gbc_panel_4.gridy = 0;
 		panel_3.add(panel_4, gbc_panel_4);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
-		gbl_panel_4.columnWidths = new int[]{0, 37, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_4.columnWidths = new int[]{10, 70, 10, 20, 20, 75, 10, 250, 0};
 		gbl_panel_4.rowHeights = new int[]{14, 0};
-		gbl_panel_4.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_4.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_4.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
 		
 		JLabel lblEbroker = new JLabel("eBroker");
 		GridBagConstraints gbc_lblEbroker = new GridBagConstraints();
 		gbc_lblEbroker.insets = new Insets(0, 0, 0, 5);
-		gbc_lblEbroker.anchor = GridBagConstraints.WEST;
 		gbc_lblEbroker.gridx = 1;
 		gbc_lblEbroker.gridy = 0;
 		panel_4.add(lblEbroker, gbc_lblEbroker);
@@ -405,9 +405,11 @@ public class OpenReportConfig {
 		panel_4.add(btnSelect, gbc_btnSelect);
 		
 		txtXSelected = new JTextField();
-		txtXSelected.setText("X selected");
+		txtXSelected.setEnabled(false);
 		txtXSelected.setEditable(false);
+		txtXSelected.setText("X selected");
 		GridBagConstraints gbc_txtXSelected = new GridBagConstraints();
+		gbc_txtXSelected.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtXSelected.gridx = 7;
 		gbc_txtXSelected.gridy = 0;
 		panel_4.add(txtXSelected, gbc_txtXSelected);
@@ -416,14 +418,14 @@ public class OpenReportConfig {
 		JPanel panel_5 = new JPanel();
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_5.fill = GridBagConstraints.BOTH;
+		gbc_panel_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_5.gridx = 0;
 		gbc_panel_5.gridy = 1;
 		panel_3.add(panel_5, gbc_panel_5);
 		GridBagLayout gbl_panel_5 = new GridBagLayout();
-		gbl_panel_5.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_5.columnWidths = new int[]{10, 70, 10, 20, 20, 75, 10, 250, 0};
 		gbl_panel_5.rowHeights = new int[]{0, 0};
-		gbl_panel_5.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_5.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_5.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_5.setLayout(gbl_panel_5);
 		
@@ -443,9 +445,21 @@ public class OpenReportConfig {
 		
 		JButton btnSelect_1 = new JButton("Select...");
 		GridBagConstraints gbc_btnSelect_1 = new GridBagConstraints();
+		gbc_btnSelect_1.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSelect_1.gridx = 5;
 		gbc_btnSelect_1.gridy = 0;
 		panel_5.add(btnSelect_1, gbc_btnSelect_1);
+		
+		txtXSelected_1 = new JTextField();
+		txtXSelected_1.setText("X selected");
+		txtXSelected_1.setEnabled(false);
+		txtXSelected_1.setEditable(false);
+		GridBagConstraints gbc_txtXSelected_1 = new GridBagConstraints();
+		gbc_txtXSelected_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtXSelected_1.gridx = 7;
+		gbc_txtXSelected_1.gridy = 0;
+		panel_5.add(txtXSelected_1, gbc_txtXSelected_1);
+		txtXSelected_1.setColumns(10);
 
 		Panel savePanel = new Panel();
 		GridBagConstraints gbc_savePanel = new GridBagConstraints();
