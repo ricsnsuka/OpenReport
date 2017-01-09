@@ -4,18 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lib.structs.LogReport;
+import lib.structs.ReportConfig;
 
 public class FileParserTest {
 
 	public static void main(String[] args) {
-		run();
+//		run();
 		
 	}
 	
-	public static void run() {
+	public static void run(ReportConfig config) {
 		long start = System.currentTimeMillis();
-		LogReport report = new LogReport();
-		report.generateReport("catalina.out");
+		LogReport report = new LogReport(config);
+		report.generateReport("src\\resources\\catalina.out");
 		report.countHits();
 		HashMap<String, Integer> hits = report.getHits();
 		

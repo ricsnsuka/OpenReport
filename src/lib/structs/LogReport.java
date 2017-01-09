@@ -3,23 +3,19 @@ package lib.structs;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import lib.fileparser.FileParser;
+import lib.fileparser.CatalinaLogParser;
 
 public class LogReport {
 	private HashMap<String, Integer> hits;
 	private ArrayList<LogData> logData;
 	private HashMap<String, Integer> logDataHits;
+	private ReportConfig config;
 	
-	public LogReport() {
+	public LogReport(ReportConfig config) {
 		hits = new HashMap<>();
 		logDataHits = new HashMap<>();
+		this.config = config;
 		init();
-	}
-	
-	public LogReport(ArrayList<LogData> logData) {
-		this();
-		this.logData = logData;
-		
 	}
 	
 	private void init() {
@@ -28,7 +24,7 @@ public class LogReport {
 		hits.put("WARNING", 0);
 	}
 	
-	public void generateReport() {
+	private void generateReport() {
 		String sevInfo = "";
 		for(LogData data : logData) {
 			sevInfo = data.getSeverityInfo();
@@ -41,8 +37,8 @@ public class LogReport {
 	}
 	
 	public void generateReport(String filename) {
-		FileParser parser = new FileParser();
-		logData = parser.parse(filename);
+		CatalinaLogParser parser = new CatalinaLogParser();
+		logData = parser.parse(filename, config);
 		generateReport();
 	}
 	
@@ -67,6 +63,18 @@ public class LogReport {
 	
 	public HashMap<String, Integer> getLogDataHits() {
 		return this.logDataHits;
+	}
+	
+	public int getSevereHits() {
+		return hits.get(LogEntryType.SEVERE);
+	}
+	
+	public int getInfoHits() {
+		return hits.get(LogEntryType.INFO);
+	}
+	
+	public int getWarningHits() {
+		return hits.get(LogEntryType.WARNING);
 	}
 
 }

@@ -102,7 +102,6 @@
         <INFO>WSSERVLET15: JAX-WS servlet destroyed</INFO>
         <INFO>Starting ProtocolHandler</INFO>
         <INFO>Pausing ProtocolHandler</INFO>
-        <INFO>Stopping service Catalina</INFO>
         <INFO>Stopping ProtocolHandler</INFO>
         <INFO>Destroying ProtocolHandler</INFO>
     	<INFO>It appears the path ends with '/' or contains '..': /gogirl/</INFO>
@@ -140,7 +139,7 @@
         <INFO>CoreQuoteContextListener:Starting Scheduled Tasks</INFO>
         <INFO>Thread=15 entered createLookupcache </INFO>
         <INFO>Dynamically creating request wrapper</INFO>
-        <INFO/>
+    <INFO>Stopping service Catalina</INFO>
     </INFOS>
 	<WARNINGS>
 		<WARNING>Rule publish DateTime</WARNING>
