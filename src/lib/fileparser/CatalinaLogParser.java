@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import lib.controllers.SeverityTypeController;
+import lib.adapters.SeverityTypeAdapter;
 import lib.exceptions.OpenReportException;
 import lib.others.MutableString;
 import lib.structs.LogData;
@@ -57,7 +57,7 @@ public class CatalinaLogParser {
 	}
 
 	private boolean filter(ReportConfig config, String type) {
-		SeverityTypeController severity = config.getSeverityType();
+		SeverityTypeAdapter severity = config.getSeverityType();
 		if(severity.isAllTypes()) {
 			return true;
 		}

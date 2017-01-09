@@ -15,10 +15,11 @@ import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.AbstractAction;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,26 +28,25 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import lib.controllers.ApplicationsController;
-import lib.controllers.ScheduleController;
-import lib.controllers.SeverityTypeController;
+import lib.adapters.ApplicationsAdapter;
+import lib.adapters.ScheduleAdapter;
+import lib.adapters.SeverityTypeAdapter;
 import lib.structs.ReportConfig;
 import test.FileParserTest;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
+import java.awt.GridLayout;
+import javax.swing.JTextField;
 
 public class OpenReportConfig {
 
 	private JFrame frame;
 	private ReportConfig config;
-	private SeverityTypeController severityTypeController;
-	private ScheduleController scheduleController;
-	private ApplicationsController applicationsController;
-	
+	private SeverityTypeAdapter severityTypeAdapter;
+	private ScheduleAdapter scheduleController;
+	private ApplicationsAdapter applicationsController;
+	private JTextField txtXSelected;
+
 	/**
 	 * Launch the application.
 	 */
@@ -67,11 +67,11 @@ public class OpenReportConfig {
 	 * Create the application.
 	 */
 	public OpenReportConfig() {
-		
-		severityTypeController = new SeverityTypeController();
-		scheduleController = new ScheduleController();
-		applicationsController = new ApplicationsController();
-		config = new ReportConfig(severityTypeController, scheduleController, applicationsController);
+
+		severityTypeAdapter = new SeverityTypeAdapter();
+		scheduleController = new ScheduleAdapter();
+		applicationsController = new ApplicationsAdapter();
+		config = new ReportConfig(severityTypeAdapter, scheduleController, applicationsController);
 		initialize();
 	}
 
@@ -80,14 +80,14 @@ public class OpenReportConfig {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 550, 500);
+		frame.setBounds(100, 100, 600, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{634, 0};
-		gridBagLayout.rowHeights = new int[]{39, 50, 100, 0, 35, 0, 0};
+		gridBagLayout.columnWidths = new int[]{530, 0};
+		gridBagLayout.rowHeights = new int[]{39, 50, 100, 250, 35, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 
 		Panel emailSetup = new Panel();
@@ -97,9 +97,9 @@ public class OpenReportConfig {
 		gbc_emailSetup.gridy = 0;
 		frame.getContentPane().add(emailSetup, gbc_emailSetup);
 		GridBagLayout gbl_emailSetup = new GridBagLayout();
-		gbl_emailSetup.columnWidths = new int[]{51, 87, 281, 0};
+		gbl_emailSetup.columnWidths = new int[]{0, 51, 87, 75, 15, 275, 0, 0};
 		gbl_emailSetup.rowHeights = new int[] {22, 0};
-		gbl_emailSetup.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_emailSetup.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_emailSetup.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		emailSetup.setLayout(gbl_emailSetup);
 
@@ -107,7 +107,7 @@ public class OpenReportConfig {
 		GridBagConstraints gbc_sendTo = new GridBagConstraints();
 		gbc_sendTo.anchor = GridBagConstraints.NORTHWEST;
 		gbc_sendTo.insets = new Insets(0, 0, 0, 5);
-		gbc_sendTo.gridx = 0;
+		gbc_sendTo.gridx = 1;
 		gbc_sendTo.gridy = 0;
 		emailSetup.add(sendTo, gbc_sendTo);
 
@@ -116,14 +116,22 @@ public class OpenReportConfig {
 		GridBagConstraints gbc_checkbox = new GridBagConstraints();
 		gbc_checkbox.anchor = GridBagConstraints.NORTHWEST;
 		gbc_checkbox.insets = new Insets(0, 0, 0, 5);
-		gbc_checkbox.gridx = 1;
+		gbc_checkbox.gridx = 2;
 		gbc_checkbox.gridy = 0;
 		emailSetup.add(checkbox, gbc_checkbox);
 
+		JButton btnEdit = new JButton("Edit...");
+		GridBagConstraints gbc_btnEdit = new GridBagConstraints();
+		gbc_btnEdit.insets = new Insets(0, 0, 0, 5);
+		gbc_btnEdit.gridx = 3;
+		gbc_btnEdit.gridy = 0;
+		emailSetup.add(btnEdit, gbc_btnEdit);
+
 		JPanel emailOthersText = new JPanel();
 		GridBagConstraints gbc_emailOthersText = new GridBagConstraints();
+		gbc_emailOthersText.insets = new Insets(0, 0, 0, 5);
 		gbc_emailOthersText.anchor = GridBagConstraints.NORTHWEST;
-		gbc_emailOthersText.gridx = 2;
+		gbc_emailOthersText.gridx = 5;
 		gbc_emailOthersText.gridy = 0;
 		emailSetup.add(emailOthersText, gbc_emailOthersText);
 		emailOthersText.setLayout(new BorderLayout(0, 0));
@@ -156,7 +164,7 @@ public class OpenReportConfig {
 		allChkbxPnl.setLayout(gbl_allChkbxPnl);
 
 		JCheckBox chkbxAll = new JCheckBox("ALL");
-		
+
 		GridBagConstraints gbc_chkbxAll = new GridBagConstraints();
 		gbc_chkbxAll.anchor = GridBagConstraints.NORTHWEST;
 		gbc_chkbxAll.gridx = 1;
@@ -173,7 +181,7 @@ public class OpenReportConfig {
 		typeChkbxPnl.setLayout(gbl_typeChkbxPnl);
 
 		JCheckBox chkbxSevere = new JCheckBox("SEVERE");
-		
+
 		GridBagConstraints gbc_chkbxSevere = new GridBagConstraints();
 		gbc_chkbxSevere.anchor = GridBagConstraints.NORTHWEST;
 		gbc_chkbxSevere.insets = new Insets(0, 0, 0, 5);
@@ -182,7 +190,7 @@ public class OpenReportConfig {
 		typeChkbxPnl.add(chkbxSevere, gbc_chkbxSevere);
 
 		JCheckBox chkbxInfo = new JCheckBox("INFO");
-		
+
 		GridBagConstraints gbc_chkbxInfo = new GridBagConstraints();
 		gbc_chkbxInfo.anchor = GridBagConstraints.NORTH;
 		gbc_chkbxInfo.insets = new Insets(0, 0, 0, 5);
@@ -191,33 +199,36 @@ public class OpenReportConfig {
 		typeChkbxPnl.add(chkbxInfo, gbc_chkbxInfo);
 
 		JCheckBox chkbxWarning = new JCheckBox("WARNING");
-		
+
 		GridBagConstraints gbc_chkbxWarning = new GridBagConstraints();
 		gbc_chkbxWarning.anchor = GridBagConstraints.NORTHEAST;
 		gbc_chkbxWarning.gridx = 3;
 		gbc_chkbxWarning.gridy = 0;
 		typeChkbxPnl.add(chkbxWarning, gbc_chkbxWarning);
+		
+		
+		
 		chkbxAll.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				if(chkbxAll.isSelected()) {
-					severityTypeController.setAllTypes(true);
+					severityTypeAdapter.setAllTypes(true);
 					chkbxSevere.setSelected(true);
 					chkbxInfo.setSelected(true);
 					chkbxWarning.setSelected(true);
-					
+
 				} else {
-					severityTypeController.setAllTypes(false);
+					severityTypeAdapter.setAllTypes(false);
 				}
-				
+
 			}
 		});
 		chkbxSevere.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				if(chkbxSevere.isSelected()) {
-					severityTypeController.setSevere(true);
+					severityTypeAdapter.setSevere(true);
 				} else {
-					severityTypeController.setSevere(false);
-					if(severityTypeController.isAllTypes()) {
+					severityTypeAdapter.setSevere(false);
+					if(severityTypeAdapter.isAllTypes()) {
 						chkbxAll.setSelected(false);
 					}
 				}
@@ -226,10 +237,10 @@ public class OpenReportConfig {
 		chkbxInfo.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if(chkbxInfo.isSelected()) {
-					severityTypeController.setInfo(true);
+					severityTypeAdapter.setInfo(true);
 				} else {
-					severityTypeController.setInfo(false);
-					if(severityTypeController.isAllTypes()) {
+					severityTypeAdapter.setInfo(false);
+					if(severityTypeAdapter.isAllTypes()) {
 						chkbxAll.setSelected(false);
 					}
 				}
@@ -238,18 +249,17 @@ public class OpenReportConfig {
 		chkbxWarning.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if(chkbxWarning.isSelected()) {
-					severityTypeController.setWarning(true);
+					severityTypeAdapter.setWarning(true);
 				} else {
-					severityTypeController.setWarning(false);
-					if(severityTypeController.isAllTypes()) {
+					severityTypeAdapter.setWarning(false);
+					if(severityTypeAdapter.isAllTypes()) {
 						chkbxAll.setSelected(false);
 					}
 				}
 			}
 		});
 
-		
-		
+
 		JPanel schedulePanel = new JPanel();
 		schedulePanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Schedule", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_schedulePanel = new GridBagConstraints();
@@ -343,16 +353,102 @@ public class OpenReportConfig {
 		applicationPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Applications", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_applicationPanel = new GridBagConstraints();
 		gbc_applicationPanel.insets = new Insets(0, 0, 5, 0);
-		gbc_applicationPanel.anchor = GridBagConstraints.NORTH;
-		gbc_applicationPanel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_applicationPanel.fill = GridBagConstraints.BOTH;
 		gbc_applicationPanel.gridx = 0;
 		gbc_applicationPanel.gridy = 3;
 		frame.getContentPane().add(applicationPanel, gbc_applicationPanel);
 		applicationPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JPanel panel_3 = new JPanel();
+		applicationPanel.add(panel_3);
+		GridBagLayout gbl_panel_3 = new GridBagLayout();
+		gbl_panel_3.columnWidths = new int[]{525, 0};
+		gbl_panel_3.rowHeights = new int[]{45, 45, 45, 45, 45, 0};
+		gbl_panel_3.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_3.setLayout(gbl_panel_3);
+		
+		JPanel panel_4 = new JPanel();
+		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+		gbc_panel_4.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_4.fill = GridBagConstraints.BOTH;
+		gbc_panel_4.gridx = 0;
+		gbc_panel_4.gridy = 0;
+		panel_3.add(panel_4, gbc_panel_4);
+		GridBagLayout gbl_panel_4 = new GridBagLayout();
+		gbl_panel_4.columnWidths = new int[]{0, 37, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_4.rowHeights = new int[]{14, 0};
+		gbl_panel_4.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_4.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_4.setLayout(gbl_panel_4);
+		
+		JLabel lblEbroker = new JLabel("eBroker");
+		GridBagConstraints gbc_lblEbroker = new GridBagConstraints();
+		gbc_lblEbroker.insets = new Insets(0, 0, 0, 5);
+		gbc_lblEbroker.anchor = GridBagConstraints.WEST;
+		gbc_lblEbroker.gridx = 1;
+		gbc_lblEbroker.gridy = 0;
+		panel_4.add(lblEbroker, gbc_lblEbroker);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("All");
+		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
+		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 0, 5);
+		gbc_chckbxNewCheckBox.gridx = 3;
+		gbc_chckbxNewCheckBox.gridy = 0;
+		panel_4.add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
+		
+		JButton btnSelect = new JButton("Select...");
+		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
+		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
+		gbc_btnSelect.gridx = 5;
+		gbc_btnSelect.gridy = 0;
+		panel_4.add(btnSelect, gbc_btnSelect);
+		
+		txtXSelected = new JTextField();
+		txtXSelected.setText("X selected");
+		txtXSelected.setEditable(false);
+		GridBagConstraints gbc_txtXSelected = new GridBagConstraints();
+		gbc_txtXSelected.gridx = 7;
+		gbc_txtXSelected.gridy = 0;
+		panel_4.add(txtXSelected, gbc_txtXSelected);
+		txtXSelected.setColumns(10);
+		
+		JPanel panel_5 = new JPanel();
+		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
+		gbc_panel_5.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_5.fill = GridBagConstraints.BOTH;
+		gbc_panel_5.gridx = 0;
+		gbc_panel_5.gridy = 1;
+		panel_3.add(panel_5, gbc_panel_5);
+		GridBagLayout gbl_panel_5 = new GridBagLayout();
+		gbl_panel_5.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_5.rowHeights = new int[]{0, 0};
+		gbl_panel_5.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_5.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_5.setLayout(gbl_panel_5);
+		
+		JLabel lblActivequote = new JLabel("ActiveQuote");
+		GridBagConstraints gbc_lblActivequote = new GridBagConstraints();
+		gbc_lblActivequote.insets = new Insets(0, 0, 0, 5);
+		gbc_lblActivequote.gridx = 1;
+		gbc_lblActivequote.gridy = 0;
+		panel_5.add(lblActivequote, gbc_lblActivequote);
+		
+		JCheckBox chckbxAll = new JCheckBox("All");
+		GridBagConstraints gbc_chckbxAll = new GridBagConstraints();
+		gbc_chckbxAll.insets = new Insets(0, 0, 0, 5);
+		gbc_chckbxAll.gridx = 3;
+		gbc_chckbxAll.gridy = 0;
+		panel_5.add(chckbxAll, gbc_chckbxAll);
+		
+		JButton btnSelect_1 = new JButton("Select...");
+		GridBagConstraints gbc_btnSelect_1 = new GridBagConstraints();
+		gbc_btnSelect_1.gridx = 5;
+		gbc_btnSelect_1.gridy = 0;
+		panel_5.add(btnSelect_1, gbc_btnSelect_1);
 
 		Panel savePanel = new Panel();
 		GridBagConstraints gbc_savePanel = new GridBagConstraints();
-		gbc_savePanel.insets = new Insets(0, 0, 5, 0);
 		gbc_savePanel.gridx = 0;
 		gbc_savePanel.gridy = 4;
 		frame.getContentPane().add(savePanel, gbc_savePanel);
@@ -386,23 +482,9 @@ public class OpenReportConfig {
 		gbc_btnRunNow.gridx = 1;
 		gbc_btnRunNow.gridy = 0;
 		savePanel.add(btnRunNow, gbc_btnRunNow);
-		
-		JPanel runningJobsPanel = new JPanel();
-		runningJobsPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Running Jobs", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		GridBagConstraints gbc_runningJobsPanel = new GridBagConstraints();
-		gbc_runningJobsPanel.fill = GridBagConstraints.BOTH;
-		gbc_runningJobsPanel.gridx = 0;
-		gbc_runningJobsPanel.gridy = 5;
-		frame.getContentPane().add(runningJobsPanel, gbc_runningJobsPanel);
-		GridBagLayout gbl_runningJobsPanel = new GridBagLayout();
-		gbl_runningJobsPanel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_runningJobsPanel.rowHeights = new int[]{0, 0, 0};
-		gbl_runningJobsPanel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_runningJobsPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		runningJobsPanel.setLayout(gbl_runningJobsPanel);
 	}
-	
-	
+
+
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
 			putValue(NAME, "SwingAction");

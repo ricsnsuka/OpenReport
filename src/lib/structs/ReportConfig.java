@@ -1,29 +1,29 @@
 package lib.structs;
 
-import lib.controllers.ApplicationsController;
-import lib.controllers.ScheduleController;
-import lib.controllers.SeverityTypeController;
+import lib.adapters.ApplicationsAdapter;
+import lib.adapters.ScheduleAdapter;
+import lib.adapters.SeverityTypeAdapter;
 
 public class ReportConfig {
-	private SeverityTypeController severityType;
-	private ScheduleController schedule;
-	private ApplicationsController applications;
+	private SeverityTypeAdapter severityType;
+	private ScheduleAdapter schedule;
+	private ApplicationsAdapter applications;
 	
-	public ReportConfig(SeverityTypeController severityType, ScheduleController schedule, ApplicationsController applications) {
+	public ReportConfig(SeverityTypeAdapter severityType, ScheduleAdapter schedule, ApplicationsAdapter applications) {
 		this.severityType = severityType;
 		this.schedule = schedule;
 		this.applications = applications;
 	}
 
-	public SeverityTypeController getSeverityType() {
+	public SeverityTypeAdapter getSeverityType() {
 		return severityType;
 	}
 
-	public ScheduleController getSchedule() {
+	public ScheduleAdapter getSchedule() {
 		return schedule;
 	}
 
-	public ApplicationsController getApplications() {
+	public ApplicationsAdapter getApplications() {
 		return applications;
 	}
 	
