@@ -2,6 +2,8 @@ package lib.fileparser;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -14,6 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -26,6 +29,30 @@ public class XMLParser {
 	public XMLParser(String filepath) {
 		this.filepath = filepath;
 		loadDocument();
+	}
+
+
+	public ArrayList<String> getAttributeValue(String nodeName, String attr) {
+		ArrayList<String> list = new ArrayList<>();
+		NodeList nList = document.getElementsByTagName(nodeName);
+		Node node, nodeAttr;
+		NamedNodeMap attribute;
+		for(int i = 0; i < nList.getLength(); i++) {
+			node = nList.item(i);
+			NodeList nList2;
+			if(node.getNodeType() == Node.ELEMENT_NODE) {
+				nList2 = ((Element) node).getChildNodes();
+				for(int j = 0; j < nList2.getLength(); j++) {
+					if(nList2.item(j).getNodeType() == Node.ELEMENT_NODE) {
+						attribute = nList2.item(j).getAttributes();
+						nodeAttr = attribute.getNamedItem(attr);
+						list.add(nodeAttr.getTextContent());
+					}
+				}
+			}
+		}
+		return list;
+
 	}
 
 	public boolean exists(String nodeName, String content) {
@@ -66,7 +93,7 @@ public class XMLParser {
 
 		rewriteDocument();
 	}
-
+	
 	private void loadDocument() {
 		try{ 
 			File file = new File(filepath);
@@ -76,18 +103,18 @@ public class XMLParser {
 
 
 		}catch(IOException ex) {
-			//LOG
+			System.out.println(ex.getMessage());
 		}catch( ParserConfigurationException ex) {
 			//LOG
 		}catch(SAXException ex) {		
 			//LOG
 		}
 	}
-	
+
 	protected Document getDocument() {
 		return this.document;
 	}
-	
+
 	protected void rewriteDocument() {
 		try{
 			document.normalize();

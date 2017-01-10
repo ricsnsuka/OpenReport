@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Test>
+	<AttrValueTest>
+		<testElement attr1="1" attr2="Result1" />
+		<testElement attr1="1" attr2="Result2" />
+		<testElement attr1="1" attr2="Result3" />
+	</AttrValueTest>
+	<EqualsTest>
+		<testElement attr1="1">Test string for XMLParser.equals method</testElement>
+	</EqualsTest>
+	<AddInfoTest>
+		<testElement>Adding an existant element to this</testElement>
+	</AddInfoTest>
+</Test>

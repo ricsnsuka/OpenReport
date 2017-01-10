@@ -18,11 +18,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -31,12 +32,11 @@ import javax.swing.border.TitledBorder;
 import lib.adapters.ApplicationsAdapter;
 import lib.adapters.ScheduleAdapter;
 import lib.adapters.SeverityTypeAdapter;
+import lib.gui.blocks.applications.ActiveQuoteDialog;
+import lib.gui.blocks.applications.ApplicationDialog;
+import lib.gui.blocks.applications.eBrokerDialog;
 import lib.structs.ReportConfig;
 import test.FileParserTest;
-import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
-import java.awt.GridLayout;
-import javax.swing.JTextField;
 
 public class OpenReportConfig {
 
@@ -47,6 +47,7 @@ public class OpenReportConfig {
 	private ApplicationsAdapter applicationsController;
 	private JTextField txtXSelected;
 	private JTextField txtXSelected_1;
+	private ApplicationDialog dialog;
 
 	/**
 	 * Launch the application.
@@ -68,7 +69,9 @@ public class OpenReportConfig {
 	 * Create the application.
 	 */
 	public OpenReportConfig() {
-
+//		eBrokerFrame = new eBrokerDialog();
+//		eBrokerFrame.setVisible(false);
+		
 		severityTypeAdapter = new SeverityTypeAdapter();
 		scheduleController = new ScheduleAdapter();
 		applicationsController = new ApplicationsAdapter();
@@ -84,6 +87,7 @@ public class OpenReportConfig {
 		frame.setBounds(100, 100, 600, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
+		frame.setTitle("OpenReports");
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{530, 0};
 		gridBagLayout.rowHeights = new int[]{39, 50, 100, 250, 35, 0};
@@ -398,6 +402,13 @@ public class OpenReportConfig {
 		panel_4.add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
 		
 		JButton btnSelect = new JButton("Select...");
+		btnSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dialog = new eBrokerDialog(frame);
+				frame.setEnabled(false);
+				dialog.getDialog().setVisible(true);
+			}
+		});
 		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
 		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSelect.gridx = 5;
@@ -407,7 +418,7 @@ public class OpenReportConfig {
 		txtXSelected = new JTextField();
 		txtXSelected.setEnabled(false);
 		txtXSelected.setEditable(false);
-		txtXSelected.setText("X selected");
+		txtXSelected.setText((dialog == null)?"X":dialog.getSelectedValues().size() + " selected");
 		GridBagConstraints gbc_txtXSelected = new GridBagConstraints();
 		gbc_txtXSelected.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtXSelected.gridx = 7;
@@ -444,6 +455,14 @@ public class OpenReportConfig {
 		panel_5.add(chckbxAll, gbc_chckbxAll);
 		
 		JButton btnSelect_1 = new JButton("Select...");
+		btnSelect_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dialog = new ActiveQuoteDialog(frame);
+				frame.setEnabled(false);
+				dialog.getDialog().setVisible(true);
+			}
+				
+		});
 		GridBagConstraints gbc_btnSelect_1 = new GridBagConstraints();
 		gbc_btnSelect_1.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSelect_1.gridx = 5;
@@ -451,7 +470,7 @@ public class OpenReportConfig {
 		panel_5.add(btnSelect_1, gbc_btnSelect_1);
 		
 		txtXSelected_1 = new JTextField();
-		txtXSelected_1.setText("X selected");
+		txtXSelected_1.setText((dialog == null)?"X":dialog.getSelectedValues().size() + " selected");
 		txtXSelected_1.setEnabled(false);
 		txtXSelected_1.setEditable(false);
 		GridBagConstraints gbc_txtXSelected_1 = new GridBagConstraints();
@@ -497,14 +516,6 @@ public class OpenReportConfig {
 		gbc_btnRunNow.gridy = 0;
 		savePanel.add(btnRunNow, gbc_btnRunNow);
 	}
+	
 
-
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "SwingAction");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-		}
-	}
 }

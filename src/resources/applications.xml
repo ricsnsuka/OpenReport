@@ -3,7 +3,7 @@
 	<eBroker>
 		<site ebrokerVersion="3" name="Abbey" />
 		<site ebrokerVersion="3" name="Alan Boswell" />
-		<site ebrokerVersion="2" name="Allen & Allen" />
+		<site ebrokerVersion="2" name="Allen &amp; Allen" />
 		<site ebrokerVersion="3" name="APlan" />
 		<site ebrokerVersion="3" name="Buddies" />
 		<site ebrokerVersion="3" name="CarInsurer" />
@@ -33,7 +33,7 @@
 		<site ebrokerVersion="3" name="Group Churchill" />
 		<site ebrokerVersion="3" name="Group Direct" />
 		<site ebrokerVersion="3" name="Group Natwest" />
-		<site ebrokerVersion="3" name="Hughes & Co" />
+		<site ebrokerVersion="3" name="Hughes &amp; Co" />
 		<site ebrokerVersion="3" name="Ignition" />
 		<site ebrokerVersion="2" name="IKube" />
 		<site ebrokerVersion="2" name="IKubePublic" />
