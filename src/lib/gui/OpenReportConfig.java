@@ -369,7 +369,7 @@ public class OpenReportConfig {
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[]{525, 0};
 		gbl_panel_3.rowHeights = new int[]{45, 45, 45, 45, 45, 0};
-		gbl_panel_3.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel_3.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
@@ -389,6 +389,7 @@ public class OpenReportConfig {
 		
 		JLabel lblEbroker = new JLabel("eBroker");
 		GridBagConstraints gbc_lblEbroker = new GridBagConstraints();
+		gbc_lblEbroker.fill = GridBagConstraints.VERTICAL;
 		gbc_lblEbroker.insets = new Insets(0, 0, 0, 5);
 		gbc_lblEbroker.gridx = 1;
 		gbc_lblEbroker.gridy = 0;
@@ -436,7 +437,7 @@ public class OpenReportConfig {
 		GridBagLayout gbl_panel_5 = new GridBagLayout();
 		gbl_panel_5.columnWidths = new int[]{10, 70, 10, 20, 20, 75, 10, 250, 0};
 		gbl_panel_5.rowHeights = new int[]{0, 0};
-		gbl_panel_5.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_5.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_5.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_5.setLayout(gbl_panel_5);
 		
