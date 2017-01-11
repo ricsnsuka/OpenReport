@@ -5,7 +5,16 @@ import java.util.ArrayList;
 public class ScheduleAdapter {
 	private boolean weekly;
 	private ArrayList<String> weekdays;
+	private String runtime;
 	
+	public String getRuntime() {
+		return runtime;
+	}
+
+	public void setRuntime(String runtime) {
+		this.runtime = runtime;
+	}
+
 	public ScheduleAdapter() {
 	}
 	
@@ -25,8 +34,4 @@ public class ScheduleAdapter {
 		this.weekdays = weekdays;
 	}
 
-	
-	
-	
-	
 }
