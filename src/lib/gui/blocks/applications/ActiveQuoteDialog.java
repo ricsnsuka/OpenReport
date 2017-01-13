@@ -1,14 +1,13 @@
 package lib.gui.blocks.applications;
 
-import java.awt.Frame;
-
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 
 import lib.fileparser.XMLParser;
 
 public final class ActiveQuoteDialog extends ApplicationDialog {
 	
-	public ActiveQuoteDialog(Frame owner) {
+	public ActiveQuoteDialog(JFrame owner) {
 		super(owner, "ActiveQuote Servers");
 	}
 	

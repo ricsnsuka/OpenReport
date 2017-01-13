@@ -2,7 +2,6 @@ package lib.gui.blocks.applications;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,6 +14,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -26,7 +26,7 @@ public abstract class ApplicationDialog {
 	protected JList<String> data;
 	protected JDialog dialog;
 
-	public ApplicationDialog(Frame owner, String title) {
+	public ApplicationDialog(JFrame owner, String title) {
 		selectedValues = null;
 		dialog = new JDialog(owner, title);
 		dialog.setType(Type.POPUP);
@@ -74,8 +74,7 @@ public abstract class ApplicationDialog {
 		gbl_applicationPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_applicationPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		applicationPanel.setLayout(gbl_applicationPanel);
-		
-		
+
 		
 		GridBagConstraints gbc_list = new GridBagConstraints();
 		gbc_list.gridwidth = 2;
@@ -93,7 +92,6 @@ public abstract class ApplicationDialog {
 		gbc_btnOk.gridx = 2;
 		gbc_btnOk.gridy = 2;
 		applicationPanel.add(btnOk, gbc_btnOk);
-		
 		
 	}
 
@@ -131,7 +129,7 @@ public abstract class ApplicationDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				selectedValues = data.getSelectedValuesList();
-//				dialog.getOwner().setEnabled(true);
+				dialog.getOwner().setEnabled(true);
 				dialog.dispose();
 				
 				for(String value : selectedValues) {

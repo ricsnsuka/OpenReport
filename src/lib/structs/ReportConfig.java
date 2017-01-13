@@ -1,8 +1,8 @@
 package lib.structs;
 
-import lib.adapters.ApplicationsAdapter;
 import lib.adapters.ScheduleAdapter;
 import lib.adapters.SeverityTypeAdapter;
+import lib.adapters.applications.ApplicationsAdapter;
 
 public class ReportConfig {
 	private SeverityTypeAdapter severityType;

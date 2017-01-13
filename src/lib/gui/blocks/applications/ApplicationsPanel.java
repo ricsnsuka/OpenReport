@@ -13,23 +13,30 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import lib.adapters.ApplicationsAdapter;
 import lib.structs.ReportConfig;
 
 public class ApplicationsPanel {
-	
+
+	public static final String eBrokerAppliaction = "eBroker";
+	public static final String activeQuoteApplication = "ActiveQuote";
+
+
 	private static final String label = "Applications";
-	
 	private ArrayList<ApplicationPanel> applicationPanels;
+	
+	private JPanel panel;
+
 	private JTextField txtSelected;
-	
-	
+	private int gridy;
+
+
 	public ApplicationsPanel(ReportConfig config, JFrame frame) {
-		buildPanel(frame);
+		this.gridy = 0;
 		applicationPanels = new ArrayList<>();
+		buildPanel(frame);
 	}
-	
-	
+
+
 	private void buildPanel(JFrame frame) {
 		JPanel applicationPanel = new JPanel();
 		applicationPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), ApplicationsPanel.label, TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -41,23 +48,37 @@ public class ApplicationsPanel {
 		frame.getContentPane().add(applicationPanel, gbc_applicationPanel);
 		applicationPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JPanel panel_3 = new JPanel();
-		applicationPanel.add(panel_3);
+		panel = new JPanel();
+		applicationPanel.add(panel);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
 		gbl_panel_3.columnWidths = new int[]{525, 0};
 		gbl_panel_3.rowHeights = new int[]{45, 45, 45, 45, 45, 0};
 		gbl_panel_3.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_3.setLayout(gbl_panel_3);
-	
+		panel.setLayout(gbl_panel_3);
+
 	}
-	
-	
-	public void addApplicationPanel(JFrame frame, JPanel containerPanel, int gridx, int gridy) {
-		
+
+
+	public void addNewApplicationPanel(ReportConfig config, JFrame frame, String label) {
+		ApplicationPanel applicationPanel;
+		switch(label) {
+		case eBrokerAppliaction:
+			applicationPanel = new eBrokerApplicationPanel(config, frame, panel, gridy);
+			break;
+		case activeQuoteApplication:
+			applicationPanel = new ActiveQuoteApplicationPanel(config, frame, panel, gridy);
+			break;
+		default:
+			System.out.println("Application doesn't exist");
+			return;
+		}
+		gridy++;
+		applicationPanels.add(applicationPanel);
 	}
-	
-	
-	
-	
+
+
+
+
+
 }

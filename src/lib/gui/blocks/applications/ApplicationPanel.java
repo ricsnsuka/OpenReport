@@ -3,8 +3,8 @@ package lib.gui.blocks.applications;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -13,31 +13,29 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import lib.adapters.ApplicationsAdapter;
+import lib.adapters.applications.ApplicationsAdapter;
 import lib.structs.ReportConfig;
 
 public abstract class ApplicationPanel {
-	
+
 	protected String label;
-	
 	protected ApplicationDialog dialog;
+	protected JTextField txtXSelected;
+	protected ApplicationsAdapter applicationsAdapter;
 	
-	private JTextField txtXSelected;
-	private ApplicationsAdapter applicationsAdapter;
+	public ApplicationPanel(ReportConfig config, JFrame frame, JPanel panel, int gridy) {
+		
+	}
 
 	protected abstract void addListenerToSelectButton(JFrame frame, JPanel containerPanel, JButton button);
-	
-	public ApplicationPanel(ReportConfig config, JFrame frame, JPanel panel, String label, int gridx, int gridy) {
-		
-		buildPanel(panel, frame, gridx, gridy);
-	}
-	
-	private void buildPanel(JPanel panel, JFrame frame, int gridx, int gridy) {
+
+
+	protected void buildPanel(JPanel panel, JFrame frame, int gridy) {
 		JPanel appPanel = new JPanel();
 		GridBagConstraints appPanelConstrains = new GridBagConstraints();
 		appPanelConstrains.fill = GridBagConstraints.HORIZONTAL;
 		appPanelConstrains.insets = new Insets(0, 0, 5, 0);
-		appPanelConstrains.gridx = gridx;
+		appPanelConstrains.gridx = 0;
 		appPanelConstrains.gridy = gridy;
 		panel.add(appPanel, appPanelConstrains);
 		GridBagLayout appPanelLayout = new GridBagLayout();
@@ -63,7 +61,8 @@ public abstract class ApplicationPanel {
 		appPanel.add(chkBoxAll, chkBoxAllConstraints);
 
 		JButton btnSelect = new JButton("Select...");
-		
+		addListenerToSelectButton(frame, panel, btnSelect);
+
 		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
 		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSelect.gridx = 5;
@@ -81,14 +80,22 @@ public abstract class ApplicationPanel {
 		appPanel.add(txtXSelected, gbc_txtXSelected);
 		txtXSelected.setColumns(10);
 	}
-	/*
-	 * btnSelect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dialog = new eBrokerDialog(frame);
-				//				frame.setEnabled(false);
-				dialog.getDialog().setVisible(true);
+	
+	protected void addFrameInspector(JFrame frame) {
+		frame.addWindowFocusListener(new WindowFocusListener() {
+			public void windowGainedFocus(WindowEvent arg0) {
+				frame.setEnabled(true);
+				txtXSelected.setText(((dialog == null)?"X":dialog.getSelectedValues().size()) + " selected");
+				System.out.println("Gained focus");
+				applicationsAdapter.setSelectedValues(dialog.getSelectedValues());
+			}
+			public void windowLostFocus(WindowEvent arg0) {
+//				frame.setEnabled(false);
+				System.out.println("Lost focus");
 			}
 		});
-	 */
+	}
 	
+	
+
 }

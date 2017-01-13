@@ -1,14 +1,13 @@
 package lib.gui.blocks.applications;
 
-import java.awt.Frame;
-
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 
 import lib.fileparser.XMLParser;
 
 public final class eBrokerDialog extends ApplicationDialog{
 	
-	public eBrokerDialog(Frame owner) {
+	public eBrokerDialog(JFrame owner) {
 		super(owner, "eBroker Sites");
 	}
 
