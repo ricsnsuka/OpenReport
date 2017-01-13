@@ -77,19 +77,19 @@
 		<site ebrokerVersion="2" name="Trident" />
 		<site ebrokerVersion="3" name="UDriveCover" />
 	</eBroker>
-	<openquote>
+	<OpenQuote>
 		<server serverNumber="1" />
 		<server serverNumber="2" />
 		<server serverNumber="3" />
-	</openquote>
-	<activequote>
+	</OpenQuote>
+	<ActiveQuote>
 		<server serverNumber="1" />
 		<server serverNumber="2" />
 		<server serverNumber="3" />
-	</activequote>
-	<opencostumerportal>
+	</ActiveQuote>
+	<OpenCostumerPortal>
 		<server serverNumber="1" />
 		<server serverNumber="2" />
 		<server serverNumber="3" />
-	</opencostumerportal>
+	</OpenCostumerPortal>
 </applications>

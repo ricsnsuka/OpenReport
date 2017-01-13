@@ -84,14 +84,10 @@ public abstract class ApplicationPanel {
 	protected void addFrameInspector(JFrame frame) {
 		frame.addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent arg0) {
-				frame.setEnabled(true);
 				txtXSelected.setText(((dialog == null)?"X":dialog.getSelectedValues().size()) + " selected");
-				System.out.println("Gained focus");
 				applicationsAdapter.setSelectedValues(dialog.getSelectedValues());
 			}
 			public void windowLostFocus(WindowEvent arg0) {
-//				frame.setEnabled(false);
-				System.out.println("Lost focus");
 			}
 		});
 	}

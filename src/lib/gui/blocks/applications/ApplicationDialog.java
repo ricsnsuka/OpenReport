@@ -21,26 +21,39 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
-public abstract class ApplicationDialog {
+import lib.fileparser.XMLParser;
+
+public class ApplicationDialog {
 	private List<String> selectedValues;
 	protected JList<String> data;
 	protected JDialog dialog;
+	private String applicationName;
+	protected String attributeToFind;
 
-	public ApplicationDialog(JFrame owner, String title) {
+	public ApplicationDialog(JFrame owner, String title, String applicationName, String attributeToFind) {
 		selectedValues = null;
+		this.applicationName = applicationName;
+		this.attributeToFind = attributeToFind;
+		
+		
 		dialog = new JDialog(owner, title);
 		dialog.setType(Type.POPUP);
 		dialog.setResizable(false);
-		dialog.setBounds(250, 250, 300, 480);
+		dialog.setBounds(owner.getX()+owner.getWidth(), owner.getY(), 300, 480);
 		dialog.setAlwaysOnTop(true);
 		buildPanel();
 	}
 
-	protected abstract void addCurrentApplicationData(DefaultListModel<String> listModel);
+	protected void addCurrentApplicationData(DefaultListModel<String> listModel) {
+		XMLParser parser = new XMLParser("src\\resources\\applications.xml");
+		for(String attributeValue : parser.getAttributeValue(applicationName, attributeToFind)) {
+			listModel.addElement(attributeValue);
+		}
+	}
 
 	private void buildPanel() {
 		JScrollPane listScroller = createScrollPane();
-		
+
 		//LAYOUT
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{150, 0};
@@ -75,7 +88,7 @@ public abstract class ApplicationDialog {
 		gbl_applicationPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		applicationPanel.setLayout(gbl_applicationPanel);
 
-		
+
 		GridBagConstraints gbc_list = new GridBagConstraints();
 		gbc_list.gridwidth = 2;
 		gbc_list.insets = new Insets(0, 0, 5, 5);
@@ -83,16 +96,16 @@ public abstract class ApplicationDialog {
 		gbc_list.gridx = 1;
 		gbc_list.gridy = 1;
 		applicationPanel.add(listScroller, gbc_list);
-		
+
 		JButton btnOk = createOkButton();
-		
+
 		GridBagConstraints gbc_btnOk = new GridBagConstraints();
 		gbc_btnOk.insets = new Insets(0, 0, 5, 5);
 		gbc_btnOk.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnOk.gridx = 2;
 		gbc_btnOk.gridy = 2;
 		applicationPanel.add(btnOk, gbc_btnOk);
-		
+
 	}
 
 	private JScrollPane createScrollPane() {
@@ -111,18 +124,18 @@ public abstract class ApplicationDialog {
 
 		return listScroller;
 	}
-	
+
 	public JDialog getDialog() {
 		return this.dialog;
 	}
-	
+
 	public List<String> getSelectedValues() {
 		if(selectedValues == null) {
 			return new ArrayList<String>();
 		}
 		return selectedValues;
 	}
-	
+
 	private JButton createOkButton() {
 		JButton btnOk = new JButton("OK");
 		btnOk.addMouseListener(new MouseAdapter() {
@@ -131,7 +144,7 @@ public abstract class ApplicationDialog {
 				selectedValues = data.getSelectedValuesList();
 				dialog.getOwner().setEnabled(true);
 				dialog.dispose();
-				
+
 				for(String value : selectedValues) {
 					System.out.println(value);
 				}

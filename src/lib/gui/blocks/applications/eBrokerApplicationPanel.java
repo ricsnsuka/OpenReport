@@ -11,6 +11,8 @@ import lib.adapters.applications.eBrokerApplicationAdapter;
 import lib.structs.ReportConfig;
 
 public class eBrokerApplicationPanel extends ApplicationPanel {
+	public static final String eBroker_ProductTitle = "eBroker";
+	private final String attributeToFind = "name";
 	
 	
 	public eBrokerApplicationPanel(ReportConfig config, JFrame frame, JPanel panel, int gridy) {
@@ -25,7 +27,7 @@ public class eBrokerApplicationPanel extends ApplicationPanel {
 	protected void addListenerToSelectButton(JFrame frame, JPanel containerPanel, JButton button) {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dialog = new eBrokerDialog(frame);
+				dialog = new ApplicationDialog(frame, label, eBroker_ProductTitle, attributeToFind);
 				frame.setEnabled(false);
 				dialog.getDialog().setVisible(true);
 				addFrameInspector(frame);

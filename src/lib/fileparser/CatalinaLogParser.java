@@ -70,8 +70,9 @@ public class CatalinaLogParser {
 			case "WARNING":
 				return severity.isWarning();
 			default:
-				return false;
+				break;
 			}
+			return false;
 		}
 	}
 

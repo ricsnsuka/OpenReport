@@ -11,6 +11,9 @@ import lib.adapters.applications.eBrokerApplicationAdapter;
 import lib.structs.ReportConfig;
 
 public class ActiveQuoteApplicationPanel extends ApplicationPanel {
+	public static final String AQ_ProductTitle = "ActiveQuote";
+	private final String attributeToFind = "serverNumber";
+	
 
 	public ActiveQuoteApplicationPanel(ReportConfig config, JFrame frame, JPanel panel, int gridy) {
 		super(config, frame, panel, gridy);
@@ -24,7 +27,7 @@ public class ActiveQuoteApplicationPanel extends ApplicationPanel {
 	protected void addListenerToSelectButton(JFrame frame, JPanel containerPanel, JButton button) {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dialog = new ActiveQuoteDialog(frame);
+				dialog = new ApplicationDialog(frame, label, AQ_ProductTitle, attributeToFind);
 				frame.setEnabled(false);
 				dialog.getDialog().setVisible(true);
 				addFrameInspector(frame);
