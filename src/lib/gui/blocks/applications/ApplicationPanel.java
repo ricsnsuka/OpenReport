@@ -3,8 +3,11 @@ package lib.gui.blocks.applications;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -14,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import lib.adapters.applications.ApplicationsAdapter;
-import lib.structs.ReportConfig;
+import lib.fileparser.XMLParser;
 
 public abstract class ApplicationPanel {
 
@@ -22,15 +25,18 @@ public abstract class ApplicationPanel {
 	protected ApplicationDialog dialog;
 	protected JTextField txtXSelected;
 	protected ApplicationsAdapter applicationsAdapter;
+	protected ArrayList<String> dialogData;
 	
-	public ApplicationPanel(ReportConfig config, JFrame frame, JPanel panel, int gridy) {
-		
+	
+	
+	public ApplicationPanel() {
+		dialogData = new ArrayList<>();
 	}
-
+	
 	protected abstract void addListenerToSelectButton(JFrame frame, JPanel containerPanel, JButton button);
 
 
-	protected void buildPanel(JPanel panel, JFrame frame, int gridy) {
+	protected void buildPanel(JFrame frame, JPanel panel, int gridy) {
 		JPanel appPanel = new JPanel();
 		GridBagConstraints appPanelConstrains = new GridBagConstraints();
 		appPanelConstrains.fill = GridBagConstraints.HORIZONTAL;
@@ -54,6 +60,8 @@ public abstract class ApplicationPanel {
 		appPanel.add(lblLabel, lblLabelConstraints);
 
 		JCheckBox chkBoxAll = new JCheckBox("All");
+		addListenerToChkBoxAll(chkBoxAll);
+		
 		GridBagConstraints chkBoxAllConstraints = new GridBagConstraints();
 		chkBoxAllConstraints.insets = new Insets(0, 0, 0, 5);
 		chkBoxAllConstraints.gridx = 3;
@@ -72,7 +80,7 @@ public abstract class ApplicationPanel {
 		txtXSelected = new JTextField();
 		txtXSelected.setEnabled(false);
 		txtXSelected.setEditable(false);
-		txtXSelected.setText(((dialog == null)?"0":dialog.getSelectedValues().size()) + " selected");
+		txtXSelected.setText(((applicationsAdapter.getSelectedValues() == null)?"0":applicationsAdapter.getSelectedValues().size()) + " selected");
 		GridBagConstraints gbc_txtXSelected = new GridBagConstraints();
 		gbc_txtXSelected.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtXSelected.gridx = 7;
@@ -84,12 +92,32 @@ public abstract class ApplicationPanel {
 	protected void addFrameInspector(JFrame frame) {
 		frame.addWindowFocusListener(new WindowFocusListener() {
 			public void windowGainedFocus(WindowEvent arg0) {
-				txtXSelected.setText(((dialog == null)?"X":dialog.getSelectedValues().size()) + " selected");
 				applicationsAdapter.setSelectedValues(dialog.getSelectedValues());
+				txtXSelected.setText(((applicationsAdapter.getSelectedValues() == null)?"0":applicationsAdapter.getSelectedValues().size()) + " selected");
 			}
 			public void windowLostFocus(WindowEvent arg0) {
 			}
 		});
+	}
+	
+	private void addListenerToChkBoxAll(JCheckBox chkBoxAll) {
+		chkBoxAll.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(chkBoxAll.isSelected()) {
+					applicationsAdapter.setSelectedValues(dialogData);
+					txtXSelected.setText(applicationsAdapter.getSelectedValues().size() + " selected");
+				} else {
+					txtXSelected.setText(((dialog == null)?"0":dialog.getSelectedValues().size()) + " selected");
+				}
+			}
+		});
+	}
+	
+	protected void addCurrentDialogApplicationData(String applicationName, String attributeToFind) {
+		XMLParser parser = new XMLParser("src\\resources\\applications.xml");
+		for(String attributeValue : parser.getAttributeValue(applicationName, attributeToFind)) {
+			dialogData.add(attributeValue);
+		}
 	}
 	
 	

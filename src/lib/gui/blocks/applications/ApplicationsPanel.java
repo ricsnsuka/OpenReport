@@ -9,10 +9,11 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import lib.gui.blocks.applications.specific.ActiveQuoteApplicationPanel;
+import lib.gui.blocks.applications.specific.eBrokerApplicationPanel;
 import lib.structs.ReportConfig;
 
 public class ApplicationsPanel {
@@ -26,11 +27,10 @@ public class ApplicationsPanel {
 	
 	private JPanel panel;
 
-	private JTextField txtSelected;
 	private int gridy;
 
 
-	public ApplicationsPanel(ReportConfig config, JFrame frame) {
+	public ApplicationsPanel(JFrame frame) {
 		this.gridy = 0;
 		applicationPanels = new ArrayList<>();
 		buildPanel(frame);

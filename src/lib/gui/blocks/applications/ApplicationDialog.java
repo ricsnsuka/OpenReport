@@ -21,20 +21,16 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
-import lib.fileparser.XMLParser;
-
 public class ApplicationDialog {
 	private List<String> selectedValues;
+	private ArrayList<String> defaultValues;
+	
 	protected JList<String> data;
 	protected JDialog dialog;
-	private String applicationName;
-	protected String attributeToFind;
-
-	public ApplicationDialog(JFrame owner, String title, String applicationName, String attributeToFind) {
+	
+	public ApplicationDialog(JFrame owner, String title, ArrayList<String> defaultValues) {
 		selectedValues = null;
-		this.applicationName = applicationName;
-		this.attributeToFind = attributeToFind;
-		
+		this.defaultValues = defaultValues;
 		
 		dialog = new JDialog(owner, title);
 		dialog.setType(Type.POPUP);
@@ -44,11 +40,12 @@ public class ApplicationDialog {
 		buildPanel();
 	}
 
-	protected void addCurrentApplicationData(DefaultListModel<String> listModel) {
-		XMLParser parser = new XMLParser("src\\resources\\applications.xml");
-		for(String attributeValue : parser.getAttributeValue(applicationName, attributeToFind)) {
-			listModel.addElement(attributeValue);
+	protected DefaultListModel<String> createApplicationListModel() {
+		DefaultListModel<String> listModel = new DefaultListModel<>();
+		for(String value : this.defaultValues) {
+			listModel.addElement(value);
 		}
+		return listModel;
 	}
 
 	private void buildPanel() {
@@ -109,8 +106,7 @@ public class ApplicationDialog {
 	}
 
 	private JScrollPane createScrollPane() {
-		DefaultListModel<String> listModel = new DefaultListModel<>();
-		addCurrentApplicationData(listModel);
+		DefaultListModel<String> listModel = createApplicationListModel();
 		data = new JList<>(listModel);
 		data.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
 		data.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -144,10 +140,6 @@ public class ApplicationDialog {
 				selectedValues = data.getSelectedValuesList();
 				dialog.getOwner().setEnabled(true);
 				dialog.dispose();
-
-				for(String value : selectedValues) {
-					System.out.println(value);
-				}
 			}
 		});
 		return btnOk;

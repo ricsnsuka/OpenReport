@@ -61,19 +61,17 @@ public class CatalinaLogParser {
 		if(severity.isAllTypes()) {
 			return true;
 		}
-		else {
-			switch(type) {
-			case "INFO":
-				return severity.isInfo();
-			case "SEVERE":
-				return severity.isSevere();
-			case "WARNING":
-				return severity.isWarning();
-			default:
-				break;
-			}
-			return false;
+		switch(type) {
+		case "INFO":
+			return severity.isInfo();
+		case "SEVERE":
+			return severity.isSevere();
+		case "WARNING":
+			return severity.isWarning();
+		default:
+			break;
 		}
+		return false;
 	}
 
 	private void processLine(ReportXMLParser parser, String type, String timestamp, String desc, ArrayList<LogData> logDataCollection) {
@@ -82,7 +80,7 @@ public class CatalinaLogParser {
 			LogEntryType currentLogEntryType = logData.getType();
 			String currentEntrySeverityInfo = logData.getSeverityInfo();
 			MutableString mutable = new MutableString();
-			
+
 			if(!parser.exists(currentLogEntryType, currentEntrySeverityInfo, mutable)) {
 				parser.addInfoToXML(currentLogEntryType.name(), currentEntrySeverityInfo);
 				System.out.println(currentEntrySeverityInfo);

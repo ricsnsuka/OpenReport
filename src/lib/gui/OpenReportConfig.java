@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import lib.adapters.applications.ApplicationsAdapter;
 import lib.gui.blocks.EmailPanel;
 import lib.gui.blocks.applications.ApplicationsPanel;
 import lib.gui.blocks.schedule.SchedulePanel;
@@ -70,7 +71,7 @@ public class OpenReportConfig {
 
 		SchedulePanel schedulePanel = new SchedulePanel(config, frame);
 
-		ApplicationsPanel applicationsPanel = new ApplicationsPanel(config, frame);
+		ApplicationsPanel applicationsPanel = new ApplicationsPanel(frame);
 		
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.eBrokerAppliaction);
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.activeQuoteApplication);
@@ -111,6 +112,13 @@ public class OpenReportConfig {
 				} else {
 					schedulePanel.refreshConfigInformation();
 					System.out.println(config.getSchedule().getRuntime());
+					for(ApplicationsAdapter appAdapter : config.getApplications().values()) {
+						System.out.println(appAdapter.getClass().getName());
+						for(String value : appAdapter.getSelectedValues()) {
+							System.out.println(value);
+						}
+					}
+					
 					FileParserTest.run(config);
 				}
 

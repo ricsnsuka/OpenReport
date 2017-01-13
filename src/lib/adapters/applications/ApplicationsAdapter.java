@@ -2,7 +2,7 @@ package lib.adapters.applications;
 
 import java.util.List;
 
-public abstract class ApplicationsAdapter {
+public class ApplicationsAdapter {
 	private List<String> selectedValues;
 	
 	public ApplicationsAdapter() {
