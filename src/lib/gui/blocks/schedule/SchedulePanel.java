@@ -80,7 +80,7 @@ public class SchedulePanel {
 		JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.gridwidth = 2;
-		gbc_panel_2.gridx = 1;
+		gbc_panel_2.gridx = 2;
 		gbc_panel_2.gridy = 1;
 		mainContainer.add(panel_2, gbc_panel_2);
 

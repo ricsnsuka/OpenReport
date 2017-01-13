@@ -6,8 +6,7 @@ import lib.adapters.ScheduleAdapter;
 import lib.adapters.SeverityTypeAdapter;
 import lib.adapters.applications.ApplicationsAdapter;
 import lib.exceptions.OpenReportException;
-import lib.gui.blocks.applications.specific.ActiveQuoteApplicationPanel;
-import lib.gui.blocks.applications.specific.eBrokerApplicationPanel;
+import lib.gui.blocks.applications.ApplicationsPanel;
 
 public class ReportConfig {
 	private SeverityTypeAdapter severityType;
@@ -26,8 +25,8 @@ public class ReportConfig {
 	}
 	
 	private void init() {
-		this.applications.put(eBrokerApplicationPanel.eBroker_ProductTitle, null);
-		this.applications.put(ActiveQuoteApplicationPanel.AQ_ProductTitle, null);
+		this.applications.put(ApplicationsPanel.eBrokerAppliaction, null);
+		this.applications.put(ApplicationsPanel.activeQuoteApplication, null);
 	}
 
 	public SeverityTypeAdapter getSeverityType() {

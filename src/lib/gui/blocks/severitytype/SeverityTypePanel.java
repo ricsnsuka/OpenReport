@@ -48,29 +48,13 @@ public class SeverityTypePanel {
 		frame.getContentPane().add(severityPanel, gbc_severityPanel);
 		severityPanel.setLayout(new BorderLayout(0, 0));
 
-		JPanel allChkbxPnl = new JPanel();
-		severityPanel.add(allChkbxPnl, BorderLayout.WEST);
-		GridBagLayout gbl_allChkbxPnl = new GridBagLayout();
-		gbl_allChkbxPnl.columnWidths = new int[]{15, 70, 0};
-		gbl_allChkbxPnl.rowHeights = new int[]{22, 0};
-		gbl_allChkbxPnl.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_allChkbxPnl.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		allChkbxPnl.setLayout(gbl_allChkbxPnl);
-
-		all = new JCheckBox("ALL");
-
-		GridBagConstraints gbc_chkbxAll = new GridBagConstraints();
-		gbc_chkbxAll.anchor = GridBagConstraints.NORTHWEST;
-		gbc_chkbxAll.gridx = 1;
-		gbc_chkbxAll.gridy = 0;
-		allChkbxPnl.add(all, gbc_chkbxAll);
 
 		Panel typeChkbxPnl = new Panel();
 		severityPanel.add(typeChkbxPnl, BorderLayout.SOUTH);
 		GridBagLayout gbl_typeChkbxPnl = new GridBagLayout();
-		gbl_typeChkbxPnl.columnWidths = new int[]{15, 70, 70, 70, 0};
+		gbl_typeChkbxPnl.columnWidths = new int[]{15, 70, 70, 70, 70, 0};
 		gbl_typeChkbxPnl.rowHeights = new int[]{22, 0};
-		gbl_typeChkbxPnl.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_typeChkbxPnl.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_typeChkbxPnl.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		typeChkbxPnl.setLayout(gbl_typeChkbxPnl);
 
@@ -95,10 +79,18 @@ public class SeverityTypePanel {
 		warning = new JCheckBox("WARNING");
 
 		GridBagConstraints gbc_chkbxWarning = new GridBagConstraints();
-		gbc_chkbxWarning.anchor = GridBagConstraints.NORTHEAST;
+		gbc_chkbxWarning.anchor = GridBagConstraints.NORTH;
 		gbc_chkbxWarning.gridx = 3;
 		gbc_chkbxWarning.gridy = 0;
 		typeChkbxPnl.add(warning, gbc_chkbxWarning);
+		
+		all = new JCheckBox("ALL");
+
+		GridBagConstraints gbc_chkbxAll = new GridBagConstraints();
+		gbc_chkbxAll.anchor = GridBagConstraints.NORTHEAST;
+		gbc_chkbxAll.gridx = 4;
+		gbc_chkbxAll.gridy = 0;
+		typeChkbxPnl.add(all, gbc_chkbxAll);
 		
 		
 		addListeners();

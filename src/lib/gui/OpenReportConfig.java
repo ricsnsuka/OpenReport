@@ -75,6 +75,8 @@ public class OpenReportConfig {
 		
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.eBrokerAppliaction);
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.activeQuoteApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openQuoteApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openCostumerPortalApplication);
 
 		Panel savePanel = new Panel();
 		GridBagConstraints gbc_savePanel = new GridBagConstraints();
@@ -103,7 +105,6 @@ public class OpenReportConfig {
 		Button btnRunNow = new Button("RUN NOW");
 		btnRunNow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
 
 				if(!emailPanel.validatePanel()) {
 					ErrorDialog.showErrorDialog(frame, "You haven't set any destination address.");

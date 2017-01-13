@@ -7,14 +7,14 @@ import lib.gui.blocks.applications.ApplicationPanel;
 import lib.gui.blocks.applications.ApplicationsPanel;
 import lib.structs.ReportConfig;
 
-public final class ActiveQuoteApplicationPanel extends ApplicationPanel {
+public final class OpenQuoteApplicationPanel extends ApplicationPanel {
 	private final String attributeToFind = "serverNumber";
 	
-
-	public ActiveQuoteApplicationPanel(ReportConfig config, JFrame frame, JPanel panel, int gridy) {
+	
+	public OpenQuoteApplicationPanel(ReportConfig config, JFrame frame, JPanel panel, int gridy) {
 		super();
-		this.label = ApplicationsPanel.activeQuoteApplication;
+		this.label = ApplicationsPanel.openQuoteApplication;
 		build(config, frame, panel, attributeToFind, gridy);
 	}
-
+	
 }

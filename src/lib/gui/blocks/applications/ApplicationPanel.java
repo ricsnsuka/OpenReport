@@ -3,6 +3,8 @@ package lib.gui.blocks.applications;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
@@ -17,9 +19,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import lib.adapters.applications.ApplicationsAdapter;
+import lib.exceptions.OpenReportException;
 import lib.fileparser.XMLParser;
+import lib.structs.ReportConfig;
 
-public abstract class ApplicationPanel {
+public class ApplicationPanel {
 
 	protected String label;
 	protected ApplicationDialog dialog;
@@ -33,8 +37,28 @@ public abstract class ApplicationPanel {
 		dialogData = new ArrayList<>();
 	}
 	
-	protected abstract void addListenerToSelectButton(JFrame frame, JPanel containerPanel, JButton button);
-
+	protected void build(ReportConfig config, JFrame frame, JPanel panel, String attributeToFind, int gridy) {
+		addCurrentDialogApplicationData(label, attributeToFind);
+		applicationsAdapter = new ApplicationsAdapter();
+		try {
+			config.setApplications(label, applicationsAdapter);
+		}catch(OpenReportException e) {
+			
+		}
+		buildPanel(frame, panel, gridy);
+	}
+	
+	protected void addListenerToSelectButton(JFrame frame, JButton button) {
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dialog = new ApplicationDialog(frame, label, dialogData);
+				frame.setEnabled(false);
+				dialog.getDialog().setVisible(true);
+				addFrameInspector(frame);
+			}
+		});
+	}
+	
 
 	protected void buildPanel(JFrame frame, JPanel panel, int gridy) {
 		JPanel appPanel = new JPanel();
@@ -45,7 +69,7 @@ public abstract class ApplicationPanel {
 		appPanelConstrains.gridy = gridy;
 		panel.add(appPanel, appPanelConstrains);
 		GridBagLayout appPanelLayout = new GridBagLayout();
-		appPanelLayout.columnWidths = new int[]{10, 70, 10, 20, 20, 75, 10, 250, 0};
+		appPanelLayout.columnWidths = new int[]{10, 75, 10, 75, 20, 15, 10, 250, 0};
 		appPanelLayout.rowHeights = new int[]{14, 0};
 		appPanelLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		appPanelLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
@@ -59,23 +83,23 @@ public abstract class ApplicationPanel {
 		lblLabelConstraints.gridy = 0;
 		appPanel.add(lblLabel, lblLabelConstraints);
 
+		JButton btnSelect = new JButton("Select...");
+		addListenerToSelectButton(frame, btnSelect);
+
+		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
+		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
+		gbc_btnSelect.gridx = 3;
+		gbc_btnSelect.gridy = 0;
+		appPanel.add(btnSelect, gbc_btnSelect);
+		
 		JCheckBox chkBoxAll = new JCheckBox("All");
 		addListenerToChkBoxAll(chkBoxAll);
 		
 		GridBagConstraints chkBoxAllConstraints = new GridBagConstraints();
 		chkBoxAllConstraints.insets = new Insets(0, 0, 0, 5);
-		chkBoxAllConstraints.gridx = 3;
+		chkBoxAllConstraints.gridx = 5;
 		chkBoxAllConstraints.gridy = 0;
 		appPanel.add(chkBoxAll, chkBoxAllConstraints);
-
-		JButton btnSelect = new JButton("Select...");
-		addListenerToSelectButton(frame, panel, btnSelect);
-
-		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
-		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSelect.gridx = 5;
-		gbc_btnSelect.gridy = 0;
-		appPanel.add(btnSelect, gbc_btnSelect);
 
 		txtXSelected = new JTextField();
 		txtXSelected.setEnabled(false);

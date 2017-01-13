@@ -13,6 +13,8 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
 import lib.gui.blocks.applications.specific.ActiveQuoteApplicationPanel;
+import lib.gui.blocks.applications.specific.OpenCostumerPortalApplicationPanel;
+import lib.gui.blocks.applications.specific.OpenQuoteApplicationPanel;
 import lib.gui.blocks.applications.specific.eBrokerApplicationPanel;
 import lib.structs.ReportConfig;
 
@@ -20,9 +22,11 @@ public class ApplicationsPanel {
 
 	public static final String eBrokerAppliaction = "eBroker";
 	public static final String activeQuoteApplication = "ActiveQuote";
-
+	public static final String openQuoteApplication = "OpenQuote";
+	public static final String openCostumerPortalApplication = "OCP";
 
 	private static final String label = "Applications";
+	
 	private ArrayList<ApplicationPanel> applicationPanels;
 	
 	private JPanel panel;
@@ -68,6 +72,12 @@ public class ApplicationsPanel {
 			break;
 		case activeQuoteApplication:
 			applicationPanel = new ActiveQuoteApplicationPanel(config, frame, panel, gridy);
+			break;
+		case openQuoteApplication:
+			applicationPanel = new OpenQuoteApplicationPanel(config, frame, panel, gridy);
+			break;
+		case openCostumerPortalApplication:
+			applicationPanel = new OpenCostumerPortalApplicationPanel(config, frame, panel, gridy);
 			break;
 		default:
 			System.out.println("Application doesn't exist");
