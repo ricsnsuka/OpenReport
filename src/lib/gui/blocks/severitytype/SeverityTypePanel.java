@@ -32,7 +32,7 @@ public class SeverityTypePanel {
 	
 	public SeverityTypePanel(ReportConfig config, JFrame frame) {
 		severityTypeAdapter = new SeverityTypeAdapter();
-		config.setSeverityType(severityTypeAdapter);
+		config.setSeverityTypes(severityTypeAdapter);
 		buildPanel(frame);
 	}
 	

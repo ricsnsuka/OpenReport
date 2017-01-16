@@ -8,30 +8,33 @@ import java.awt.Insets;
 import java.awt.Window.Type;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
 public class ApplicationDialog {
 	private List<String> selectedValues;
 	private ArrayList<String> defaultValues;
-	
+
 	protected JList<String> data;
 	protected JDialog dialog;
-	
+
 	public ApplicationDialog(JFrame owner, String title, ArrayList<String> defaultValues) {
 		selectedValues = null;
 		this.defaultValues = defaultValues;
-		
+
 		dialog = new JDialog(owner, title);
 		dialog.setType(Type.POPUP);
 		dialog.setResizable(false);
@@ -103,13 +106,34 @@ public class ApplicationDialog {
 		gbc_btnOk.gridy = 2;
 		applicationPanel.add(btnOk, gbc_btnOk);
 
+		addOnCloseListener();
+
 	}
 
 	private JScrollPane createScrollPane() {
 		DefaultListModel<String> listModel = createApplicationListModel();
 		data = new JList<>(listModel);
 		data.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
-		data.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		data.setSelectionModel(new DefaultListSelectionModel() 
+		{
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1304236373523189960L;
+
+			@Override
+			public void setSelectionInterval(int index0, int index1) 
+			{
+				if(data.isSelectedIndex(index0)) 
+				{
+					data.removeSelectionInterval(index0, index1);
+				}
+				else 
+				{
+					data.addSelectionInterval(index0, index1);
+				}
+			}
+		});
 		data.setLayoutOrientation(JList.VERTICAL);
 		data.setBackground(UIManager.getColor("Panel.background"));
 		data.setVisibleRowCount(16);
@@ -140,9 +164,25 @@ public class ApplicationDialog {
 				selectedValues = data.getSelectedValuesList();
 				dialog.getOwner().setEnabled(true);
 				dialog.dispose();
+
 			}
 		});
 		return btnOk;
+	}
+
+	private void addOnCloseListener() {
+		dialog.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int a = JOptionPane.showConfirmDialog(dialog, "Are you sure you want to close this window?\nNote that the changes will not be saved.");
+				if(a == 0) {
+					dialog.getOwner().setEnabled(true);
+					dialog.dispose();
+				} else {
+					
+				}
+			}
+		});
 	}
 
 }

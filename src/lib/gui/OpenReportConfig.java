@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import lib.adapters.applications.ApplicationsAdapter;
+import lib.exec.OpenReporter;
 import lib.gui.blocks.EmailPanel;
 import lib.gui.blocks.applications.ApplicationsPanel;
 import lib.gui.blocks.schedule.SchedulePanel;
@@ -23,6 +24,7 @@ public class OpenReportConfig {
 
 	private JFrame frame;
 	private ReportConfig config;
+	private int reportNumber;
 
 	/**
 	 * Launch the application.
@@ -45,6 +47,7 @@ public class OpenReportConfig {
 	 */
 	public OpenReportConfig() {
 		config = new ReportConfig();
+		reportNumber = 1;
 		initialize();
 	}
 
@@ -72,7 +75,7 @@ public class OpenReportConfig {
 		SchedulePanel schedulePanel = new SchedulePanel(config, frame);
 
 		ApplicationsPanel applicationsPanel = new ApplicationsPanel(frame);
-		
+
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.eBrokerAppliaction);
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.activeQuoteApplication);
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openQuoteApplication);
@@ -115,12 +118,19 @@ public class OpenReportConfig {
 					System.out.println(config.getSchedule().getRuntime());
 					for(ApplicationsAdapter appAdapter : config.getApplications().values()) {
 						System.out.println(appAdapter.getClass().getName());
-						for(String value : appAdapter.getSelectedValues()) {
-							System.out.println(value);
+						if(!appAdapter.getSelectedValues().isEmpty()) {
+							for(String value : appAdapter.getSelectedValues()) {
+								System.out.println(value);
+							}
 						}
 					}
+
+					OpenReporter report = new OpenReporter(config, "Report-" + reportNumber);
+					report.start();
+					reportNumber++;
+					config = new ReportConfig();
 					
-					FileParserTest.run(config);
+//					FileParserTest.run(config);
 				}
 
 
@@ -133,7 +143,7 @@ public class OpenReportConfig {
 		gbc_btnRunNow.gridy = 0;
 		savePanel.add(btnRunNow, gbc_btnRunNow);
 
-		
+
 
 
 	}

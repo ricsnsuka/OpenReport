@@ -9,7 +9,7 @@ import lib.exceptions.OpenReportException;
 import lib.gui.blocks.applications.ApplicationsPanel;
 
 public class ReportConfig {
-	private SeverityTypeAdapter severityType;
+	private SeverityTypeAdapter severityTypes;
 	private ScheduleAdapter schedule;
 	private HashMap<String,ApplicationsAdapter> applications;
 	
@@ -17,8 +17,8 @@ public class ReportConfig {
 		this(null, null);
 	}
 	
-	public ReportConfig(SeverityTypeAdapter severityType, ScheduleAdapter schedule) {
-		this.severityType = severityType;
+	public ReportConfig(SeverityTypeAdapter severityTypes, ScheduleAdapter schedule) {
+		this.severityTypes = severityTypes;
 		this.schedule = schedule;
 		this.applications = new HashMap<>();
 		init();
@@ -27,10 +27,12 @@ public class ReportConfig {
 	private void init() {
 		this.applications.put(ApplicationsPanel.eBrokerAppliaction, null);
 		this.applications.put(ApplicationsPanel.activeQuoteApplication, null);
+		this.applications.put(ApplicationsPanel.openQuoteApplication, null);
+		this.applications.put(ApplicationsPanel.openCostumerPortalApplication, null);
 	}
 
-	public SeverityTypeAdapter getSeverityType() {
-		return severityType;
+	public SeverityTypeAdapter getSeverityTypes() {
+		return severityTypes;
 	}
 
 	public ScheduleAdapter getSchedule() {
@@ -41,8 +43,8 @@ public class ReportConfig {
 		return applications;
 	}
 
-	public void setSeverityType(SeverityTypeAdapter severityType) {
-		this.severityType = severityType;
+	public void setSeverityTypes(SeverityTypeAdapter severityTypes) {
+		this.severityTypes = severityTypes;
 	}
 
 	public void setSchedule(ScheduleAdapter schedule) {

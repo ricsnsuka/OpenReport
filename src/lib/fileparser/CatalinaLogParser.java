@@ -17,7 +17,7 @@ public class CatalinaLogParser {
 	public CatalinaLogParser() {
 	}
 
-	public ArrayList<LogData> parse(String filepath, ReportConfig config) {
+	public ArrayList<LogData> parse(ReportConfig config, String filepath) {
 		ArrayList<LogData> logDataCollection = new ArrayList<>();
 		ReportXMLParser parser = new ReportXMLParser();
 
@@ -57,7 +57,7 @@ public class CatalinaLogParser {
 	}
 
 	private boolean filter(ReportConfig config, String type) {
-		SeverityTypeAdapter severity = config.getSeverityType();
+		SeverityTypeAdapter severity = config.getSeverityTypes();
 		if(severity.isAllTypes()) {
 			return true;
 		}
@@ -128,5 +128,11 @@ public class CatalinaLogParser {
 		else
 			return null;
 	}
+	
+	private void runConfig(ReportConfig config) {
+		SeverityTypeAdapter severityTypeAdapter = config.getSeverityTypes();
+		
+	}
+	
 
 }

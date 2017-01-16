@@ -9,12 +9,10 @@ public class LogReport {
 	private HashMap<String, Integer> hits;
 	private ArrayList<LogData> logData;
 	private HashMap<String, Integer> logDataHits;
-	private ReportConfig config;
 	
-	public LogReport(ReportConfig config) {
+	public LogReport() {
 		hits = new HashMap<>();
 		logDataHits = new HashMap<>();
-		this.config = config;
 		init();
 	}
 	
@@ -36,9 +34,9 @@ public class LogReport {
 		}
 	}
 	
-	public void generateReport(String filename) {
+	public void generateReport(ReportConfig config, String filename) {
 		CatalinaLogParser parser = new CatalinaLogParser();
-		logData = parser.parse(filename, config);
+		logData = parser.parse(config, filename);
 		generateReport();
 	}
 	

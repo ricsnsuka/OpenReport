@@ -15,8 +15,8 @@ public class FileParserTest {
 	
 	public static void run(ReportConfig config) {
 		long start = System.currentTimeMillis();
-		LogReport report = new LogReport(config);
-		report.generateReport("src\\resources\\catalina.out");
+		LogReport report = new LogReport();
+		report.generateReport(config, "src\\resources\\catalina.out");
 		report.countHits();
 		HashMap<String, Integer> hits = report.getHits();
 		
