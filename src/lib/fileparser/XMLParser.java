@@ -32,7 +32,7 @@ public class XMLParser {
 	}
 
 
-	public ArrayList<String> getAttributeValue(String nodeName, String attr) {
+	public ArrayList<String> getAttributeValues(String nodeName, String attr) {
 		ArrayList<String> list = new ArrayList<>();
 		NodeList nList = document.getElementsByTagName(nodeName);
 		Node node, nodeAttr;
@@ -53,6 +53,25 @@ public class XMLParser {
 		}
 		return list;
 
+	}
+	
+	public ArrayList<String> getNodeValue(String nodeName) {
+		ArrayList<String> ret = new ArrayList<>();
+		NodeList nList = document.getElementsByTagName(nodeName);
+		Node node;
+		for(int i = 0; i < nList.getLength(); i++) {
+			node = nList.item(i);
+			NodeList nList2;
+			if(node.getNodeType() == Node.ELEMENT_NODE) {
+				nList2 = ((Element) node).getChildNodes();
+				for(int j = 0; j < nList2.getLength(); j++) {
+					if(nList2.item(j).getNodeType() == Node.ELEMENT_NODE) {
+						ret.add(nList2.item(j).getTextContent());
+					}
+				}
+			}
+		}
+		return ret;
 	}
 
 	public boolean exists(String nodeName, String content) {

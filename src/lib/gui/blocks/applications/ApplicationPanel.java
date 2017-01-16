@@ -139,7 +139,7 @@ public class ApplicationPanel {
 	
 	protected void addCurrentDialogApplicationData(String applicationName, String attributeToFind) {
 		XMLParser parser = new XMLParser("src\\resources\\applications.xml");
-		for(String attributeValue : parser.getAttributeValue(applicationName, attributeToFind)) {
+		for(String attributeValue : parser.getAttributeValues(applicationName, attributeToFind)) {
 			dialogData.add(attributeValue);
 		}
 	}

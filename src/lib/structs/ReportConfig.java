@@ -1,6 +1,7 @@
 package lib.structs;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import lib.adapters.ScheduleAdapter;
 import lib.adapters.SeverityTypeAdapter;
@@ -8,7 +9,7 @@ import lib.adapters.applications.ApplicationsAdapter;
 import lib.exceptions.OpenReportException;
 import lib.gui.blocks.applications.ApplicationsPanel;
 
-public class ReportConfig {
+public class ReportConfig implements Cloneable {
 	private SeverityTypeAdapter severityTypes;
 	private ScheduleAdapter schedule;
 	private HashMap<String,ApplicationsAdapter> applications;
@@ -64,7 +65,25 @@ public class ReportConfig {
 		return this.applications.containsKey(key);
 	}
 	
-	
+	@Override
+	public ReportConfig clone() {
+		ReportConfig clone = new ReportConfig();
+		
+		clone.setSeverityTypes(getSeverityTypes().clone());
+		clone.setSchedule(getSchedule().clone());
+		
+		Set<String> keySet = getApplications().keySet();
+		
+		for(String key : keySet) {
+			try {
+				clone.setApplications(key, getApplications().get(key).clone());
+			} catch (OpenReportException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return clone;
+	}
 	
 	
 }

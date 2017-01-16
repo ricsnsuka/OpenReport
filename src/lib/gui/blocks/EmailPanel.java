@@ -116,7 +116,7 @@ public class EmailPanel {
 		
 		sendToSupport.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				emailAdapter.setToSupport(sendToSupport.isSelected()?true:false);
+				emailAdapter.setToSupport(sendToSupport.isSelected());
 				System.out.println("Send to support updated :)");
 
 			}

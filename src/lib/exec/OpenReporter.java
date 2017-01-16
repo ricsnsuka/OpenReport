@@ -6,9 +6,6 @@ package lib.exec;
 import java.util.HashMap;
 import java.util.Map;
 
-import lib.adapters.ScheduleAdapter;
-import lib.adapters.SeverityTypeAdapter;
-import lib.adapters.applications.ApplicationsAdapter;
 import lib.structs.LogReport;
 import lib.structs.ReportConfig;
 

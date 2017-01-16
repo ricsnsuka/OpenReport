@@ -18,12 +18,10 @@ import lib.gui.blocks.applications.ApplicationsPanel;
 import lib.gui.blocks.schedule.SchedulePanel;
 import lib.gui.blocks.severitytype.SeverityTypePanel;
 import lib.structs.ReportConfig;
-import test.FileParserTest;
 
 public class OpenReportConfig {
-
-	private JFrame frame;
 	private ReportConfig config;
+	private JFrame frame;
 	private int reportNumber;
 
 	/**
@@ -46,7 +44,6 @@ public class OpenReportConfig {
 	 * Create the application.
 	 */
 	public OpenReportConfig() {
-		config = new ReportConfig();
 		reportNumber = 1;
 		initialize();
 	}
@@ -56,7 +53,7 @@ public class OpenReportConfig {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-
+		
 		frame.setBounds(100, 100, 600, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
@@ -68,6 +65,9 @@ public class OpenReportConfig {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 
+		config = new ReportConfig();
+		
+		
 		EmailPanel emailPanel = new EmailPanel(frame);
 
 		SeverityTypePanel severityPanel = new SeverityTypePanel(config, frame);
@@ -108,7 +108,7 @@ public class OpenReportConfig {
 		Button btnRunNow = new Button("RUN NOW");
 		btnRunNow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				
 				if(!emailPanel.validatePanel()) {
 					ErrorDialog.showErrorDialog(frame, "You haven't set any destination address.");
 				} else if(!severityPanel.validatePanel()) {
@@ -116,6 +116,7 @@ public class OpenReportConfig {
 				} else {
 					schedulePanel.refreshConfigInformation();
 					System.out.println(config.getSchedule().getRuntime());
+					ReportConfig threadConfig = config.clone();
 					for(ApplicationsAdapter appAdapter : config.getApplications().values()) {
 						System.out.println(appAdapter.getClass().getName());
 						if(!appAdapter.getSelectedValues().isEmpty()) {
@@ -125,10 +126,10 @@ public class OpenReportConfig {
 						}
 					}
 
-					OpenReporter report = new OpenReporter(config, "Report-" + reportNumber);
+					OpenReporter report = new OpenReporter(threadConfig, "Report-" + reportNumber);
 					report.start();
 					reportNumber++;
-					config = new ReportConfig();
+//					config = new ReportConfig();
 					
 //					FileParserTest.run(config);
 				}

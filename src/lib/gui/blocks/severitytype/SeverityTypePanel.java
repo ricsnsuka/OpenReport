@@ -99,8 +99,9 @@ public class SeverityTypePanel {
 	private void addListeners() {
 		all.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				if(all.isSelected()) {
-					severityTypeAdapter.setAllTypes(true);
+				boolean selected;
+				severityTypeAdapter.setAllTypes((selected = all.isSelected()));
+				if(selected) {
 					severe.setSelected(true);
 					info.setSelected(true);
 					warning.setSelected(true);
@@ -115,13 +116,13 @@ public class SeverityTypePanel {
 		});
 		severe.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				if(severe.isSelected()) {
-					severityTypeAdapter.setSevere(true);
+				boolean selected;
+				severityTypeAdapter.setSevere((selected = severe.isSelected()));
+				if(selected) {
 					if(checkAllChecksSelected()) {
 						all.setSelected(true);
 					}
 				} else {
-					severityTypeAdapter.setSevere(false);
 					if(severityTypeAdapter.isAllTypes()) {
 						all.setSelected(false);
 					}
@@ -130,13 +131,13 @@ public class SeverityTypePanel {
 		});
 		info.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if(info.isSelected()) {
-					severityTypeAdapter.setInfo(true);
+				boolean selected;
+				severityTypeAdapter.setInfo((selected = info.isSelected()));
+				if(selected) {
 					if(checkAllChecksSelected()) {
 						all.setSelected(true);
 					}
 				} else {
-					severityTypeAdapter.setInfo(false);
 					if(severityTypeAdapter.isAllTypes()) {
 						all.setSelected(false);
 					}
@@ -145,13 +146,13 @@ public class SeverityTypePanel {
 		});
 		warning.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if(warning.isSelected()) {
-					severityTypeAdapter.setWarning(true);
+				boolean selected;
+				severityTypeAdapter.setWarning((selected = warning.isSelected()));
+				if(selected) {
 					if(checkAllChecksSelected()) {
 						all.setSelected(true);
 					}
 				} else {
-					severityTypeAdapter.setWarning(false);
 					if(severityTypeAdapter.isAllTypes()) {
 						all.setSelected(false);
 					}

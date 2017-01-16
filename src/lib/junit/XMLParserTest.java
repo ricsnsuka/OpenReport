@@ -29,7 +29,7 @@ public class XMLParserTest {
 		expectedResult.add("Result2");
 		expectedResult.add("Result3");
 		
-		ArrayList<String> result = parser.getAttributeValue("AttrValueTest", "attr2");
+		ArrayList<String> result = parser.getAttributeValues("AttrValueTest", "attr2");
 		int i = 0;
 		for(String attr : result) {
 			Assert.assertEquals(expectedResult.get(i), attr);
@@ -52,6 +52,19 @@ public class XMLParserTest {
 	public void failExitsTest() {
 		String fake = "This string does not exist in the file";
 		Assert.assertFalse(parser.exists("EqualsTest", fake));
+	}
+	
+	@Test
+	public void getNodeValueTest() {
+		ArrayList<String> expectedResult = new ArrayList<>();
+		expectedResult.add("Test string for XMLParser.equals method");
+		expectedResult.add("Adding an existant element to this");
+		ArrayList<String> result = parser.getNodeValue("testElement");
+		int i = 0;
+		for(String text : result) {
+			Assert.assertEquals(expectedResult.get(i), text);
+			i++;
+		}
 	}
 
 }

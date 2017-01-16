@@ -2,11 +2,15 @@ package lib.adapters;
 
 import java.util.ArrayList;
 
-public class ScheduleAdapter {
+public class ScheduleAdapter implements Cloneable {
 	private boolean weekly;
 	private ArrayList<String> weekdays;
 	private String runtime;
 	
+	public ScheduleAdapter() {
+		weekdays = new ArrayList<>();
+	}
+
 	public String getRuntime() {
 		return runtime;
 	}
@@ -15,9 +19,6 @@ public class ScheduleAdapter {
 		this.runtime = runtime;
 	}
 
-	public ScheduleAdapter() {
-	}
-	
 	public boolean isWeekly() {
 		return weekly;
 	}
@@ -32,6 +33,20 @@ public class ScheduleAdapter {
 
 	public void setWeekdays(ArrayList<String> weekdays) {
 		this.weekdays = weekdays;
+	}
+
+	public ScheduleAdapter clone() {
+		ScheduleAdapter clone = new ScheduleAdapter();
+		clone.setRuntime(getRuntime());
+		clone.setWeekly(isWeekly());
+
+		ArrayList<String> cloneWeekdays = new ArrayList<>();
+		cloneWeekdays.addAll(getWeekdays());
+		
+		clone.setWeekdays(cloneWeekdays);
+		
+		return clone;
+		
 	}
 
 }

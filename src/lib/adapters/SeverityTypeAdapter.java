@@ -1,6 +1,6 @@
 package lib.adapters;
 
-public class SeverityTypeAdapter {
+public class SeverityTypeAdapter implements Cloneable {
 	private boolean allTypes;
 	private boolean severe;
 	private boolean info;
@@ -32,5 +32,15 @@ public class SeverityTypeAdapter {
 	}
 	public void setWarning(boolean warning) {
 		this.warning = warning;
+	}
+	
+	public SeverityTypeAdapter clone() {
+		SeverityTypeAdapter clone = new SeverityTypeAdapter();
+		clone.setAllTypes(isAllTypes());
+		clone.setInfo(isInfo());
+		clone.setSevere(isSevere());
+		clone.setWarning(isWarning());
+	
+		return clone;
 	}
 }
