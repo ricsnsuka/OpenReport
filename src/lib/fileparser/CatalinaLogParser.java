@@ -128,11 +128,5 @@ public class CatalinaLogParser {
 		else
 			return null;
 	}
-	
-	private void runConfig(ReportConfig config) {
-		SeverityTypeAdapter severityTypeAdapter = config.getSeverityTypes();
-		
-	}
-	
 
 }

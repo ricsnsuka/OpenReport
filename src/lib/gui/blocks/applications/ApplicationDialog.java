@@ -36,10 +36,9 @@ public class ApplicationDialog {
 		this.defaultValues = defaultValues;
 
 		dialog = new JDialog(owner, title);
-		dialog.setType(Type.POPUP);
+//		dialog.setType(Type.POPUP);
 		dialog.setResizable(false);
 		dialog.setBounds(owner.getX()+owner.getWidth(), owner.getY(), 300, 480);
-		dialog.setAlwaysOnTop(true);
 		buildPanel();
 	}
 
