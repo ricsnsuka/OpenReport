@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Window.Type;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -100,7 +99,8 @@ public class ApplicationDialog {
 
 		GridBagConstraints gbc_btnOk = new GridBagConstraints();
 		gbc_btnOk.insets = new Insets(0, 0, 5, 5);
-		gbc_btnOk.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnOk.anchor = GridBagConstraints.EAST;
+		gbc_btnOk.fill = GridBagConstraints.CENTER;
 		gbc_btnOk.gridx = 2;
 		gbc_btnOk.gridy = 2;
 		applicationPanel.add(btnOk, gbc_btnOk);

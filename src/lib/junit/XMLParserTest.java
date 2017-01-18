@@ -59,6 +59,7 @@ public class XMLParserTest {
 		ArrayList<String> expectedResult = new ArrayList<>();
 		expectedResult.add("Test string for XMLParser.equals method");
 		expectedResult.add("Adding an existant element to this");
+		expectedResult.add("reza.haqiqi@opengi.co.uk");
 		ArrayList<String> result = parser.getNodeValue("testElement");
 		int i = 0;
 		for(String text : result) {

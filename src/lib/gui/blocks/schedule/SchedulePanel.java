@@ -5,11 +5,11 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Label;
 import java.util.ArrayList;
 
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -41,7 +41,7 @@ public class SchedulePanel {
 		gbc_schedulePanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_schedulePanel.insets = new Insets(0, 0, 5, 0);
 		gbc_schedulePanel.gridx = 0;
-		gbc_schedulePanel.gridy = 2;
+		gbc_schedulePanel.gridy = 3;
 		frame.getContentPane().add(mainContainer, gbc_schedulePanel);
 		GridBagLayout gbl_schedulePanel = new GridBagLayout();
 		gbl_schedulePanel.columnWidths = new int[]{15, 70, 450, 0};
@@ -84,7 +84,7 @@ public class SchedulePanel {
 		gbc_panel_2.gridy = 1;
 		mainContainer.add(panel_2, gbc_panel_2);
 
-		Label runtimeLbl = new Label("Run-time");
+		JLabel runtimeLbl = new JLabel("Run-time");
 		panel_2.add(runtimeLbl);
 		
 		runtime = new Choice();

@@ -1,11 +1,10 @@
 package lib.gui.blocks;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Label;
-import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,13 +18,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 import lib.adapters.EmailAdapter;
 import lib.email.EmailManager;
 import lib.gui.ErrorDialog;
 
 public class EmailPanel {
+	private static final String label = "Send to";
+	
 	private EmailManager emailManager;
 	private EmailAdapter emailAdapter;
 	
@@ -40,40 +43,36 @@ public class EmailPanel {
 	}
 	
 	private void buildFrame(JFrame frame) {
-		Panel emailSetup = new Panel();
+		JPanel emailSetup = new JPanel();
+		emailSetup.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), EmailPanel.label, TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_emailSetup = new GridBagConstraints();
+		gbc_emailSetup.fill = GridBagConstraints.HORIZONTAL;
 		gbc_emailSetup.insets = new Insets(0, 0, 5, 0);
 		gbc_emailSetup.gridx = 0;
-		gbc_emailSetup.gridy = 0;
+		gbc_emailSetup.gridy = 4;
 		frame.getContentPane().add(emailSetup, gbc_emailSetup);
 		GridBagLayout gbl_emailSetup = new GridBagLayout();
-		gbl_emailSetup.columnWidths = new int[]{0, 51, 87, 75, 15, 275, 0, 0};
+		gbl_emailSetup.columnWidths = new int[]{10, 87, 75, 15, 275, 0, 0};
 		gbl_emailSetup.rowHeights = new int[] {22, 0};
-		gbl_emailSetup.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_emailSetup.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_emailSetup.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		emailSetup.setLayout(gbl_emailSetup);
 
-		Label sendTo = new Label("Send to");
-		GridBagConstraints gbc_sendTo = new GridBagConstraints();
-		gbc_sendTo.anchor = GridBagConstraints.NORTHWEST;
-		gbc_sendTo.insets = new Insets(0, 0, 0, 5);
-		gbc_sendTo.gridx = 1;
-		gbc_sendTo.gridy = 0;
-		emailSetup.add(sendTo, gbc_sendTo);
+		
 
 		sendToSupport = new JCheckBox("Support DEVs");
 		sendToSupport.setSelected(true);
 		GridBagConstraints gbc_checkbox = new GridBagConstraints();
 		gbc_checkbox.anchor = GridBagConstraints.NORTHWEST;
 		gbc_checkbox.insets = new Insets(0, 0, 0, 5);
-		gbc_checkbox.gridx = 2;
+		gbc_checkbox.gridx = 1;
 		gbc_checkbox.gridy = 0;
 		emailSetup.add(sendToSupport, gbc_checkbox);
 
 		editEmails = new JButton("Edit...");
 		GridBagConstraints gbc_btnEdit = new GridBagConstraints();
 		gbc_btnEdit.insets = new Insets(0, 0, 0, 5);
-		gbc_btnEdit.gridx = 3;
+		gbc_btnEdit.gridx = 2;
 		gbc_btnEdit.gridy = 0;
 		emailSetup.add(editEmails, gbc_btnEdit);
 
@@ -81,7 +80,7 @@ public class EmailPanel {
 		GridBagConstraints gbc_emailOthersText = new GridBagConstraints();
 		gbc_emailOthersText.insets = new Insets(0, 0, 0, 5);
 		gbc_emailOthersText.anchor = GridBagConstraints.NORTHWEST;
-		gbc_emailOthersText.gridx = 5;
+		gbc_emailOthersText.gridx = 4;
 		gbc_emailOthersText.gridy = 0;
 		emailSetup.add(emailOthersText, gbc_emailOthersText);
 		GridBagLayout gbl_emailOthersText = new GridBagLayout();
@@ -105,7 +104,7 @@ public class EmailPanel {
 		gbc_emailOthers.gridx = 2;
 		gbc_emailOthers.gridy = 0;
 		emailOthersText.add(emailOthers, gbc_emailOthers);
-		emailOthers.setColumns(35);
+		emailOthers.setColumns(40);
 		Others.setLabelFor(emailOthers);
 		
 		addListeners(frame);

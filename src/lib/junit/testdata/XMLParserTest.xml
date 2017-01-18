@@ -11,4 +11,7 @@
 	<AddInfoTest>
 		<testElement>Adding an existant element to this</testElement>
 	</AddInfoTest>
+	<Developer name="Reza Haqiqi">
+		<testElement>reza.haqiqi@opengi.co.uk</testElement>
+	</Developer>
 </Test>

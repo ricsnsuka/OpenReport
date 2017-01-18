@@ -44,7 +44,7 @@ public class SeverityTypePanel {
 		gbc_severityPanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_severityPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_severityPanel.gridx = 0;
-		gbc_severityPanel.gridy = 1;
+		gbc_severityPanel.gridy = 2;
 		frame.getContentPane().add(severityPanel, gbc_severityPanel);
 		severityPanel.setLayout(new BorderLayout(0, 0));
 

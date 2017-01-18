@@ -48,7 +48,7 @@ public class ApplicationsPanel {
 		gbc_applicationPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_applicationPanel.fill = GridBagConstraints.BOTH;
 		gbc_applicationPanel.gridx = 0;
-		gbc_applicationPanel.gridy = 3;
+		gbc_applicationPanel.gridy = 1;
 		frame.getContentPane().add(applicationPanel, gbc_applicationPanel);
 		applicationPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 

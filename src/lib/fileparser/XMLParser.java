@@ -54,26 +54,31 @@ public class XMLParser {
 		return list;
 
 	}
-	
+
 	public ArrayList<String> getNodeValue(String nodeName) {
 		ArrayList<String> ret = new ArrayList<>();
 		NodeList nList = document.getElementsByTagName(nodeName);
-		Node node;
+		//This can and should be easily replaced
+		int j;
+		String textContent;
+
 		for(int i = 0; i < nList.getLength(); i++) {
-			node = nList.item(i);
-			NodeList nList2;
+			Node node = nList.item(i);
 			if(node.getNodeType() == Node.ELEMENT_NODE) {
-				nList2 = ((Element) node).getChildNodes();
-				for(int j = 0; j < nList2.getLength(); j++) {
-					if(nList2.item(j).getNodeType() == Node.ELEMENT_NODE) {
-						ret.add(nList2.item(j).getTextContent());
+				NodeList nList2 = ((Element) node).getChildNodes();
+				j = 0;
+				while(j < nList2.getLength()) {
+					if(nList2.item(j).getNodeType() == Node.TEXT_NODE) {
+						textContent = nList2.item(j).getTextContent();
+						ret.add(textContent);
 					}
+					j++;
 				}
 			}
 		}
 		return ret;
 	}
-
+		
 	public boolean exists(String nodeName, String content) {
 		NodeList nList = document.getElementsByTagName(nodeName);
 		//This can and should be easily replaced
@@ -112,7 +117,7 @@ public class XMLParser {
 
 		rewriteDocument();
 	}
-	
+
 	private void loadDocument() {
 		try{ 
 			File file = new File(filepath);
