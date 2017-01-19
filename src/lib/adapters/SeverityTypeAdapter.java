@@ -34,6 +34,7 @@ public class SeverityTypeAdapter implements Cloneable {
 		this.warning = warning;
 	}
 	
+	@Override
 	public SeverityTypeAdapter clone() {
 		SeverityTypeAdapter clone = new SeverityTypeAdapter();
 		clone.setAllTypes(isAllTypes());

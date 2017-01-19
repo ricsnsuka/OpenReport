@@ -43,9 +43,6 @@ public class FileReader {
 	
 	public static void doSomethingWithLine(String line) {
 		String[] splitted = line.split(" ");
-		for(String word : splitted) {
-//			System.out.println(word);
-		}
 		if(startsWithMonth(line)) {
 			int i = 0;
 			String[] passer = new String[5];

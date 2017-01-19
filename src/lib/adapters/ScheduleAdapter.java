@@ -35,6 +35,7 @@ public class ScheduleAdapter implements Cloneable {
 		this.weekdays = weekdays;
 	}
 
+	@Override
 	public ScheduleAdapter clone() {
 		ScheduleAdapter clone = new ScheduleAdapter();
 		clone.setRuntime(getRuntime());

@@ -19,6 +19,7 @@ public class MutableString  {
 		this.string = string;
 	}
 	
+	@Override
 	public String toString() {
 		return getString();
 	}

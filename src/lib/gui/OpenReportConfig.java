@@ -19,18 +19,21 @@ import lib.gui.blocks.EmailPanel;
 import lib.gui.blocks.applications.ApplicationsPanel;
 import lib.gui.blocks.schedule.SchedulePanel;
 import lib.gui.blocks.severitytype.SeverityTypePanel;
+import lib.structs.OpenReportsCache;
 import lib.structs.ReportConfig;
 
 public class OpenReportConfig {
 	private ReportConfig config;
 	private JFrame frame;
 	private int reportNumber;
+	private OpenReportsCache cache;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					try {
@@ -72,27 +75,34 @@ public class OpenReportConfig {
 		frame.setTitle("OpenReports");
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{530, 0};
-		gridBagLayout.rowHeights = new int[]{10, 450, 50, 100, 40, 35, 0};
+		gridBagLayout.rowHeights = new int[]{10, 300, 50, 100, 40, 35, 0};
 		//APP-250 SEV-50 SCH-100 SEND-40
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 
 		config = new ReportConfig();
+		cache = new OpenReportsCache();
+		
 
-
-		EmailPanel emailPanel = new EmailPanel(frame);
+		EmailPanel emailPanel = new EmailPanel(frame, cache);
 
 		SeverityTypePanel severityPanel = new SeverityTypePanel(config, frame);
 
 		SchedulePanel schedulePanel = new SchedulePanel(config, frame);
 
 		ApplicationsPanel applicationsPanel = new ApplicationsPanel(frame);
+		
 
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.eBrokerAppliaction);
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.activeQuoteApplication);
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openQuoteApplication);
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openCostumerPortalApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openDataWarehouseApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openUnitMeterApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openClientCheckApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.enrichmentHUBApplication);
+		
 
 		JPanel savePanel = new JPanel();
 		GridBagConstraints gbc_savePanel = new GridBagConstraints();
@@ -119,6 +129,7 @@ public class OpenReportConfig {
 
 		JButton btnRunNow = new JButton("Run now");
 		btnRunNow.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
 				if(!emailPanel.validatePanel()) {
@@ -141,13 +152,7 @@ public class OpenReportConfig {
 					OpenReporter report = new OpenReporter(threadConfig, "Report-" + reportNumber);
 					report.start();
 					reportNumber++;
-					//					config = new ReportConfig();
-
-					//					FileParserTest.run(config);
 				}
-
-
-
 			}
 		});
 		frame.getRootPane().setDefaultButton(btnRunNow);

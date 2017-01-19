@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Panel;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -18,12 +17,16 @@ import javax.swing.border.TitledBorder;
 import lib.adapters.SeverityTypeAdapter;
 import lib.structs.ReportConfig;
 
-public class SeverityTypePanel {
+public class SeverityTypePanel extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static final String label = "Severity Type";
 	
 	private SeverityTypeAdapter severityTypeAdapter;
-	
 	
 	private JCheckBox all;
 	private JCheckBox severe;
@@ -31,26 +34,27 @@ public class SeverityTypePanel {
 	private JCheckBox warning;
 	
 	public SeverityTypePanel(ReportConfig config, JFrame frame) {
+		super();
 		severityTypeAdapter = new SeverityTypeAdapter();
 		config.setSeverityTypes(severityTypeAdapter);
 		buildPanel(frame);
 	}
 	
 	private void buildPanel(JFrame frame) {
-		JPanel severityPanel = new JPanel();
-		severityPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), SeverityTypePanel.label, TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), SeverityTypePanel.label, TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_severityPanel = new GridBagConstraints();
 		gbc_severityPanel.anchor = GridBagConstraints.NORTH;
 		gbc_severityPanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_severityPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_severityPanel.gridx = 0;
 		gbc_severityPanel.gridy = 2;
-		frame.getContentPane().add(severityPanel, gbc_severityPanel);
-		severityPanel.setLayout(new BorderLayout(0, 0));
+		frame.getContentPane().add(this, gbc_severityPanel);
+		setLayout(new BorderLayout(0, 0));
+		
 
 
-		Panel typeChkbxPnl = new Panel();
-		severityPanel.add(typeChkbxPnl, BorderLayout.SOUTH);
+		JPanel typeChkbxPnl = new JPanel();
+		add(typeChkbxPnl, BorderLayout.SOUTH);
 		GridBagLayout gbl_typeChkbxPnl = new GridBagLayout();
 		gbl_typeChkbxPnl.columnWidths = new int[]{15, 70, 70, 70, 70, 0};
 		gbl_typeChkbxPnl.rowHeights = new int[]{22, 0};
