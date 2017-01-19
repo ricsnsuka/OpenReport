@@ -23,9 +23,16 @@ import lib.exceptions.OpenReportException;
 import lib.fileparser.XMLParser;
 import lib.structs.ReportConfig;
 
-public class ApplicationPanel {
+public class ApplicationPanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	protected String label;
+	protected String hoverHint;
+	
 	protected ApplicationDialog dialog;
 	protected JTextField txtXSelected;
 	protected ApplicationsAdapter applicationsAdapter;
@@ -34,6 +41,7 @@ public class ApplicationPanel {
 	
 	
 	public ApplicationPanel() {
+		super();
 		dialogData = new ArrayList<>();
 	}
 	
@@ -47,33 +55,20 @@ public class ApplicationPanel {
 		}
 		buildPanel(frame, panel, gridy);
 	}
-	
-	protected void addListenerToSelectButton(JFrame frame, JButton button) {
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dialog = new ApplicationDialog(frame, label, dialogData);
-				frame.setEnabled(false);
-				dialog.getDialog().setVisible(true);
-				addFrameInspector(frame);
-			}
-		});
-	}
-	
 
 	protected void buildPanel(JFrame frame, JPanel panel, int gridy) {
-		JPanel appPanel = new JPanel();
 		GridBagConstraints appPanelConstrains = new GridBagConstraints();
 		appPanelConstrains.fill = GridBagConstraints.HORIZONTAL;
 		appPanelConstrains.insets = new Insets(0, 0, 5, 0);
 		appPanelConstrains.gridx = 0;
 		appPanelConstrains.gridy = gridy;
-		panel.add(appPanel, appPanelConstrains);
+		panel.add(this, appPanelConstrains);
 		GridBagLayout appPanelLayout = new GridBagLayout();
-		appPanelLayout.columnWidths = new int[]{10, 75, 10, 75, 20, 15, 10, 250, 0};
+		appPanelLayout.columnWidths = new int[]{10, 75, 10, 75, 20, 15, 10, 65, 10, 175, 0};
 		appPanelLayout.rowHeights = new int[]{14, 0};
-		appPanelLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		appPanelLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		appPanelLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		appPanel.setLayout(appPanelLayout);
+		setLayout(appPanelLayout);
 
 		JLabel lblLabel = new JLabel(label);
 		GridBagConstraints lblLabelConstraints = new GridBagConstraints();
@@ -81,7 +76,7 @@ public class ApplicationPanel {
 		lblLabelConstraints.insets = new Insets(0, 0, 0, 5);
 		lblLabelConstraints.gridx = 1;
 		lblLabelConstraints.gridy = 0;
-		appPanel.add(lblLabel, lblLabelConstraints);
+		add(lblLabel, lblLabelConstraints);
 
 		JButton btnSelect = new JButton("Select...");
 		addListenerToSelectButton(frame, btnSelect);
@@ -90,7 +85,7 @@ public class ApplicationPanel {
 		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSelect.gridx = 3;
 		gbc_btnSelect.gridy = 0;
-		appPanel.add(btnSelect, gbc_btnSelect);
+		add(btnSelect, gbc_btnSelect);
 		
 		JCheckBox chkBoxAll = new JCheckBox("All");
 		addListenerToChkBoxAll(chkBoxAll);
@@ -99,7 +94,16 @@ public class ApplicationPanel {
 		chkBoxAllConstraints.insets = new Insets(0, 0, 0, 5);
 		chkBoxAllConstraints.gridx = 5;
 		chkBoxAllConstraints.gridy = 0;
-		appPanel.add(chkBoxAll, chkBoxAllConstraints);
+		add(chkBoxAll, chkBoxAllConstraints);
+		
+//		JCheckBox test = new JCheckBox("test");
+//		addListenerToChkBoxAll(chkBoxAll);
+		
+//		GridBagConstraints testConstraints = new GridBagConstraints();
+//		testConstraints.insets = new Insets(0, 0, 0, 5);
+//		testConstraints.gridx = 7;
+//		testConstraints.gridy = 0;
+//		add(test, testConstraints);
 
 		txtXSelected = new JTextField();
 		txtXSelected.setEnabled(false);
@@ -107,18 +111,20 @@ public class ApplicationPanel {
 		txtXSelected.setText(((applicationsAdapter.getSelectedValues() == null)?"0":applicationsAdapter.getSelectedValues().size()) + " selected");
 		GridBagConstraints gbc_txtXSelected = new GridBagConstraints();
 		gbc_txtXSelected.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtXSelected.gridx = 7;
+		gbc_txtXSelected.gridx = 9;
 		gbc_txtXSelected.gridy = 0;
-		appPanel.add(txtXSelected, gbc_txtXSelected);
+		add(txtXSelected, gbc_txtXSelected);
 		txtXSelected.setColumns(10);
 	}
 	
 	protected void addFrameInspector(JFrame frame) {
 		frame.addWindowFocusListener(new WindowFocusListener() {
+			@Override
 			public void windowGainedFocus(WindowEvent arg0) {
 				applicationsAdapter.setSelectedValues(dialog.getSelectedValues());
 				txtXSelected.setText(((applicationsAdapter.getSelectedValues() == null)?"0":applicationsAdapter.getSelectedValues().size()) + " selected");
 			}
+			@Override
 			public void windowLostFocus(WindowEvent arg0) {
 			}
 		});
@@ -126,6 +132,7 @@ public class ApplicationPanel {
 	
 	private void addListenerToChkBoxAll(JCheckBox chkBoxAll) {
 		chkBoxAll.addItemListener(new ItemListener() {
+			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if(chkBoxAll.isSelected()) {
 					applicationsAdapter.setSelectedValues(dialogData);
@@ -142,6 +149,18 @@ public class ApplicationPanel {
 		for(String attributeValue : parser.getAttributeValues(applicationName, attributeToFind)) {
 			dialogData.add(attributeValue);
 		}
+	}
+	
+	protected void addListenerToSelectButton(JFrame frame, JButton button) {
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dialog = new ApplicationDialog(frame, label, dialogData);
+				frame.setEnabled(false);
+				dialog.setVisible(true);
+				addFrameInspector(frame);
+			}
+		});
 	}
 	
 	

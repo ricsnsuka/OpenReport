@@ -90,15 +90,15 @@
 		<aq4ppmain></aq4ppmain>
 		<aq4ppadmin></aq4ppadmin>
 	</ActiveQuote4PowerPlace>
-	<OpenCostumerPortal>
+	<OCP>
 		<server serverNumber="1" />
 		<server serverNumber="2" />
 		<server serverNumber="3" />
-	</OpenCostumerPortal>
+	</OCP>
 	<EnrichmentHUB></EnrichmentHUB>
 	<HostedListService></HostedListService>
 	<OpenClientCheck></OpenClientCheck>
-	<OpenDataWarehouse></OpenDataWarehouse>
+	<ODW></ODW>
 	<OpenUnitMeter></OpenUnitMeter>
 	<QuoteGenerationService></QuoteGenerationService>
 	<RTEDeployer></RTEDeployer>
