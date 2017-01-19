@@ -2,32 +2,38 @@ package lib.email;
 
 import java.util.ArrayList;
 
-public class EmailManager {
-	private ArrayList<String> supportDevEmails;
+import lib.fileparser.EmailXMLParser;
+
+public class EmailManager extends ArrayList<String> {
 	
+	private static final long serialVersionUID = 1L;
+	
+	private EmailXMLParser parser;
+
 	public EmailManager() {
+		super();
 		load();
 	}
 	
 	private void load() {
-		
+		parser = new EmailXMLParser();
+		for(String emailAddress : parser.getNodeValue("emailTo")) {
+			add(emailAddress);
+		}
 	}
 	
-	public void addEmail(String name, String emailAddress) {
-		supportDevEmails.add(emailAddress);
-		update();
+	public void addEmail(String emailAddress) {
+		add(emailAddress);
+//		update();
 	}
 	
 	public void removeEmail(int index) {
-		supportDevEmails.remove(index);
-		update();
+		remove(index);
+//		update();
 	}
 	
 	public void send() {
 		//TODO: to be implemented
 	}
 	
-	private void update() {
-		
-	}
 }

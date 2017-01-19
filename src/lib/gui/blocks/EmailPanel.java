@@ -1,7 +1,6 @@
 package lib.gui.blocks;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -11,38 +10,34 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import lib.adapters.EmailAdapter;
-import lib.email.EmailManager;
-import lib.gui.ErrorDialog;
+import lib.structs.OpenReportsCache;
 
 public class EmailPanel {
 	private static final String label = "Send to";
-	
-	private EmailManager emailManager;
+
 	private EmailAdapter emailAdapter;
-	
+
 	private JCheckBox sendToSupport;
 	private JButton editEmails;
 	private String[] otherEmails;
-	
-	
-	public EmailPanel(JFrame frame) {
+
+
+	public EmailPanel(JFrame frame, OpenReportsCache cache) {
 		emailAdapter = new EmailAdapter();
-		buildFrame(frame);
+		buildFrame(frame, cache);
 	}
-	
-	private void buildFrame(JFrame frame) {
+
+	private void buildFrame(JFrame frame, OpenReportsCache cache) {
 		JPanel emailSetup = new JPanel();
 		emailSetup.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), EmailPanel.label, TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_emailSetup = new GridBagConstraints();
@@ -58,18 +53,20 @@ public class EmailPanel {
 		gbl_emailSetup.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		emailSetup.setLayout(gbl_emailSetup);
 
-		
+
 
 		sendToSupport = new JCheckBox("Support DEVs");
 		sendToSupport.setSelected(true);
 		GridBagConstraints gbc_checkbox = new GridBagConstraints();
 		gbc_checkbox.anchor = GridBagConstraints.NORTHWEST;
-		gbc_checkbox.insets = new Insets(0, 0, 0, 5);
+		gbc_checkbox.insets = new Insets(0, 0, 0, 0);
 		gbc_checkbox.gridx = 1;
 		gbc_checkbox.gridy = 0;
 		emailSetup.add(sendToSupport, gbc_checkbox);
 
-		editEmails = new JButton("Edit...");
+		editEmails = new JButton("");
+		editEmails.setIcon(new ImageIcon(EmailDialog.class.getResource("/resources/img/settings.png")));
+		editEmails.setMargin(new Insets(0,0,0,0));
 		GridBagConstraints gbc_btnEdit = new GridBagConstraints();
 		gbc_btnEdit.insets = new Insets(0, 0, 0, 5);
 		gbc_btnEdit.gridx = 2;
@@ -106,114 +103,34 @@ public class EmailPanel {
 		emailOthersText.add(emailOthers, gbc_emailOthers);
 		emailOthers.setColumns(40);
 		Others.setLabelFor(emailOthers);
-		
-		addListeners(frame);
+
+		addListeners(frame, cache);
 	}
-	
-	private void addListeners(JFrame frame) {
+
+	private void addListeners(JFrame frame, OpenReportsCache cache) {
 		editEmails.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				ErrorDialog.showErrorDialog(frame, "This will show a dialog to edit the emails.");
+				EmailDialog dialog = new EmailDialog(frame, cache);
+				frame.setEnabled(false);
+				dialog.setVisible(true);
 			}
 		});
-		
+
 		sendToSupport.addItemListener(new ItemListener() {
+			@Override
 			public void itemStateChanged(ItemEvent arg0) {
 				emailAdapter.setToSupport(sendToSupport.isSelected());
 				System.out.println("Send to support updated :)");
 
 			}
 		});
-		
-		
+
+
 	}
-	
+
 	public boolean validatePanel() {
 		return sendToSupport.isSelected() || (otherEmails != null && !otherEmails.equals(""));
 	}
-	
-	private class EmailDialog  {
-		private final String dialogTitle = "Support DEVs Emails";
-		
-		private final JPanel contentPanel = new JPanel();
-		private JDialog emailDialog ;
-		
-		public EmailDialog(JFrame owner) {
-			emailDialog = new JDialog(owner, dialogTitle);
-			emailDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		}
-		
-		private void buildDialog() {
-			emailDialog.setBounds(100, 100, 450, 300);
-			GridBagLayout gridBagLayout = new GridBagLayout();
-			gridBagLayout.columnWidths = new int[]{10, 240, 140, 10, 0};
-			gridBagLayout.rowHeights = new int[]{10, 60, 60, 60, 20, 0};
-			gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-			gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			emailDialog.getContentPane().setLayout(gridBagLayout);
-			{
-				JList list = new JList();
-				GridBagConstraints gbc_list = new GridBagConstraints();
-				gbc_list.gridheight = 3;
-				gbc_list.insets = new Insets(0, 0, 5, 5);
-				gbc_list.fill = GridBagConstraints.BOTH;
-				gbc_list.gridx = 1;
-				gbc_list.gridy = 1;
-				emailDialog.getContentPane().add(list, gbc_list);
-			}
-			{
-				JButton btnAdd = new JButton("Add...");
-				GridBagConstraints gbc_btnAdd = new GridBagConstraints();
-				gbc_btnAdd.insets = new Insets(0, 0, 5, 5);
-				gbc_btnAdd.gridx = 2;
-				gbc_btnAdd.gridy = 1;
-				emailDialog.getContentPane().add(btnAdd, gbc_btnAdd);
-			}
-			{
-				JButton btnRemove = new JButton("Remove");
-				GridBagConstraints gbc_btnRemove = new GridBagConstraints();
-				gbc_btnRemove.insets = new Insets(0, 0, 5, 5);
-				gbc_btnRemove.gridx = 2;
-				gbc_btnRemove.gridy = 2;
-				emailDialog.getContentPane().add(btnRemove, gbc_btnRemove);
-			}
-			{
-				JButton btnEditXML = new JButton("Edit XML");
-				GridBagConstraints gbc_btnEditFile = new GridBagConstraints();
-				gbc_btnEditFile.insets = new Insets(0, 0, 5, 5);
-				gbc_btnEditFile.gridx = 2;
-				gbc_btnEditFile.gridy = 3;
-				emailDialog.getContentPane().add(btnEditXML, gbc_btnEditFile);
-			}
-			contentPanel.setLayout(new FlowLayout());
-			contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-			GridBagConstraints gbc_contentPanel = new GridBagConstraints();
-			gbc_contentPanel.fill = GridBagConstraints.BOTH;
-			gbc_contentPanel.insets = new Insets(0, 0, 0, 5);
-			gbc_contentPanel.gridx = 2;
-			gbc_contentPanel.gridy = 4;
-			emailDialog.getContentPane().add(contentPanel, gbc_contentPanel);
-			{
-				JPanel buttonPane = new JPanel();
-				contentPanel.add(buttonPane);
-				buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-				{
-					JButton okButton = new JButton("OK");
-					okButton.setToolTipText("Save changes");
-					okButton.setActionCommand("OK");
-					buttonPane.add(okButton);
-					emailDialog.getRootPane().setDefaultButton(okButton);
-				}
-				{
-					JButton cancelButton = new JButton("Cancel");
-					cancelButton.setToolTipText("Discard changes");
-					cancelButton.setActionCommand("Cancel");
-					buttonPane.add(cancelButton);
-				}
-			}
-		}
-	}
-	
-	
-	
+
 }
