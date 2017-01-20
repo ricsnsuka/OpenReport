@@ -33,13 +33,19 @@ public class OpenReporter implements Runnable {
 	         for(int i = 4; i > 0; i--) {
 	            System.out.println("Thread: " + threadName + ", " + i);
 	            // Let the thread sleep for a while.
-	            Thread.sleep(2000);
+	            Thread.sleep(1000);
 	         }
 	      }catch (InterruptedException e) {
 	         System.out.println("Thread " +  threadName + " interrupted.");
 	      }
 		long start = System.currentTimeMillis();
 		LogReport report = new LogReport();
+		
+		
+		
+		
+		
+		
 		report.generateReport(config, "src\\resources\\catalina.out");
 		report.countHits();
 		HashMap<String, Integer> hits = report.getHits();

@@ -29,29 +29,29 @@ public class ApplicationPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	protected String label;
 	protected String hoverHint;
-	
+
 	protected ApplicationDialog dialog;
 	protected JTextField txtXSelected;
 	protected ApplicationsAdapter applicationsAdapter;
 	protected ArrayList<String> dialogData;
-	
-	
-	
+
+
+
 	public ApplicationPanel() {
 		super();
 		dialogData = new ArrayList<>();
 	}
-	
+
 	protected void build(ReportConfig config, JFrame frame, JPanel panel, String attributeToFind, int gridy) {
 		addCurrentDialogApplicationData(label, attributeToFind);
 		applicationsAdapter = new ApplicationsAdapter();
 		try {
 			config.setApplications(label, applicationsAdapter);
 		}catch(OpenReportException e) {
-			
+
 		}
 		buildPanel(frame, panel, gridy);
 	}
@@ -64,13 +64,14 @@ public class ApplicationPanel extends JPanel {
 		appPanelConstrains.gridy = gridy;
 		panel.add(this, appPanelConstrains);
 		GridBagLayout appPanelLayout = new GridBagLayout();
-		appPanelLayout.columnWidths = new int[]{10, 75, 10, 75, 20, 15, 10, 65, 10, 175, 0};
+		appPanelLayout.columnWidths = new int[]{10, 80, 10, 75, 20, 15, 10, 65, 10, 175, 0};
 		appPanelLayout.rowHeights = new int[]{14, 0};
 		appPanelLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		appPanelLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		setLayout(appPanelLayout);
 
 		JLabel lblLabel = new JLabel(label);
+		lblLabel.setToolTipText(hoverHint);
 		GridBagConstraints lblLabelConstraints = new GridBagConstraints();
 		lblLabelConstraints.fill = GridBagConstraints.VERTICAL;
 		lblLabelConstraints.insets = new Insets(0, 0, 0, 5);
@@ -86,24 +87,24 @@ public class ApplicationPanel extends JPanel {
 		gbc_btnSelect.gridx = 3;
 		gbc_btnSelect.gridy = 0;
 		add(btnSelect, gbc_btnSelect);
-		
+
 		JCheckBox chkBoxAll = new JCheckBox("All");
 		addListenerToChkBoxAll(chkBoxAll);
-		
+
 		GridBagConstraints chkBoxAllConstraints = new GridBagConstraints();
 		chkBoxAllConstraints.insets = new Insets(0, 0, 0, 5);
 		chkBoxAllConstraints.gridx = 5;
 		chkBoxAllConstraints.gridy = 0;
 		add(chkBoxAll, chkBoxAllConstraints);
-		
-//		JCheckBox test = new JCheckBox("test");
-//		addListenerToChkBoxAll(chkBoxAll);
-		
-//		GridBagConstraints testConstraints = new GridBagConstraints();
-//		testConstraints.insets = new Insets(0, 0, 0, 5);
-//		testConstraints.gridx = 7;
-//		testConstraints.gridy = 0;
-//		add(test, testConstraints);
+
+		//		JCheckBox test = new JCheckBox("test");
+		//		addListenerToChkBoxAll(chkBoxAll);
+
+		//		GridBagConstraints testConstraints = new GridBagConstraints();
+		//		testConstraints.insets = new Insets(0, 0, 0, 5);
+		//		testConstraints.gridx = 7;
+		//		testConstraints.gridy = 0;
+		//		add(test, testConstraints);
 
 		txtXSelected = new JTextField();
 		txtXSelected.setEnabled(false);
@@ -116,7 +117,7 @@ public class ApplicationPanel extends JPanel {
 		add(txtXSelected, gbc_txtXSelected);
 		txtXSelected.setColumns(10);
 	}
-	
+
 	protected void addFrameInspector(JFrame frame) {
 		frame.addWindowFocusListener(new WindowFocusListener() {
 			@Override
@@ -129,7 +130,7 @@ public class ApplicationPanel extends JPanel {
 			}
 		});
 	}
-	
+
 	private void addListenerToChkBoxAll(JCheckBox chkBoxAll) {
 		chkBoxAll.addItemListener(new ItemListener() {
 			@Override
@@ -143,14 +144,15 @@ public class ApplicationPanel extends JPanel {
 			}
 		});
 	}
-	
+
+
 	protected void addCurrentDialogApplicationData(String applicationName, String attributeToFind) {
 		XMLParser parser = new XMLParser("src\\resources\\applications.xml");
 		for(String attributeValue : parser.getAttributeValues(applicationName, attributeToFind)) {
 			dialogData.add(attributeValue);
 		}
 	}
-	
+
 	protected void addListenerToSelectButton(JFrame frame, JButton button) {
 		button.addActionListener(new ActionListener() {
 			@Override
@@ -162,7 +164,7 @@ public class ApplicationPanel extends JPanel {
 			}
 		});
 	}
-	
-	
+
+
 
 }

@@ -28,8 +28,16 @@ public class ReportConfig implements Cloneable {
 	private void init() {
 		this.applications.put(ApplicationsPanel.eBrokerAppliaction, null);
 		this.applications.put(ApplicationsPanel.activeQuoteApplication, null);
-		this.applications.put(ApplicationsPanel.openQuoteApplication, null);
+		this.applications.put(ApplicationsPanel.activeQuote4PowerplaceApplication, null);
+		this.applications.put(ApplicationsPanel.enrichmentHUBApplication, null);
+		this.applications.put(ApplicationsPanel.hostedListServiceApplication, null);
+		this.applications.put(ApplicationsPanel.openClientCheckApplication, null);
+		this.applications.put(ApplicationsPanel.openDataWarehouseApplication, null);
 		this.applications.put(ApplicationsPanel.openCostumerPortalApplication, null);
+		this.applications.put(ApplicationsPanel.openQuoteApplication, null);
+		this.applications.put(ApplicationsPanel.openUnitMeterApplication, null);
+		this.applications.put(ApplicationsPanel.rteDeployerApplication, null);
+		this.applications.put(ApplicationsPanel.quoteGenerationServiceApplication, null);
 	}
 
 	public SeverityTypeAdapter getSeverityTypes() {

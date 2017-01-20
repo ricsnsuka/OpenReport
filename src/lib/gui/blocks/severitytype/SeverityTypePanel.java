@@ -33,10 +33,14 @@ public class SeverityTypePanel extends JPanel{
 	private JCheckBox info;
 	private JCheckBox warning;
 	
-	public SeverityTypePanel(ReportConfig config, JFrame frame) {
+	public SeverityTypePanel(ReportConfig config) {
 		super();
 		severityTypeAdapter = new SeverityTypeAdapter();
 		config.setSeverityTypes(severityTypeAdapter);
+		
+	}
+	
+	public void build(JFrame frame) {
 		buildPanel(frame);
 	}
 	

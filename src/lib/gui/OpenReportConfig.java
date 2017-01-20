@@ -44,7 +44,7 @@ public class OpenReportConfig {
 					        }
 					    }
 					} catch (Exception e) {
-					    // If Nimbus is not available, you can set the GUI to another look and feel.
+					    UIManager.setLookAndFeel("Metal");
 					}
 					OpenReportConfig window = new OpenReportConfig();
 					window.frame.setVisible(true);
@@ -69,7 +69,7 @@ public class OpenReportConfig {
 	private void initialize() {
 		frame = new JFrame();
 
-		frame.setBounds(100, 100, 600, 760);
+		frame.setBounds(100, 100, 600, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setTitle("OpenReports");
@@ -84,24 +84,34 @@ public class OpenReportConfig {
 		config = new ReportConfig();
 		cache = new OpenReportsCache();
 		
-
-		EmailPanel emailPanel = new EmailPanel(frame, cache);
-
-		SeverityTypePanel severityPanel = new SeverityTypePanel(config, frame);
-
-		SchedulePanel schedulePanel = new SchedulePanel(config, frame);
-
-		ApplicationsPanel applicationsPanel = new ApplicationsPanel(frame);
-		
+		ApplicationsPanel applicationsPanel = new ApplicationsPanel();
+		applicationsPanel.build(frame);
 
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.eBrokerAppliaction);
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.activeQuoteApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openQuoteApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openCostumerPortalApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openDataWarehouseApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openUnitMeterApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openClientCheckApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.activeQuote4PowerplaceApplication);
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.enrichmentHUBApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.hostedListServiceApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openClientCheckApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openDataWarehouseApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openCostumerPortalApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openQuoteApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openUnitMeterApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.rteDeployerApplication);
+		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.quoteGenerationServiceApplication);
+
+		SeverityTypePanel severityPanel = new SeverityTypePanel(config);
+		severityPanel.build(frame);
+
+		SchedulePanel schedulePanel = new SchedulePanel(config);
+		schedulePanel.build(frame);
+		schedulePanel.setEnabled(false);
+		
+		EmailPanel emailPanel = new EmailPanel();
+		emailPanel.build(frame, cache);
+		
+
+		
 		
 
 		JPanel savePanel = new JPanel();
@@ -137,8 +147,6 @@ public class OpenReportConfig {
 				} else if(!severityPanel.validatePanel()) {
 					ErrorDialog.showErrorDialog(frame, "At least one tipe must be picked.");
 				} else {
-					schedulePanel.refreshConfigInformation();
-					System.out.println(config.getSchedule().getRuntime());
 					ReportConfig threadConfig = config.clone();
 					for(ApplicationsAdapter appAdapter : config.getApplications().values()) {
 						System.out.println(appAdapter.getClass().getName());
@@ -162,10 +170,5 @@ public class OpenReportConfig {
 		gbc_btnRunNow.gridy = 0;
 		savePanel.add(btnRunNow, gbc_btnRunNow);
 
-
-
-
 	}
-
-
 }

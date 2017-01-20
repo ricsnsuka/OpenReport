@@ -34,6 +34,8 @@ public class LogReport {
 		}
 	}
 	
+	
+	
 	public void generateReport(ReportConfig config, String filename) {
 		CatalinaLogParser parser = new CatalinaLogParser();
 		logData = parser.parse(config, filename);

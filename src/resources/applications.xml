@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <applications>
-	<eBroker>
+	<eBroker desc="eBroker Sites">
 		<site ebrokerVersion="3" name="Abbey" />
 		<site ebrokerVersion="3" name="Alan Boswell" />
 		<site ebrokerVersion="2" name="Allen &amp; Allen" />
@@ -77,29 +77,27 @@
 		<site ebrokerVersion="2" name="Trident" />
 		<site ebrokerVersion="3" name="UDriveCover" />
 	</eBroker>
-	<OpenQuote>
+	<OpenQuote desc="Open Quote">
 		<server serverNumber="1" />
 		<server serverNumber="2" />
 		<server serverNumber="3" />
 	</OpenQuote>
-	<ActiveQuote>
+	<ActiveQuote desc="Active Quote">
 		<server serverNumber="1" />
 		<server serverNumber="2" />
 	</ActiveQuote>
-	<ActiveQuote4PowerPlace shortname="AQ4PP">
-		<aq4ppmain></aq4ppmain>
-		<aq4ppadmin></aq4ppadmin>
-	</ActiveQuote4PowerPlace>
-	<OCP>
+	<AQ4PP desc="Active Quote 4 Powerplace">
+	</AQ4PP>
+	<OCP desc="Open Costumer Portal">
 		<server serverNumber="1" />
 		<server serverNumber="2" />
 		<server serverNumber="3" />
 	</OCP>
-	<EnrichmentHUB></EnrichmentHUB>
-	<HostedListService></HostedListService>
-	<OpenClientCheck></OpenClientCheck>
-	<ODW></ODW>
-	<OpenUnitMeter></OpenUnitMeter>
-	<QuoteGenerationService></QuoteGenerationService>
-	<RTEDeployer></RTEDeployer>
+	<eHub desc="Enrichment HUB"></eHub>
+	<HostedLists desc="Hosted List Service"></HostedLists>
+	<OCC desc="Open Client Check"></OCC>
+	<ODW desc="Open Data Warehouse"></ODW>
+	<UnitMeter desc="Open Unit Meter"></UnitMeter>
+	<QGS desc="QuoteGenerationService"></QGS>
+	<RTEDeployer desc="RTE Deployer"></RTEDeployer>
 </applications>

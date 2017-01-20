@@ -5,29 +5,27 @@ import java.awt.Font;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
-public class ScheduleWeekdayButton {
-	private JToggleButton button;
+public class ScheduleWeekdayButton extends JToggleButton {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2357892955779325490L;
 	private String weekDay;
-	private String shortName;
 	
 	public ScheduleWeekdayButton(String weekDay, String shortName) {
+		super(shortName);
 		this.weekDay = weekDay;
-		this.shortName = shortName;
 		createButton();
 	}
 	
 	private void createButton() {
-		button = new JToggleButton(this.shortName);
-		button.setHorizontalAlignment(SwingConstants.LEADING);
-		button.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		button.setToolTipText("Run on " + weekDay + "s");
+		setHorizontalAlignment(SwingConstants.LEADING);
+		setFont(new Font("Tahoma", Font.PLAIN, 11));
+		setToolTipText("Run on " + weekDay + "s");
 	}
 	
 	public String getWeekDay() {
 		return this.weekDay;
 	}
 	
-	public JToggleButton getToggleButton() {
-		return this.button;
-	}
 }
