@@ -31,19 +31,7 @@ public class LogReport {
 			} else {
 				logDataHits.put(sevInfo, 1);
 			}
-		}
-	}
-	
-	
-	
-	public void generateReport(ReportConfig config, String filename) {
-		CatalinaLogParser parser = new CatalinaLogParser();
-		logData = parser.parse(config, filename);
-		generateReport();
-	}
-	
-	public void countHits() {
-		for(LogData data : logData) {
+			
 			if(data.getType() == LogEntryType.SEVERE)
 				hits.replace("SEVERE", hits.get("SEVERE")+1);
 			if(data.getType() == LogEntryType.INFO)
@@ -51,6 +39,19 @@ public class LogReport {
 			if(data.getType() == LogEntryType.WARNING)
 				hits.replace("WARNING", hits.get("WARNING")+1);
 		}
+	}
+	
+	
+	
+	public void generateReport(ReportConfig config) {
+		CatalinaLogParser parser = new CatalinaLogParser();
+		for(String key : config.getApplications().keySet()) {
+			for(Application application : config.getApplications().get(key).getSelectedValues()) {
+				logData = parser.parse(config, application);
+				generateReport();
+			}
+		}
+		
 	}
 	
 	public int countHits(String sevInfo) {

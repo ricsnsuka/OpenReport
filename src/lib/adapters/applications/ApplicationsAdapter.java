@@ -3,24 +3,26 @@ package lib.adapters.applications;
 import java.util.ArrayList;
 import java.util.List;
 
+import lib.structs.Application;
+
 public class ApplicationsAdapter implements Cloneable {
-	private List<String> selectedValues;
+	private List<Application> selectedValues;
 	
 	public ApplicationsAdapter() {
 		selectedValues = new ArrayList<>();
 	}
 
-	public List<String> getSelectedValues() {
+	public List<Application> getSelectedValues() {
 		return selectedValues;
 	}
 
-	public void setSelectedValues(List<String> selectedValues) {
+	public void setSelectedValues(List<Application> selectedValues) {
 		this.selectedValues = selectedValues;
 	}
 	
 	public ApplicationsAdapter clone() {
 		ApplicationsAdapter clone = new ApplicationsAdapter();
-		List<String> cloneSelectedValues = getSelectedValues().subList(0, getSelectedValues().size());
+		List<Application> cloneSelectedValues = getSelectedValues().subList(0, getSelectedValues().size());
 		
 		clone.setSelectedValues(cloneSelectedValues);
 		

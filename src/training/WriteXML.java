@@ -42,7 +42,7 @@ public class WriteXML {
 
 		doc.getDocumentElement().normalize();
 
-		InfoLogData info = new InfoLogData("Oct 01, 2016 3:59:03 PM", "Can't stop the feeling!");
+		InfoLogData info = new InfoLogData("Can't stop the feeling!");
 
 		NodeList nList = doc.getElementsByTagName("INFOS");
 

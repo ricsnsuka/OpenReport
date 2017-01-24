@@ -2,22 +2,12 @@ package lib.structs;
 
 public class LogData {
 
-	private String logTime;
 	private String severityInfo;
 	private LogEntryType type;
 	
-	public LogData(String logTime, String severityInfo, LogEntryType type) {
-		this.logTime = logTime;
+	public LogData(String severityInfo, LogEntryType type) {
 		this.severityInfo = severityInfo;
 		this.setType(type);
-	}
-
-	public String getLogTime() {
-		return logTime;
-	}
-
-	public void setLogTime(String logTime) {
-		this.logTime = logTime;
 	}
 
 	public String getSeverityInfo() {

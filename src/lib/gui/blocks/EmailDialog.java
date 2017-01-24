@@ -87,6 +87,8 @@ public class EmailDialog extends JDialog {
 		emailList.setLayout(new GridLayout(0, 1, 0, 0));
 
 		createEmailRows(emailList, cache);
+		
+		emailList.revalidate();
 
 		emailListScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		emailListScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -202,7 +204,7 @@ public class EmailDialog extends JDialog {
 					//TODO: Triggers EmailManager addEmail
 
 
-					if(validateField(textfield.getText()) && validateEmailAddress(viewPanel, textfield.getText())) {
+					if(validateField(viewPanel, textfield.getText()) && validateEmailAddress(viewPanel, textfield.getText())) {
 						cache.getEmailList().addEmail(textfield.getText());
 						viewPanel.removeAll();
 						createEmailRows(viewPanel, cache);
@@ -219,7 +221,6 @@ public class EmailDialog extends JDialog {
 					textfield.setEditable(true);
 					textfield.setEnabled(true);
 					textfield.requestFocus();
-					
 				}
 			}
 		});
@@ -247,7 +248,7 @@ public class EmailDialog extends JDialog {
 		return true;
 	}
 	
-	private boolean validateField(String text) {
+	private boolean validateField(JPanel viewPanel, String text) {
 		if(text.isEmpty() || text == null) {
 			JOptionPane.showMessageDialog(viewPanel, "The email address cannot be null or empty.");
 			return false;
@@ -256,10 +257,9 @@ public class EmailDialog extends JDialog {
 
 	}
 	
-	
-	private boolean validateDialog(JTextField textfield) {
-		if(!textfield.getText().isEmpty() && !textfield.getText().equals("")) {
-			
-		}
-	}
+//	private boolean validateDialog(JTextField textfield) {
+//		if(!textfield.getText().isEmpty() && !textfield.getText().equals("")) {
+//			
+//		}
+//	}
 }

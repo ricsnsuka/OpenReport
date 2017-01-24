@@ -30,7 +30,7 @@ public class OpenReporter implements Runnable {
 	public void run() {
 		System.out.println("Thread " + threadName + " started running");
 		try {
-	         for(int i = 4; i > 0; i--) {
+	         for(int i = 5; i > 0; i--) {
 	            System.out.println("Thread: " + threadName + ", " + i);
 	            // Let the thread sleep for a while.
 	            Thread.sleep(1000);
@@ -46,11 +46,11 @@ public class OpenReporter implements Runnable {
 		
 		
 		
-		report.generateReport(config, "src\\resources\\catalina.out");
-		report.countHits();
+		report.generateReport(config);
 		HashMap<String, Integer> hits = report.getHits();
 		
 		System.out.println("--------------------------------------------------");
+		System.out.println(threadName + "\n\n");
 		
 		for(Map.Entry<String, Integer> entry : hits.entrySet()) {
 			System.out.println(entry.getKey() + ": " + entry.getValue() + " occurences");
@@ -58,19 +58,18 @@ public class OpenReporter implements Runnable {
 		
 		System.out.println("--------------------------------------------------");
 		
-		for(Map.Entry<String, Integer> entry : report.getLogDataHits().entrySet()) {
-			String sevInfo = entry.getKey();
-			System.out.println(sevInfo + ": " + report.countHits(sevInfo) + " times");
-		}
+//		for(Map.Entry<String, Integer> entry : report.getLogDataHits().entrySet()) {
+//			String sevInfo = entry.getKey();
+//			System.out.println(sevInfo + ": " + report.countHits(sevInfo) + " times");
+//		}
 		
-		System.out.println("--------------------------------------------------");
+//		System.out.println("--------------------------------------------------");
 		long finish = System.currentTimeMillis();
 		System.out.println("Ran in " + (finish-start) + " ms");
 		
 	}
 	
 	public void start() {
-		System.out.println("start");
 		if(t == null) {
 			t = new Thread(this, threadName);
 			t.start();

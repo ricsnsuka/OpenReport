@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import lib.adapters.applications.ApplicationsAdapter;
 import lib.exec.OpenReporter;
 import lib.gui.blocks.EmailPanel;
 import lib.gui.blocks.applications.ApplicationsPanel;
@@ -110,10 +109,6 @@ public class OpenReportConfig {
 		EmailPanel emailPanel = new EmailPanel();
 		emailPanel.build(frame, cache);
 		
-
-		
-		
-
 		JPanel savePanel = new JPanel();
 		GridBagConstraints gbc_savePanel = new GridBagConstraints();
 		gbc_savePanel.gridx = 0;
@@ -138,6 +133,8 @@ public class OpenReportConfig {
 		savePanel.add(btnSchedule, gbc_btnSchedule);
 
 		JButton btnRunNow = new JButton("Run now");
+		btnRunNow.setActionCommand("run");
+		
 		btnRunNow.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -148,15 +145,6 @@ public class OpenReportConfig {
 					ErrorDialog.showErrorDialog(frame, "At least one tipe must be picked.");
 				} else {
 					ReportConfig threadConfig = config.clone();
-					for(ApplicationsAdapter appAdapter : config.getApplications().values()) {
-						System.out.println(appAdapter.getClass().getName());
-						if(!appAdapter.getSelectedValues().isEmpty()) {
-							for(String value : appAdapter.getSelectedValues()) {
-								System.out.println(value);
-							}
-						}
-					}
-
 					OpenReporter report = new OpenReporter(threadConfig, "Report-" + reportNumber);
 					report.start();
 					reportNumber++;
@@ -170,5 +158,6 @@ public class OpenReportConfig {
 		gbc_btnRunNow.gridy = 0;
 		savePanel.add(btnRunNow, gbc_btnRunNow);
 
+		frame.pack();
 	}
 }

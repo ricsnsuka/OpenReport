@@ -31,7 +31,6 @@ public class XMLParser {
 		loadDocument();
 	}
 
-
 	public ArrayList<String> getAttributeValues(String nodeName, String attr) {
 		ArrayList<String> list = new ArrayList<>();
 		NodeList nList = document.getElementsByTagName(nodeName);
@@ -104,7 +103,7 @@ public class XMLParser {
 		return false;
 	}
 
-	public void addInfoToXML(String node, String content) {
+	synchronized void addInfoToXML(String node, String content) {
 		Element root = document.getDocumentElement();
 		NodeList nList = root.getChildNodes();
 		int index = getIndex(nList, node);

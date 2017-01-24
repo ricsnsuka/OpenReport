@@ -22,18 +22,20 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
+import lib.structs.Application;
+
 public class ApplicationDialog extends JDialog {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3886417716378033869L;
 	
-	private List<String> selectedValues;
-	private ArrayList<String> defaultValues;
+	private List<Application> selectedValues;
+	private ArrayList<Application> defaultValues;
 
 	protected JList<String> data;
 
-	public ApplicationDialog(JFrame owner, String title, ArrayList<String> defaultValues) {
+	public ApplicationDialog(JFrame owner, String title, ArrayList<Application> defaultValues) {
 		super(owner, title);
 
 		selectedValues = null;
@@ -46,8 +48,8 @@ public class ApplicationDialog extends JDialog {
 
 	protected DefaultListModel<String> createApplicationListModel() {
 		DefaultListModel<String> listModel = new DefaultListModel<>();
-		for(String value : this.defaultValues) {
-			listModel.addElement(value);
+		for(Application value : this.defaultValues) {
+			listModel.addElement(value.getName());
 		}
 		return listModel;
 	}
@@ -148,9 +150,9 @@ public class ApplicationDialog extends JDialog {
 	}
 
 
-	public List<String> getSelectedValues() {
+	public List<Application> getSelectedValues() {
 		if(selectedValues == null) {
-			return new ArrayList<String>();
+			return new ArrayList<Application>();
 		}
 		return selectedValues;
 	}
@@ -160,13 +162,20 @@ public class ApplicationDialog extends JDialog {
 		btnOk.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				selectedValues = data.getSelectedValuesList();
+				getSelectedValuesList();
 				getOwner().setEnabled(true);
 				dispose();
 
 			}
 		});
 		return btnOk;
+	}
+	
+	private void getSelectedValuesList() {
+		selectedValues = new ArrayList<>();
+		for(String value : data.getSelectedValuesList()) {
+			selectedValues.add(new Application(getTitle(), value));
+		}
 	}
 
 	private void addOnCloseListener() {

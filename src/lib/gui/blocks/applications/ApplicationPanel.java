@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import lib.adapters.applications.ApplicationsAdapter;
 import lib.exceptions.OpenReportException;
 import lib.fileparser.XMLParser;
+import lib.structs.Application;
 import lib.structs.ReportConfig;
 
 public class ApplicationPanel extends JPanel {
@@ -33,10 +34,10 @@ public class ApplicationPanel extends JPanel {
 	protected String label;
 	protected String hoverHint;
 
-	protected ApplicationDialog dialog;
-	protected JTextField txtXSelected;
-	protected ApplicationsAdapter applicationsAdapter;
-	protected ArrayList<String> dialogData;
+	private ApplicationDialog dialog;
+	private JTextField txtXSelected;
+	private ApplicationsAdapter applicationsAdapter;
+	private ArrayList<Application> dialogData;
 
 
 
@@ -56,7 +57,7 @@ public class ApplicationPanel extends JPanel {
 		buildPanel(frame, panel, gridy);
 	}
 
-	protected void buildPanel(JFrame frame, JPanel panel, int gridy) {
+	private void buildPanel(JFrame frame, JPanel panel, int gridy) {
 		GridBagConstraints appPanelConstrains = new GridBagConstraints();
 		appPanelConstrains.fill = GridBagConstraints.HORIZONTAL;
 		appPanelConstrains.insets = new Insets(0, 0, 5, 0);
@@ -118,7 +119,7 @@ public class ApplicationPanel extends JPanel {
 		txtXSelected.setColumns(10);
 	}
 
-	protected void addFrameInspector(JFrame frame) {
+	private void addFrameInspector(JFrame frame) {
 		frame.addWindowFocusListener(new WindowFocusListener() {
 			@Override
 			public void windowGainedFocus(WindowEvent arg0) {
@@ -146,14 +147,14 @@ public class ApplicationPanel extends JPanel {
 	}
 
 
-	protected void addCurrentDialogApplicationData(String applicationName, String attributeToFind) {
+	private void addCurrentDialogApplicationData(String applicationName, String attributeToFind) {
 		XMLParser parser = new XMLParser("src\\resources\\applications.xml");
 		for(String attributeValue : parser.getAttributeValues(applicationName, attributeToFind)) {
-			dialogData.add(attributeValue);
+			dialogData.add(new Application(this.label, attributeValue));
 		}
 	}
 
-	protected void addListenerToSelectButton(JFrame frame, JButton button) {
+	private void addListenerToSelectButton(JFrame frame, JButton button) {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
