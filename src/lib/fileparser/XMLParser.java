@@ -34,7 +34,8 @@ public class XMLParser {
 	public ArrayList<String> getAttributeValues(String nodeName, String attr) {
 		ArrayList<String> list = new ArrayList<>();
 		NodeList nList = document.getElementsByTagName(nodeName);
-		Node node, nodeAttr;
+		Node node;
+		Node nodeAttr;
 		NamedNodeMap attribute;
 		for(int i = 0; i < nList.getLength(); i++) {
 			node = nList.item(i);

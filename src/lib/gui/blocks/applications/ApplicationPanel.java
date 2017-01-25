@@ -126,8 +126,10 @@ public class ApplicationPanel extends JPanel {
 				applicationsAdapter.setSelectedValues(dialog.getSelectedValues());
 				txtXSelected.setText(((applicationsAdapter.getSelectedValues() == null)?"0":applicationsAdapter.getSelectedValues().size()) + " selected");
 			}
+
 			@Override
 			public void windowLostFocus(WindowEvent arg0) {
+				return;
 			}
 		});
 	}

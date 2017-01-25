@@ -23,7 +23,7 @@ import lib.gui.blocks.applications.specific.OpenQuoteApplicationPanel;
 import lib.gui.blocks.applications.specific.OpenUnitMeterApplicationPanel;
 import lib.gui.blocks.applications.specific.QuoteGenerationServiceApplicationPanel;
 import lib.gui.blocks.applications.specific.RTEDeployerApplicationPanel;
-import lib.gui.blocks.applications.specific.eBrokerApplicationPanel;
+import lib.gui.blocks.applications.specific.EBrokerApplicationPanel;
 import lib.structs.ReportConfig;
 
 public class ApplicationsPanel extends JPanel {
@@ -93,7 +93,7 @@ public class ApplicationsPanel extends JPanel {
 		ApplicationPanel applicationPanel;
 		switch(label) {
 		case eBrokerAppliaction:
-			applicationPanel = new eBrokerApplicationPanel(config, frame, panel, gridy);
+			applicationPanel = new EBrokerApplicationPanel(config, frame, panel, gridy);
 			break;
 		case activeQuoteApplication:
 			applicationPanel = new ActiveQuoteApplicationPanel(config, frame, panel, gridy);

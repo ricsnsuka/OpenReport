@@ -8,6 +8,7 @@ import lib.fileparser.EmailXMLParser;
 public class EmailManager extends ArrayList<String> {
 	
 	private static final long serialVersionUID = 1L;
+	private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@opengi.co.uk", Pattern.CASE_INSENSITIVE);
 	
 	private EmailXMLParser parser;
 
@@ -37,7 +38,6 @@ public class EmailManager extends ArrayList<String> {
 		//TODO: to be implemented
 	}
 	
-	private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@opengi.co.uk", Pattern.CASE_INSENSITIVE);
 	public static boolean validateEmailAddress(String address) {
 		return VALID_EMAIL_ADDRESS_REGEX.matcher(address).matches();
 		

@@ -6,10 +6,6 @@ public class EmailAdapter {
 	private boolean toSupport;
 	private ArrayList<String> receivers;
 	
-	public EmailAdapter() {
-		
-	}
-	
 	public boolean isToSupport() {
 		return toSupport;
 	}

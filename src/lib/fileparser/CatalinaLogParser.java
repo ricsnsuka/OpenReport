@@ -19,12 +19,10 @@ import lib.structs.LogEntryType;
 import lib.structs.ReportConfig;
 
 public class CatalinaLogParser {
-	public CatalinaLogParser() {
-	}
 
 	public ArrayList<LogData> parse(ReportConfig config, Application application) {
 		ArrayList<LogData> logDataCollection = new ArrayList<>();
-		
+
 		try(Stream<Path> paths = Files.walk(Paths.get("src/resources/applications/"+application.getProduct()+"/"+application.getName()))) {
 			paths.forEach(filePath -> {
 				if (Files.isRegularFile(filePath)) {
@@ -36,14 +34,14 @@ public class CatalinaLogParser {
 		} catch (IOException e) {
 			e.getStackTrace();
 		}
-		
+
 		return logDataCollection;
 	}
-	
+
 	private void processFile(ReportConfig config, ArrayList<LogData> logDataCollection, Path filepath) {
 		boolean ready = false;
 		ReportXMLParser parser = new ReportXMLParser();
-		
+
 		try (Scanner scan = new Scanner(filepath.toFile())) {
 			String line = null;
 			while(scan.hasNextLine()) {
@@ -52,14 +50,12 @@ public class CatalinaLogParser {
 					ready = true;
 				}
 				else {
-					if (ready) {
-						if(hasSeverity(line)) {
-							String[] severity = extractSeverityInfo(line);
-							if(filter(config.getSeverityTypes(), severity[0])) {
-								processLine(parser, severity[0], severity[1], logDataCollection);
-							}
-							ready = false;
+					if (ready && hasSeverity(line)) {
+						String[] severity = extractSeverityInfo(line);
+						if(filter(config.getSeverityTypes(), severity[0])) {
+							processLine(parser, severity[0], severity[1], logDataCollection);
 						}
+						ready = false;
 					}
 				}
 			}
@@ -68,7 +64,7 @@ public class CatalinaLogParser {
 			System.err.println("Resource not available:: " + filepath);
 		}
 	}
-	
+
 	private boolean filter(SeverityTypeAdapter severity, String type) {
 		if(severity.isAllTypes()) {
 			return true;

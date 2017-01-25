@@ -7,7 +7,7 @@ import lib.gui.blocks.applications.ApplicationPanel;
 import lib.gui.blocks.applications.ApplicationsPanel;
 import lib.structs.ReportConfig;
 
-public final class eBrokerApplicationPanel extends ApplicationPanel {
+public final class EBrokerApplicationPanel extends ApplicationPanel {
 	/**
 	 * 
 	 */
@@ -15,7 +15,7 @@ public final class eBrokerApplicationPanel extends ApplicationPanel {
 	private final String attributeToFind = "name";
 	
 	
-	public eBrokerApplicationPanel(ReportConfig config, JFrame frame, JPanel panel, int gridy) {
+	public EBrokerApplicationPanel(ReportConfig config, JFrame frame, JPanel panel, int gridy) {
 		super();
 		this.label = ApplicationsPanel.eBrokerAppliaction;
 		this.hoverHint = "eBroker sites";

@@ -226,7 +226,7 @@ public class EmailDialog extends JDialog {
 		}
 		button.setIcon(new ImageIcon(EmailDialog.class.getResource(textfield.isEditable()?"/resources/img/add.png":"/resources/img/accept.png")));
 		textfield.setEditable(!textfield.isEditable());
-		textfield.setEnabled(!!textfield.isEnabled());
+		textfield.setEnabled(!textfield.isEnabled());
 	}
 
 	private JButton createOkButton() {

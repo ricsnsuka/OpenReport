@@ -26,7 +26,6 @@ public class OpenReportConfig {
 	private ReportConfig config;
 	private JFrame frame;
 	private int reportNumber;
-	private OpenReportsCache cache;
 
 	/**
 	 * Launch the application.
@@ -83,7 +82,7 @@ public class OpenReportConfig {
 		frame.getContentPane().setLayout(gridBagLayout);
 
 		config = new ReportConfig();
-		cache = new OpenReportsCache();
+		OpenReportsCache cache = new OpenReportsCache();
 		
 		ApplicationsPanel applicationsPanel = new ApplicationsPanel();
 		applicationsPanel.build(frame);

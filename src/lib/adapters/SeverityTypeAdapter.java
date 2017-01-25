@@ -6,9 +6,6 @@ public class SeverityTypeAdapter implements Cloneable {
 	private boolean info;
 	private boolean warning;
 	
-	public SeverityTypeAdapter() {
-	}
-	
 	public boolean isAllTypes() {
 		return allTypes;
 	}

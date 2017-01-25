@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import lib.fileparser.XMLParser;
@@ -12,10 +11,6 @@ import lib.fileparser.XMLParser;
 public class XMLParserTest {
 	private final String xmlTestFile = "src\\lib\\junit\\testdata\\XMLParserTest.xml";
 	private XMLParser parser;
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		
-	}
 
 	@Before
 	public void setUp() throws Exception {
