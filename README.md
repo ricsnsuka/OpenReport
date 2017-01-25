@@ -1,0 +1,2 @@
+# OpenReport
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8e8aa44a0f2d4d149f4c6189e9df5e4f)](https://www.codacy.com/app/ricsnsuka/OpenReport?utm_source=github.com&utm_medium=referral&utm_content=ricsnsuka/OpenReport&utm_campaign=badger)
