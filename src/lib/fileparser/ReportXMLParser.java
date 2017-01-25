@@ -62,7 +62,7 @@ public final class ReportXMLParser extends XMLParser {
 	}
 
 	@Override
-	synchronized void addInfoToXML(String node, String content) {
+	protected synchronized void addInfoToXML(String node, String content) {
 		if(node == null || content == null)
 			return;
 		Element root = getDocument().getDocumentElement();

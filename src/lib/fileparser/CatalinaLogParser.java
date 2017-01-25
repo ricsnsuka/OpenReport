@@ -1,9 +1,13 @@
 package lib.fileparser;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import lib.adapters.SeverityTypeAdapter;
 import lib.exceptions.OpenReportException;
@@ -20,11 +24,27 @@ public class CatalinaLogParser {
 
 	public ArrayList<LogData> parse(ReportConfig config, Application application) {
 		ArrayList<LogData> logDataCollection = new ArrayList<>();
-		ReportXMLParser parser = new ReportXMLParser();
-
+		
+		try(Stream<Path> paths = Files.walk(Paths.get("src/resources/applications/"+application.getProduct()+"/"+application.getName()))) {
+			paths.forEach(filePath -> {
+				if (Files.isRegularFile(filePath)) {
+					processFile(config, logDataCollection, filePath);
+				}
+			});
+		} catch (java.nio.file.NoSuchFileException e) {
+			System.err.println(e.getFile() + " not found.");
+		} catch (IOException e) {
+			e.getStackTrace();
+		}
+		
+		return logDataCollection;
+	}
+	
+	private void processFile(ReportConfig config, ArrayList<LogData> logDataCollection, Path filepath) {
 		boolean ready = false;
-		String filepath = "src\\resources\\applications\\"+application.getProduct()+"\\"+application.getName()+"\\catalina.log";
-		try (Scanner scan = new Scanner(new File(filepath))) {
+		ReportXMLParser parser = new ReportXMLParser();
+		
+		try (Scanner scan = new Scanner(filepath.toFile())) {
 			String line = null;
 			while(scan.hasNextLine()) {
 				line = scan.nextLine();
@@ -43,12 +63,10 @@ public class CatalinaLogParser {
 					}
 				}
 			}
-			scan.close();
 		}catch(FileNotFoundException ex ) {
 			//LOG
 			System.err.println("Resource not available:: " + filepath);
 		}
-		return logDataCollection;
 	}
 	
 	private boolean filter(SeverityTypeAdapter severity, String type) {

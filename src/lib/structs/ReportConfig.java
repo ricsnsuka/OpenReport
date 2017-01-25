@@ -93,5 +93,12 @@ public class ReportConfig implements Cloneable {
 		return clone;
 	}
 	
+	public int countApplications() {
+		int ret = 0;
+		for(String key : applications.keySet()) {
+			ret += applications.get(key).getSelectedValues().size();
+		}
+		return ret;
+	}
 	
 }

@@ -103,7 +103,7 @@ public class XMLParser {
 		return false;
 	}
 
-	synchronized void addInfoToXML(String node, String content) {
+	protected synchronized void addInfoToXML(String node, String content) {
 		Element root = document.getDocumentElement();
 		NodeList nList = root.getChildNodes();
 		int index = getIndex(nList, node);

@@ -137,10 +137,11 @@ public class ApplicationPanel extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if(chkBoxAll.isSelected()) {
+					txtXSelected.setText(dialogData.size() + " selected");
 					applicationsAdapter.setSelectedValues(dialogData);
-					txtXSelected.setText(applicationsAdapter.getSelectedValues().size() + " selected");
 				} else {
 					txtXSelected.setText(((dialog == null)?"0":dialog.getSelectedValues().size()) + " selected");
+					applicationsAdapter.setSelectedValues((dialog == null)?(new ArrayList<Application>()):dialog.getSelectedValues());
 				}
 			}
 		});

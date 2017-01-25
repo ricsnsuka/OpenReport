@@ -1,4 +1,4 @@
-package lib.gui.blocks;
+package lib.gui.blocks.email;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -12,8 +12,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,30 +24,27 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-
-import lib.gui.EmailRow;
-import lib.structs.OpenReportsCache;
 import javax.swing.border.LineBorder;
+
+import lib.email.EmailManager;
+import lib.structs.OpenReportsCache;
 
 public class EmailDialog extends JDialog {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3017958853612127136L;
 
 	public static final String dialogTitle = "Support DEV Email Addresses";
 
 	private final JPanel contentPanel = new JPanel();
-
-	private boolean addMode;
 
 	/**
 	 * Create the dialog.
 	 */
 	public EmailDialog(JFrame owner, OpenReportsCache cache) {
 		super(owner, EmailDialog.dialogTitle);
-		addMode = false;
 		buildPanel(cache);
 	}
 
@@ -87,7 +82,7 @@ public class EmailDialog extends JDialog {
 		emailList.setLayout(new GridLayout(0, 1, 0, 0));
 
 		createEmailRows(emailList, cache);
-		
+
 		emailList.revalidate();
 
 		emailListScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -129,19 +124,18 @@ public class EmailDialog extends JDialog {
 		gbc_addEmailText.gridx = 0;
 		gbc_addEmailText.gridy = 0;
 		addEmailPanel.add(addEmailText, gbc_addEmailText);
-		
 
 		addEmailPanel.setBorder(null);
 		addEmailText.setBorder(new LineBorder(UIManager.getColor("TextField[Disabled].textForeground"), 1, true));
 		JButton btnAdd = new JButton("");
 		btnAdd.setIcon(new ImageIcon(EmailDialog.class.getResource("/resources/img/add.png")));
-		addListenerToAddButton(btnAdd, addEmailText, emailList, cache);
+		addListenerToAddButton(addEmailText, btnAdd, emailList, cache);
 		btnAdd.setMargin(new Insets(0,0,0,0));
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
 		gbc_btnAdd.gridx = 1;
 		gbc_btnAdd.gridy = 0;
 		addEmailPanel.add(btnAdd, gbc_btnAdd);
-		
+
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setIcon(new ImageIcon(EmailDialog.class.getResource("/resources/img/settings.png")));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -176,12 +170,18 @@ public class EmailDialog extends JDialog {
 		addOnCloseListener();
 	}
 
-
 	private void createEmailRows(JPanel owner, OpenReportsCache cache) {
 		for(String value : cache.getEmailList()) {
 			EmailRow row = new EmailRow();
 			row.build(owner);
 			row.setText(value);
+			row.getDeleteButton().addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					cache.getEmailList().remove(row.getText());
+					revalidatePanel(cache, owner);
+				}
+			});
 			owner.add(row);
 		}
 	}
@@ -196,34 +196,37 @@ public class EmailDialog extends JDialog {
 		});
 	}
 
-	private void addListenerToAddButton(JButton button, JTextField textfield, JPanel viewPanel, OpenReportsCache cache) {
+	private void addListenerToAddButton(JTextField textfield, JButton button, JPanel viewPanel, OpenReportsCache cache) {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(addMode) {
+				if(textfield.isEditable()) {
 					//TODO: Triggers EmailManager addEmail
 
 
-					if(validateField(viewPanel, textfield.getText()) && validateEmailAddress(viewPanel, textfield.getText())) {
-						cache.getEmailList().addEmail(textfield.getText());
-						viewPanel.removeAll();
-						createEmailRows(viewPanel, cache);
-						viewPanel.getRootPane().revalidate();
+					if(validateField(textfield.getText())) {
+						if(EmailManager.validateEmailAddress(textfield.getText())) {
+							cache.getEmailList().addEmail(textfield.getText());
+							revalidatePanel(cache, viewPanel);
+						} else {
+							JOptionPane.showMessageDialog(viewPanel, "The email address is invalid.");
+						} 
+					} else {
+						JOptionPane.showMessageDialog(viewPanel, "The email address cannot be null or empty.");
 					}
-					textfield.setText("");
-					addMode = false;
-					button.setIcon(new ImageIcon(EmailDialog.class.getResource("/resources/img/add.png")));
-					textfield.setEditable(false);
-					textfield.setEnabled(false);
-				} else {
-					addMode = true;
-					button.setIcon(new ImageIcon(EmailDialog.class.getResource("/resources/img/accept.png")));
-					textfield.setEditable(true);
-					textfield.setEnabled(true);
-					textfield.requestFocus();
 				}
+				changeAddTextfieldStatus(textfield, button);
 			}
 		});
+	}
+	
+	private void changeAddTextfieldStatus(JTextField textfield, JButton button) {
+		if(textfield.isEditable()) { 
+			textfield.setText("");
+		}
+		button.setIcon(new ImageIcon(EmailDialog.class.getResource(textfield.isEditable()?"/resources/img/add.png":"/resources/img/accept.png")));
+		textfield.setEditable(!textfield.isEditable());
+		textfield.setEnabled(!!textfield.isEnabled());
 	}
 
 	private JButton createOkButton() {
@@ -238,28 +241,18 @@ public class EmailDialog extends JDialog {
 		return btnOk;
 	}
 
-	private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@opengi.co.uk", Pattern.CASE_INSENSITIVE);
-	private boolean validateEmailAddress(JPanel viewPanel, String address) {
-		Matcher emailMatcher = VALID_EMAIL_ADDRESS_REGEX.matcher(address);
-		if(!emailMatcher.find()){
-			JOptionPane.showMessageDialog(viewPanel, "The email address is invalid.");
-			return false;
-		}
-		return true;
+	private boolean validateField(String text) {
+		return !text.isEmpty() && text != null;
 	}
-	
-	private boolean validateField(JPanel viewPanel, String text) {
-		if(text.isEmpty() || text == null) {
-			JOptionPane.showMessageDialog(viewPanel, "The email address cannot be null or empty.");
-			return false;
-		}
-		return true;
 
+	private void revalidatePanel(OpenReportsCache cache, JPanel panel) {
+		panel.removeAll();
+		createEmailRows(panel, cache);
+		panel.getRootPane().revalidate();
+		if(cache.getEmailList().size() == 0){ 
+			EmailRow dummyRow = new EmailRow(true);
+			dummyRow.build(panel);
+			panel.add(dummyRow);
+		}
 	}
-	
-//	private boolean validateDialog(JTextField textfield) {
-//		if(!textfield.getText().isEmpty() && !textfield.getText().equals("")) {
-//			
-//		}
-//	}
 }

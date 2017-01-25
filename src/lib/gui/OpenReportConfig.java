@@ -14,12 +14,13 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import lib.exec.OpenReporter;
-import lib.gui.blocks.EmailPanel;
 import lib.gui.blocks.applications.ApplicationsPanel;
+import lib.gui.blocks.email.EmailPanel;
 import lib.gui.blocks.schedule.SchedulePanel;
 import lib.gui.blocks.severitytype.SeverityTypePanel;
 import lib.structs.OpenReportsCache;
 import lib.structs.ReportConfig;
+import java.awt.Toolkit;
 
 public class OpenReportConfig {
 	private ReportConfig config;
@@ -67,6 +68,7 @@ public class OpenReportConfig {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(OpenReportConfig.class.getResource("/resources/img/ogi.png")));
 
 		frame.setBounds(100, 100, 600, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -111,6 +113,7 @@ public class OpenReportConfig {
 		
 		JPanel savePanel = new JPanel();
 		GridBagConstraints gbc_savePanel = new GridBagConstraints();
+		gbc_savePanel.fill = GridBagConstraints.VERTICAL;
 		gbc_savePanel.gridx = 0;
 		gbc_savePanel.gridy = 5;
 		frame.getContentPane().add(savePanel, gbc_savePanel);
@@ -141,6 +144,8 @@ public class OpenReportConfig {
 
 				if(!emailPanel.validatePanel()) {
 					ErrorDialog.showErrorDialog(frame, "You haven't set any destination address.");
+				} else if(config.countApplications() <= 0) {
+					ErrorDialog.showErrorDialog(frame, "Nothing to report.");
 				} else if(!severityPanel.validatePanel()) {
 					ErrorDialog.showErrorDialog(frame, "At least one tipe must be picked.");
 				} else {

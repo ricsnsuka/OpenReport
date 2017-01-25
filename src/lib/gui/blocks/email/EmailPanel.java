@@ -1,4 +1,4 @@
-package lib.gui.blocks;
+package lib.gui.blocks.email;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
