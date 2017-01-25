@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -16,6 +15,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
@@ -103,7 +103,7 @@ public class EmailPanel extends JPanel {
 		gbc_Others.gridy = 0;
 		emailOthersText.add(Others, gbc_Others);
 
-		TextField emailOthers = new TextField();
+		JTextField emailOthers = new JTextField();
 		GridBagConstraints gbc_emailOthers = new GridBagConstraints();
 		gbc_emailOthers.gridx = 2;
 		gbc_emailOthers.gridy = 0;
@@ -132,8 +132,6 @@ public class EmailPanel extends JPanel {
 
 			}
 		});
-
-
 	}
 
 	public boolean validatePanel() {

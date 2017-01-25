@@ -4,10 +4,6 @@ import lib.exceptions.OpenReportException;
 
 public class LogDataFactory {
 
-	public LogDataFactory() {
-		// TODO Auto-generated constructor stub
-	}
-	
 	public static LogData generateLogData(String type,  String severityInfo) throws OpenReportException {
 		LogData log = null;
 		switch(type) {

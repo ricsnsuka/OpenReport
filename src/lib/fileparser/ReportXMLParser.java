@@ -38,7 +38,7 @@ public final class ReportXMLParser extends XMLParser {
 				while(j < nList2.getLength()) {
 					if(nList2.item(j).getNodeType() == Node.ELEMENT_NODE) {
 						textContent = nList2.item(j).getTextContent();
-						if(!textContent.equals("") && severityInfo.contains(textContent)) {
+						if(!"".equals(textContent) && severityInfo.contains(textContent)) {
 							mutable.setString(textContent);
 							return true;
 						}
