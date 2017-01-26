@@ -72,8 +72,8 @@ public class ApplicationDialog extends JDialog {
 		gbc_mainPanel.gridy = 0;
 		getContentPane().add(mainPanel, gbc_mainPanel);
 		GridBagLayout gbl_mainPanel = new GridBagLayout();
-		gbl_mainPanel.columnWidths = new int[]{299, 0};
-		gbl_mainPanel.rowHeights = new int[]{479, 0};
+		gbl_mainPanel.columnWidths = new int[]{300, 0};
+		gbl_mainPanel.rowHeights = new int[]{480, 0};
 		gbl_mainPanel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_mainPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		mainPanel.setLayout(gbl_mainPanel);

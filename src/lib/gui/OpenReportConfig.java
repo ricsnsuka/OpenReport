@@ -1,26 +1,27 @@
 package lib.gui;
 
 import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import lib.adapters.EmailAdapter;
+import lib.adapters.ScheduleAdapter;
+import lib.controller.EmailController;
+import lib.controller.ScheduleController;
 import lib.exec.OpenReporter;
+import lib.gui.blocks.SavePanel;
 import lib.gui.blocks.applications.ApplicationsPanel;
 import lib.gui.blocks.email.EmailPanel;
 import lib.gui.blocks.schedule.SchedulePanel;
 import lib.gui.blocks.severitytype.SeverityTypePanel;
 import lib.structs.OpenReportsCache;
 import lib.structs.ReportConfig;
-import java.awt.Toolkit;
 
 public class OpenReportConfig {
 	private ReportConfig config;
@@ -69,14 +70,14 @@ public class OpenReportConfig {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(OpenReportConfig.class.getResource("/resources/img/ogi.png")));
 
-		frame.setBounds(100, 100, 600, 900);
+		frame.setBounds(100, 100, 450, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setTitle("OpenReports");
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{530, 0};
+		gridBagLayout.columnWidths = new int[]{450, 0};
 		gridBagLayout.rowHeights = new int[]{10, 300, 50, 100, 40, 35, 0};
-		//APP-250 SEV-50 SCH-100 SEND-40
+		//APP-300 SEV-50 SCH-100 SEND-40
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
@@ -100,47 +101,40 @@ public class OpenReportConfig {
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.rteDeployerApplication);
 		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.quoteGenerationServiceApplication);
 
+		//----------------SEVERITY-----------------
+		
 		SeverityTypePanel severityPanel = new SeverityTypePanel(config);
 		severityPanel.build(frame);
-
-		SchedulePanel schedulePanel = new SchedulePanel(config);
-		schedulePanel.build(frame);
+		
+		//-----------------------------------------
+		
+		//----------------SCHEDULE-----------------
+		
+		ScheduleAdapter scheduleAdpater = new ScheduleAdapter();
+		SchedulePanel schedulePanel = new SchedulePanel();
+		ScheduleController scheduleController = new ScheduleController(config, scheduleAdpater);
+		
+		schedulePanel.build(frame, scheduleController);
 		schedulePanel.setEnabled(false);
 		
+		//-----------------------------------------
+		
+		//--------------SEND_TO BLOCK--------------
+		
+		EmailAdapter emailAdapter = new EmailAdapter();
 		EmailPanel emailPanel = new EmailPanel();
-		emailPanel.build(frame, cache);
+		EmailController emailController = new EmailController(emailAdapter, emailPanel, cache);
 		
-		JPanel savePanel = new JPanel();
-		GridBagConstraints gbc_savePanel = new GridBagConstraints();
-		gbc_savePanel.fill = GridBagConstraints.VERTICAL;
-		gbc_savePanel.gridx = 0;
-		gbc_savePanel.gridy = 5;
-		frame.getContentPane().add(savePanel, gbc_savePanel);
-		GridBagLayout gbl_savePanel = new GridBagLayout();
-		gbl_savePanel.columnWidths = new int[]{59, 63, 0};
-		gbl_savePanel.rowHeights = new int[]{22, 0};
-		gbl_savePanel.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_savePanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		savePanel.setLayout(gbl_savePanel);
-
-		JButton btnSchedule = new JButton("Schedule");
-		btnSchedule.setEnabled(false);
-		btnSchedule.setToolTipText("Unavailable for now...");
-
-		GridBagConstraints gbc_btnSchedule = new GridBagConstraints();
-		gbc_btnSchedule.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnSchedule.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSchedule.gridx = 0;
-		gbc_btnSchedule.gridy = 0;
-		savePanel.add(btnSchedule, gbc_btnSchedule);
-
-		JButton btnRunNow = new JButton("Run now");
-		btnRunNow.setActionCommand("run");
+		emailPanel.build(frame, emailController);
 		
-		btnRunNow.addActionListener(new ActionListener() {
+		//-----------------------------------------
+		
+		SavePanel savePanel = new SavePanel();
+		savePanel.build(frame);
+		
+		savePanel.getRunNow().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
 				if(!emailPanel.validatePanel()) {
 					ErrorDialog.showErrorDialog(frame, "You haven't set any destination address.");
 				} else if(config.countApplications() <= 0) {
@@ -155,13 +149,8 @@ public class OpenReportConfig {
 				}
 			}
 		});
-		frame.getRootPane().setDefaultButton(btnRunNow);
-		GridBagConstraints gbc_btnRunNow = new GridBagConstraints();
-		gbc_btnRunNow.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnRunNow.gridx = 1;
-		gbc_btnRunNow.gridy = 0;
-		savePanel.add(btnRunNow, gbc_btnRunNow);
-
+		
+		frame.getRootPane().setDefaultButton(savePanel.getRunNow());
 		frame.pack();
 	}
 }

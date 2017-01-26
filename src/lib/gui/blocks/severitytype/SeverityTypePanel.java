@@ -56,7 +56,6 @@ public class SeverityTypePanel extends JPanel{
 		setLayout(new BorderLayout(0, 0));
 		
 
-
 		JPanel typeChkbxPnl = new JPanel();
 		add(typeChkbxPnl, BorderLayout.SOUTH);
 		GridBagLayout gbl_typeChkbxPnl = new GridBagLayout();

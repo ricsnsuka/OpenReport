@@ -6,6 +6,10 @@ public class EmailAdapter {
 	private boolean toSupport;
 	private ArrayList<String> receivers;
 	
+	public EmailAdapter() {
+		receivers = new ArrayList<>();
+	}
+	
 	public boolean isToSupport() {
 		return toSupport;
 	}
@@ -15,8 +19,9 @@ public class EmailAdapter {
 	public ArrayList<String> getReceivers() {
 		return receivers;
 	}
-	public void setReceivers(ArrayList<String> receivers) {
-		this.receivers = receivers;
+	
+	public void addReceiver(String emailAddress) {
+		this.receivers.add(emailAddress);
 	}
 	
 }

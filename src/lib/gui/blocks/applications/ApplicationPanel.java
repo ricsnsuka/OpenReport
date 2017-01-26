@@ -18,43 +18,73 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import lib.adapters.applications.ApplicationsAdapter;
+import lib.adapters.ApplicationAdapter;
 import lib.exceptions.OpenReportException;
 import lib.fileparser.XMLParser;
+import lib.gui.ErrorDialog;
 import lib.structs.Application;
 import lib.structs.ReportConfig;
 
 public class ApplicationPanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
-	protected String label;
-	protected String hoverHint;
 
 	private ApplicationDialog dialog;
 	private JTextField txtXSelected;
-	private ApplicationsAdapter applicationsAdapter;
+	private ApplicationAdapter applicationsAdapter;
 	private ArrayList<Application> dialogData;
+	
+	protected String label;
+	protected String hoverHint;
 
 
-
-	public ApplicationPanel() {
-		super();
-		dialogData = new ArrayList<>();
+	private void addCurrentDialogApplicationData(String applicationName, String attributeToFind) {
+		XMLParser parser = new XMLParser("src\\resources\\applications.xml");
+		for(String attributeValue : parser.getAttributeValues(applicationName, attributeToFind)) {
+			dialogData.add(new Application(this.label, attributeValue));
+		}
 	}
 
-	protected void build(ReportConfig config, JFrame frame, JPanel panel, String attributeToFind, int gridy) {
-		addCurrentDialogApplicationData(label, attributeToFind);
-		applicationsAdapter = new ApplicationsAdapter();
-		try {
-			config.setApplications(label, applicationsAdapter);
-		}catch(OpenReportException e) {
+	private void addFrameInspector(JFrame frame) {
+		frame.addWindowFocusListener(new WindowFocusListener() {
+			@Override
+			public void windowGainedFocus(WindowEvent arg0) {
+				applicationsAdapter.setSelectedValues(dialog.getSelectedValues());
+				txtXSelected.setText(((applicationsAdapter.getSelectedValues() == null)?"0":applicationsAdapter.getSelectedValues().size()) + " selected");
+			}
 
-		}
-		buildPanel(frame, panel, gridy);
+			@Override
+			public void windowLostFocus(WindowEvent arg0) {
+				//DO NOTHING
+			}
+		});
+	}
+
+	private void addListenerToChkBoxAll(JCheckBox chkBoxAll) {
+		chkBoxAll.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(chkBoxAll.isSelected()) {
+					txtXSelected.setText(dialogData.size() + " selected");
+					applicationsAdapter.setSelectedValues(dialogData);
+				} else {
+					txtXSelected.setText(((dialog == null)?"0":dialog.getSelectedValues().size()) + " selected");
+					applicationsAdapter.setSelectedValues((dialog == null)?(new ArrayList<Application>()):dialog.getSelectedValues());
+				}
+			}
+		});
+	}
+
+	private void addListenerToSelectButton(JFrame frame, JButton button) {
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dialog = new ApplicationDialog(frame, label, dialogData);
+				frame.setEnabled(false);
+				dialog.setVisible(true);
+				addFrameInspector(frame);
+			}
+		});
 	}
 
 	private void buildPanel(JFrame frame, JPanel panel, int gridy) {
@@ -98,15 +128,6 @@ public class ApplicationPanel extends JPanel {
 		chkBoxAllConstraints.gridy = 0;
 		add(chkBoxAll, chkBoxAllConstraints);
 
-		//		JCheckBox test = new JCheckBox("test");
-		//		addListenerToChkBoxAll(chkBoxAll);
-
-		//		GridBagConstraints testConstraints = new GridBagConstraints();
-		//		testConstraints.insets = new Insets(0, 0, 0, 5);
-		//		testConstraints.gridx = 7;
-		//		testConstraints.gridy = 0;
-		//		add(test, testConstraints);
-
 		txtXSelected = new JTextField();
 		txtXSelected.setEnabled(false);
 		txtXSelected.setEditable(false);
@@ -118,57 +139,23 @@ public class ApplicationPanel extends JPanel {
 		add(txtXSelected, gbc_txtXSelected);
 		txtXSelected.setColumns(10);
 	}
-
-	private void addFrameInspector(JFrame frame) {
-		frame.addWindowFocusListener(new WindowFocusListener() {
-			@Override
-			public void windowGainedFocus(WindowEvent arg0) {
-				applicationsAdapter.setSelectedValues(dialog.getSelectedValues());
-				txtXSelected.setText(((applicationsAdapter.getSelectedValues() == null)?"0":applicationsAdapter.getSelectedValues().size()) + " selected");
-			}
-
-			@Override
-			public void windowLostFocus(WindowEvent arg0) {
-				return;
-			}
-		});
-	}
-
-	private void addListenerToChkBoxAll(JCheckBox chkBoxAll) {
-		chkBoxAll.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				if(chkBoxAll.isSelected()) {
-					txtXSelected.setText(dialogData.size() + " selected");
-					applicationsAdapter.setSelectedValues(dialogData);
-				} else {
-					txtXSelected.setText(((dialog == null)?"0":dialog.getSelectedValues().size()) + " selected");
-					applicationsAdapter.setSelectedValues((dialog == null)?(new ArrayList<Application>()):dialog.getSelectedValues());
-				}
-			}
-		});
-	}
-
-
-	private void addCurrentDialogApplicationData(String applicationName, String attributeToFind) {
-		XMLParser parser = new XMLParser("src\\resources\\applications.xml");
-		for(String attributeValue : parser.getAttributeValues(applicationName, attributeToFind)) {
-			dialogData.add(new Application(this.label, attributeValue));
+	
+	protected void build(ReportConfig config, JFrame frame, JPanel panel, String attributeToFind, int gridy) {
+		addCurrentDialogApplicationData(label, attributeToFind);
+		applicationsAdapter = new ApplicationAdapter();
+		try {
+			config.setApplications(label, applicationsAdapter);
+		}catch(OpenReportException e) {
+			ErrorDialog.showErrorDialog(frame, e.getMessage());
+			return;
 		}
+		buildPanel(frame, panel, gridy);
 	}
-
-	private void addListenerToSelectButton(JFrame frame, JButton button) {
-		button.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dialog = new ApplicationDialog(frame, label, dialogData);
-				frame.setEnabled(false);
-				dialog.setVisible(true);
-				addFrameInspector(frame);
-			}
-		});
+	
+	public ApplicationPanel() {
+		super();
+		dialogData = new ArrayList<>();
 	}
-
 
 
 }

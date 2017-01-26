@@ -1,14 +1,14 @@
-package lib.adapters.applications;
+package lib.adapters;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import lib.structs.Application;
 
-public class ApplicationsAdapter implements Cloneable {
+public class ApplicationAdapter implements Cloneable {
 	private List<Application> selectedValues;
 	
-	public ApplicationsAdapter() {
+	public ApplicationAdapter() {
 		selectedValues = new ArrayList<>();
 	}
 
@@ -20,8 +20,8 @@ public class ApplicationsAdapter implements Cloneable {
 		this.selectedValues = selectedValues;
 	}
 	
-	public ApplicationsAdapter clone() {
-		ApplicationsAdapter clone = new ApplicationsAdapter();
+	public ApplicationAdapter clone() {
+		ApplicationAdapter clone = new ApplicationAdapter();
 		List<Application> cloneSelectedValues = getSelectedValues().subList(0, getSelectedValues().size());
 		
 		clone.setSelectedValues(cloneSelectedValues);

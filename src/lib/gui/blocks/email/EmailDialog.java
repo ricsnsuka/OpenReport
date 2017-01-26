@@ -26,8 +26,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import lib.email.EmailManager;
-import lib.structs.OpenReportsCache;
+import lib.controller.EmailController;
 
 public class EmailDialog extends JDialog {
 
@@ -35,20 +34,20 @@ public class EmailDialog extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 3017958853612127136L;
-
 	public static final String dialogTitle = "Support DEV Email Addresses";
-
+	
 	private final JPanel contentPanel = new JPanel();
 
+	
 	/**
 	 * Create the dialog.
 	 */
-	public EmailDialog(JFrame owner, OpenReportsCache cache) {
+	public EmailDialog(JFrame owner, EmailController emailController) {
 		super(owner, EmailDialog.dialogTitle);
-		buildPanel(cache);
+		buildPanel(emailController);
 	}
 
-	private void buildPanel(OpenReportsCache cache) {
+	private void buildPanel(EmailController emailController) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setBounds(getOwner().getX()+getOwner().getWidth(), getOwner().getY(), 450, 320);
@@ -81,7 +80,7 @@ public class EmailDialog extends JDialog {
 		emailList.setBackground(UIManager.getColor("InternalFrame.borderLight"));
 		emailList.setLayout(new GridLayout(0, 1, 0, 0));
 
-		createEmailRows(emailList, cache);
+		createEmailRows(emailList, emailController);
 
 		emailList.revalidate();
 
@@ -129,7 +128,7 @@ public class EmailDialog extends JDialog {
 		addEmailText.setBorder(new LineBorder(UIManager.getColor("TextField[Disabled].textForeground"), 1, true));
 		JButton btnAdd = new JButton("");
 		btnAdd.setIcon(new ImageIcon(EmailDialog.class.getResource("/resources/img/add.png")));
-		addListenerToAddButton(addEmailText, btnAdd, emailList, cache);
+		addListenerToAddButton(addEmailText, btnAdd, emailList, emailController);
 		btnAdd.setMargin(new Insets(0,0,0,0));
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
 		gbc_btnAdd.gridx = 1;
@@ -170,16 +169,16 @@ public class EmailDialog extends JDialog {
 		addOnCloseListener();
 	}
 
-	private void createEmailRows(JPanel owner, OpenReportsCache cache) {
-		for(String value : cache.getEmailList()) {
+	private void createEmailRows(JPanel owner, EmailController emailController) {
+		for(String value : emailController.getDefaultSupportEmailList()) {
 			EmailRow row = new EmailRow();
 			row.build(owner);
 			row.setText(value);
 			row.getDeleteButton().addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					cache.getEmailList().remove(row.getText());
-					revalidatePanel(cache, owner);
+					emailController.getDefaultSupportEmailList().remove(row.getText());
+					revalidatePanel(emailController, owner);
 				}
 			});
 			owner.add(row);
@@ -196,7 +195,7 @@ public class EmailDialog extends JDialog {
 		});
 	}
 
-	private void addListenerToAddButton(JTextField textfield, JButton button, JPanel viewPanel, OpenReportsCache cache) {
+	private void addListenerToAddButton(JTextField textfield, JButton button, JPanel viewPanel, EmailController controller) {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -205,15 +204,11 @@ public class EmailDialog extends JDialog {
 
 
 					if(validateField(textfield.getText())) {
-						if(EmailManager.validateEmailAddress(textfield.getText())) {
-							cache.getEmailList().addEmail(textfield.getText());
-							revalidatePanel(cache, viewPanel);
-						} else {
-							JOptionPane.showMessageDialog(viewPanel, "The email address is invalid.");
-						} 
+						controller.addSupportEmailReceiver(textfield.getText(), viewPanel);
 					} else {
 						JOptionPane.showMessageDialog(viewPanel, "The email address cannot be null or empty.");
 					}
+					revalidatePanel(controller, viewPanel);
 				}
 				changeAddTextfieldStatus(textfield, button);
 			}
@@ -245,11 +240,11 @@ public class EmailDialog extends JDialog {
 		return !text.isEmpty() && text != null;
 	}
 
-	private void revalidatePanel(OpenReportsCache cache, JPanel panel) {
+	private void revalidatePanel(EmailController controller, JPanel panel) {
 		panel.removeAll();
-		createEmailRows(panel, cache);
+		createEmailRows(panel, controller);
 		panel.getRootPane().revalidate();
-		if(cache.getEmailList().size() == 0){ 
+		if(controller.getDefaultSupportEmailList().size() == 0){ 
 			EmailRow dummyRow = new EmailRow(true);
 			dummyRow.build(panel);
 			panel.add(dummyRow);

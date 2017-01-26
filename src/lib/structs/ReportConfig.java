@@ -3,16 +3,16 @@ package lib.structs;
 import java.util.HashMap;
 import java.util.Set;
 
+import lib.adapters.ApplicationAdapter;
 import lib.adapters.ScheduleAdapter;
 import lib.adapters.SeverityTypeAdapter;
-import lib.adapters.applications.ApplicationsAdapter;
 import lib.exceptions.OpenReportException;
 import lib.gui.blocks.applications.ApplicationsPanel;
 
 public class ReportConfig implements Cloneable {
 	private SeverityTypeAdapter severityTypes;
 	private ScheduleAdapter schedule;
-	private HashMap<String,ApplicationsAdapter> applications;
+	private HashMap<String,ApplicationAdapter> applications;
 	
 	public ReportConfig() {
 		this(null, null);
@@ -48,7 +48,7 @@ public class ReportConfig implements Cloneable {
 		return schedule;
 	}
 
-	public HashMap<String, ApplicationsAdapter> getApplications() {
+	public HashMap<String, ApplicationAdapter> getApplications() {
 		return applications;
 	}
 
@@ -60,7 +60,7 @@ public class ReportConfig implements Cloneable {
 		this.schedule = schedule;
 	}
 
-	public void setApplications(String key, ApplicationsAdapter value) throws OpenReportException {
+	public void setApplications(String key, ApplicationAdapter value) throws OpenReportException {
 		if(validateApplicationKey(key)) {
 			this.applications.put(key, value);
 		} else {
