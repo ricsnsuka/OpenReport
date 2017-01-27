@@ -18,12 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import lib.adapters.ApplicationAdapter;
-import lib.exceptions.OpenReportException;
-import lib.fileparser.XMLParser;
-import lib.gui.ErrorDialog;
+import lib.controller.ApplicationController;
 import lib.structs.Application;
-import lib.structs.ReportConfig;
 
 public class ApplicationPanel extends JPanel {
 
@@ -31,26 +27,18 @@ public class ApplicationPanel extends JPanel {
 
 	private ApplicationDialog dialog;
 	private JTextField txtXSelected;
-	private ApplicationAdapter applicationsAdapter;
-	private ArrayList<Application> dialogData;
 	
 	protected String label;
 	protected String hoverHint;
+	protected String attributeToFind;
 
 
-	private void addCurrentDialogApplicationData(String applicationName, String attributeToFind) {
-		XMLParser parser = new XMLParser("src\\resources\\applications.xml");
-		for(String attributeValue : parser.getAttributeValues(applicationName, attributeToFind)) {
-			dialogData.add(new Application(this.label, attributeValue));
-		}
-	}
-
-	private void addFrameInspector(JFrame frame) {
+	private void addFrameInspector(ApplicationController controller, JFrame frame) {
 		frame.addWindowFocusListener(new WindowFocusListener() {
 			@Override
 			public void windowGainedFocus(WindowEvent arg0) {
-				applicationsAdapter.setSelectedValues(dialog.getSelectedValues());
-				txtXSelected.setText(((applicationsAdapter.getSelectedValues() == null)?"0":applicationsAdapter.getSelectedValues().size()) + " selected");
+				controller.setSelectedValues(controller.getDialogSelectedList());
+				txtXSelected.setText(((controller.getSelectedValues() == null)?"0":controller.numberOfSelectedValues()) + " selected");
 			}
 
 			@Override
@@ -60,34 +48,45 @@ public class ApplicationPanel extends JPanel {
 		});
 	}
 
-	private void addListenerToChkBoxAll(JCheckBox chkBoxAll) {
+	private void addListenerToChkBoxAll(ApplicationController controller, JCheckBox chkBoxAll) {
 		chkBoxAll.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if(chkBoxAll.isSelected()) {
-					txtXSelected.setText(dialogData.size() + " selected");
-					applicationsAdapter.setSelectedValues(dialogData);
+					txtXSelected.setText(controller.getAllValues().size() + " selected");
+					controller.setSelectedValues(controller.getAllValues());
 				} else {
-					txtXSelected.setText(((dialog == null)?"0":dialog.getSelectedValues().size()) + " selected");
-					applicationsAdapter.setSelectedValues((dialog == null)?(new ArrayList<Application>()):dialog.getSelectedValues());
+					txtXSelected.setText(((controller.getDialogSelectedList() == null)?"0":controller.getDialogSelectedList().size()) + " selected");
+					controller.setSelectedValues((controller.getDialogSelectedList() == null)?(new ArrayList<Application>()):controller.getDialogSelectedList());
 				}
 			}
 		});
 	}
 
-	private void addListenerToSelectButton(JFrame frame, JButton button) {
+	private void addListenerToSelectButton(ApplicationController controller, JFrame frame, JButton button, JCheckBox checkBox) {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dialog = new ApplicationDialog(frame, label, dialogData);
+				checkBox.setSelected(false);
+				openDialog(frame);
+				addFrameInspector(controller, frame);
+			}
+			
+			private void openDialog(JFrame frame) {
+				changeDialogPosition(frame);
 				frame.setEnabled(false);
 				dialog.setVisible(true);
-				addFrameInspector(frame);
+			}
+			
+			private void changeDialogPosition(JFrame frame) {
+				dialog.setBounds(frame.getX()+frame.getWidth(), frame.getY(), dialog.getWidth(), dialog.getHeight());
 			}
 		});
 	}
+	
+	
 
-	private void buildPanel(JFrame frame, JPanel panel, int gridy) {
+	private void buildPanel(ApplicationController controller, JFrame frame, JPanel panel, int gridy) {
 		GridBagConstraints appPanelConstrains = new GridBagConstraints();
 		appPanelConstrains.fill = GridBagConstraints.HORIZONTAL;
 		appPanelConstrains.insets = new Insets(0, 0, 5, 0);
@@ -111,7 +110,7 @@ public class ApplicationPanel extends JPanel {
 		add(lblLabel, lblLabelConstraints);
 
 		JButton btnSelect = new JButton("Select...");
-		addListenerToSelectButton(frame, btnSelect);
+		
 
 		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
 		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
@@ -120,7 +119,6 @@ public class ApplicationPanel extends JPanel {
 		add(btnSelect, gbc_btnSelect);
 
 		JCheckBox chkBoxAll = new JCheckBox("All");
-		addListenerToChkBoxAll(chkBoxAll);
 
 		GridBagConstraints chkBoxAllConstraints = new GridBagConstraints();
 		chkBoxAllConstraints.insets = new Insets(0, 0, 0, 5);
@@ -131,30 +129,34 @@ public class ApplicationPanel extends JPanel {
 		txtXSelected = new JTextField();
 		txtXSelected.setEnabled(false);
 		txtXSelected.setEditable(false);
-		txtXSelected.setText(((applicationsAdapter.getSelectedValues() == null)?"0":applicationsAdapter.getSelectedValues().size()) + " selected");
+		txtXSelected.setText(((controller.getSelectedValues() == null)?"0":controller.getSelectedValues().size()) + " selected");
 		GridBagConstraints gbc_txtXSelected = new GridBagConstraints();
 		gbc_txtXSelected.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtXSelected.gridx = 9;
 		gbc_txtXSelected.gridy = 0;
 		add(txtXSelected, gbc_txtXSelected);
 		txtXSelected.setColumns(10);
+		
+		addListenerToSelectButton(controller, frame, btnSelect, chkBoxAll);
+		addListenerToChkBoxAll(controller, chkBoxAll);
 	}
 	
-	protected void build(ReportConfig config, JFrame frame, JPanel panel, String attributeToFind, int gridy) {
-		addCurrentDialogApplicationData(label, attributeToFind);
-		applicationsAdapter = new ApplicationAdapter();
-		try {
-			config.setApplications(label, applicationsAdapter);
-		}catch(OpenReportException e) {
-			ErrorDialog.showErrorDialog(frame, e.getMessage());
-			return;
-		}
-		buildPanel(frame, panel, gridy);
+	protected void build(ApplicationController controller, JFrame frame, JPanel panel, String attributeToFind, int gridy) {
+		buildPanel(controller, frame, panel, gridy);
+		dialog = controller.createApplicationDialog(frame, label, attributeToFind);
 	}
 	
 	public ApplicationPanel() {
 		super();
-		dialogData = new ArrayList<>();
+		attributeToFind = "serverNumber";
+	}
+	
+	public String getAttributeToFind() {
+		return this.attributeToFind;
+	}
+	
+	public String getLable() {
+		return this.label;
 	}
 
 

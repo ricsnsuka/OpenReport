@@ -16,11 +16,6 @@ public class SavePanel extends JPanel {
 	private JButton schedule;
 	private JButton runNow;
 	
-	
-	public SavePanel() {
-		super();
-	}
-	
 	public void build(JFrame frame) {
 		buildPanel(frame);
 	}

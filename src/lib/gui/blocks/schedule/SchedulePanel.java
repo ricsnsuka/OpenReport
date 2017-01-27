@@ -26,12 +26,6 @@ public class SchedulePanel extends JPanel{
 	private static final long serialVersionUID = -698270896475404291L;
 	private static final String label = "Schedule";
 
-
-	
-	public SchedulePanel() {
-		super();
-	}
-	
 	public void build(JFrame frame, ScheduleController scheduleController) {
 		buildFrame(frame, scheduleController);
 	}

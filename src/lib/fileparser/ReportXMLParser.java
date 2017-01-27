@@ -13,7 +13,7 @@ import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 public final class ReportXMLParser extends XMLParser {
 
 
-	private static final String filepath = "src\\resources\\temp.xml";
+	private static final String filepath = "src\\resources\\test.xml";
 	private HashMap<LogEntryType, String> tagNames;
 
 	public ReportXMLParser() {

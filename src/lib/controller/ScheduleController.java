@@ -7,7 +7,7 @@ import lib.structs.ReportConfig;
 
 public class ScheduleController {
 	private ScheduleAdapter scheduleAdapter;
-	
+
 	public ScheduleController(ReportConfig config, ScheduleAdapter scheduleAdapter) {
 		this.scheduleAdapter = scheduleAdapter;
 		config.setSchedule(scheduleAdapter);
@@ -40,6 +40,7 @@ public class ScheduleController {
 	public boolean isWeeklyReport() {
 		return this.scheduleAdapter.isWeekly();
 	}
+	
 	
 	
 	

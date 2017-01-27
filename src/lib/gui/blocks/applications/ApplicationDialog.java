@@ -9,8 +9,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
@@ -22,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
-import lib.structs.Application;
+import lib.controller.ApplicationController;
 
 public class ApplicationDialog extends JDialog {
 	/**
@@ -30,32 +28,23 @@ public class ApplicationDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 3886417716378033869L;
 	
-	private List<Application> selectedValues;
-	private ArrayList<Application> defaultValues;
+	
+	
 
 	protected JList<String> data;
 
-	public ApplicationDialog(JFrame owner, String title, ArrayList<Application> defaultValues) {
+	public ApplicationDialog(JFrame owner, String title, ApplicationController controller) {
 		super(owner, title);
-
-		selectedValues = null;
-		this.defaultValues = defaultValues;
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setBounds(owner.getX()+owner.getWidth(), owner.getY(), 300, 480);
-		buildPanel();
+		buildPanel(controller);
 	}
 
-	protected DefaultListModel<String> createApplicationListModel() {
-		DefaultListModel<String> listModel = new DefaultListModel<>();
-		for(Application value : this.defaultValues) {
-			listModel.addElement(value.getName());
-		}
-		return listModel;
-	}
+	
 
-	private void buildPanel() {
-		JScrollPane listScroller = createScrollPane();
+	private void buildPanel(ApplicationController controller) {
+		JScrollPane listScroller = createScrollPane(controller);
 
 		//LAYOUT
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -100,7 +89,7 @@ public class ApplicationDialog extends JDialog {
 		gbc_list.gridy = 1;
 		applicationPanel.add(listScroller, gbc_list);
 
-		JButton btnOk = createOkButton();
+		JButton btnOk = createOkButton(controller);
 
 		GridBagConstraints gbc_btnOk = new GridBagConstraints();
 		gbc_btnOk.insets = new Insets(0, 0, 5, 5);
@@ -114,8 +103,8 @@ public class ApplicationDialog extends JDialog {
 
 	}
 
-	private JScrollPane createScrollPane() {
-		DefaultListModel<String> listModel = createApplicationListModel();
+	private JScrollPane createScrollPane(ApplicationController controller) {
+		DefaultListModel<String> listModel = controller.getApplicationListModel();
 		data = new JList<>(listModel);
 		data.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
 		data.setSelectionModel(new DefaultListSelectionModel() 
@@ -150,19 +139,12 @@ public class ApplicationDialog extends JDialog {
 	}
 
 
-	public List<Application> getSelectedValues() {
-		if(selectedValues == null) {
-			return new ArrayList<Application>();
-		}
-		return selectedValues;
-	}
-
-	private JButton createOkButton() {
+	private JButton createOkButton(ApplicationController controller) {
 		JButton btnOk = new JButton("OK");
 		btnOk.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				getSelectedValuesList();
+				controller.setDialogSelectedList(data);
 				getOwner().setEnabled(true);
 				dispose();
 
@@ -171,13 +153,6 @@ public class ApplicationDialog extends JDialog {
 		return btnOk;
 	}
 	
-	private void getSelectedValuesList() {
-		selectedValues = new ArrayList<>();
-		for(String value : data.getSelectedValuesList()) {
-			selectedValues.add(new Application(getTitle(), value));
-		}
-	}
-
 	private void addOnCloseListener() {
 		addWindowListener(new WindowAdapter() {
 			@Override

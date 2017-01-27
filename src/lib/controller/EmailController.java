@@ -19,7 +19,7 @@ public class EmailController {
 	private OpenReportsCache cache;
 
 
-	public EmailController(EmailAdapter emailAdapter, EmailPanel emailPanel, OpenReportsCache cache) {
+	public EmailController(OpenReportsCache cache, EmailAdapter emailAdapter, EmailPanel emailPanel) {
 		this.emailAdapter = emailAdapter;
 		this.emailPanel = emailPanel;
 		this.cache = cache;

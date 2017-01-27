@@ -10,8 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import lib.adapters.ApplicationAdapter;
 import lib.adapters.EmailAdapter;
 import lib.adapters.ScheduleAdapter;
+import lib.controller.ApplicationController;
 import lib.controller.EmailController;
 import lib.controller.ScheduleController;
 import lib.exec.OpenReporter;
@@ -70,7 +72,7 @@ public class OpenReportConfig {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(OpenReportConfig.class.getResource("/resources/img/ogi.png")));
 
-		frame.setBounds(100, 100, 450, 900);
+		frame.setBounds(100, 100, 600, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setTitle("OpenReports");
@@ -87,19 +89,19 @@ public class OpenReportConfig {
 		
 		ApplicationsPanel applicationsPanel = new ApplicationsPanel();
 		applicationsPanel.build(frame);
+		
+		String[] applications = new String[]{ApplicationsPanel.eBrokerAppliaction,  ApplicationsPanel.activeQuoteApplication,
+				ApplicationsPanel.activeQuote4PowerplaceApplication, ApplicationsPanel.enrichmentHUBApplication,
+				ApplicationsPanel.hostedListServiceApplication, ApplicationsPanel.openClientCheckApplication,
+				ApplicationsPanel.openDataWarehouseApplication, ApplicationsPanel.openCostumerPortalApplication,
+				ApplicationsPanel.openQuoteApplication, ApplicationsPanel.openUnitMeterApplication,
+				ApplicationsPanel.rteDeployerApplication, ApplicationsPanel.quoteGenerationServiceApplication};
+		
+		
 
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.eBrokerAppliaction);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.activeQuoteApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.activeQuote4PowerplaceApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.enrichmentHUBApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.hostedListServiceApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openClientCheckApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openDataWarehouseApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openCostumerPortalApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openQuoteApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.openUnitMeterApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.rteDeployerApplication);
-		applicationsPanel.addNewApplicationPanel(config, frame, ApplicationsPanel.quoteGenerationServiceApplication);
+		for(String application: applications) {
+			applicationsPanel.addNewApplicationPanel(new ApplicationController(new ApplicationAdapter()), config, frame, application);
+		}
 
 		//----------------SEVERITY-----------------
 		
@@ -123,7 +125,7 @@ public class OpenReportConfig {
 		
 		EmailAdapter emailAdapter = new EmailAdapter();
 		EmailPanel emailPanel = new EmailPanel();
-		EmailController emailController = new EmailController(emailAdapter, emailPanel, cache);
+		EmailController emailController = new EmailController(cache, emailAdapter, emailPanel);
 		
 		emailPanel.build(frame, emailController);
 		

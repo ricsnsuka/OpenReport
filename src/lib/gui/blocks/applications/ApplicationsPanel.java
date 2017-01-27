@@ -5,25 +5,14 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import lib.gui.blocks.applications.specific.ActiveQuote4PowerplaceApplicationPanel;
-import lib.gui.blocks.applications.specific.ActiveQuoteApplicationPanel;
-import lib.gui.blocks.applications.specific.EnrinchmentHUBApplicationPanel;
-import lib.gui.blocks.applications.specific.HostedListServiceApplicationPanel;
-import lib.gui.blocks.applications.specific.OpenClientCheckApplicationPanel;
-import lib.gui.blocks.applications.specific.OpenCostumerPortalApplicationPanel;
-import lib.gui.blocks.applications.specific.OpenDataWarehouseApplicationPanel;
-import lib.gui.blocks.applications.specific.OpenQuoteApplicationPanel;
-import lib.gui.blocks.applications.specific.OpenUnitMeterApplicationPanel;
-import lib.gui.blocks.applications.specific.QuoteGenerationServiceApplicationPanel;
-import lib.gui.blocks.applications.specific.RTEDeployerApplicationPanel;
-import lib.gui.blocks.applications.specific.EBrokerApplicationPanel;
+import lib.controller.ApplicationController;
+import lib.exceptions.OpenReportException;
 import lib.structs.ReportConfig;
 
 public class ApplicationsPanel extends JPanel {
@@ -48,7 +37,6 @@ public class ApplicationsPanel extends JPanel {
 
 	private static final String label = "Applications";
 	
-	private ArrayList<ApplicationPanel> applicationPanels;
 	
 	private JPanel panel;
 
@@ -58,7 +46,6 @@ public class ApplicationsPanel extends JPanel {
 	public ApplicationsPanel() {
 		super();
 		this.gridy = 0;
-		applicationPanels = new ArrayList<>();
 		
 	}
 	
@@ -89,51 +76,15 @@ public class ApplicationsPanel extends JPanel {
 	}
 	
 
-	public void addNewApplicationPanel(ReportConfig config, JFrame frame, String label) {
-		ApplicationPanel applicationPanel;
-		switch(label) {
-		case eBrokerAppliaction:
-			applicationPanel = new EBrokerApplicationPanel(config, frame, panel, gridy);
-			break;
-		case activeQuoteApplication:
-			applicationPanel = new ActiveQuoteApplicationPanel(config, frame, panel, gridy);
-			break;
-		case openQuoteApplication:
-			applicationPanel = new OpenQuoteApplicationPanel(config, frame, panel, gridy);
-			break;
-		case openCostumerPortalApplication:
-			applicationPanel = new OpenCostumerPortalApplicationPanel(config, frame, panel, gridy);
-			break;
-		case enrichmentHUBApplication:
-			applicationPanel = new EnrinchmentHUBApplicationPanel(config, frame, panel, gridy);
-			break;
-		case hostedListServiceApplication:
-			applicationPanel = new HostedListServiceApplicationPanel(config, frame, panel, gridy);
-			break;
-		case openClientCheckApplication:
-			applicationPanel = new OpenClientCheckApplicationPanel(config, frame, panel, gridy);
-			break;
-		case openDataWarehouseApplication:
-			applicationPanel = new OpenDataWarehouseApplicationPanel(config, frame, panel, gridy);
-			break;
-		case openUnitMeterApplication:
-			applicationPanel = new OpenUnitMeterApplicationPanel(config, frame, panel, gridy);
-			break;
-		case rteDeployerApplication:
-			applicationPanel = new RTEDeployerApplicationPanel(config, frame, panel, gridy);
-			break;
-		case quoteGenerationServiceApplication:
-			applicationPanel = new QuoteGenerationServiceApplicationPanel(config, frame, panel, gridy);
-			break;
-		case activeQuote4PowerplaceApplication:
-			applicationPanel = new ActiveQuote4PowerplaceApplicationPanel(config, frame, panel, gridy);
-			break;
-		default:
-			System.out.println("Application doesn't exist");
-			return;
+	public void addNewApplicationPanel(ApplicationController controller, ReportConfig config, JFrame frame, String label) {
+		try {
+			controller.createApplicationPanel(config, frame, label, panel, gridy);
+			gridy++;
+		} catch (OpenReportException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		gridy++;
-		applicationPanels.add(applicationPanel);
+		
 	}
 
 
