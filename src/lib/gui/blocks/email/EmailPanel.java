@@ -25,6 +25,9 @@ import lib.controller.EmailController;
 import lib.exceptions.OpenReportException;
 
 /**
+ * EmailPanel.java Fourth panel block in the GUI. Interface to setup the
+ * developer who will receive the reports via email.
+ * 
  * @author rnsuka
  *
  */
@@ -33,11 +36,17 @@ public class EmailPanel extends JPanel {
 	private static final long serialVersionUID = -5145767768404568681L;
 
 	private static final String label = "Send to";
-	
+
 	private JCheckBox sendToSupport;
 	private JButton editEmails;
 	private JTextField otherEmails;
 
+	/**
+	 * Add listeners to this block elements
+	 * 
+	 * @param emailController
+	 * @param frame
+	 */
 	private void addListeners(EmailController emailController, JFrame frame) {
 		editEmails.addActionListener(new ActionListener() {
 			@Override
@@ -54,24 +63,24 @@ public class EmailPanel extends JPanel {
 				emailController.setEmailToSupportTeam(sendToSupport.isSelected());
 			}
 		});
-		
+
 		otherEmails.addFocusListener(new FocusListener() {
-			
+
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(!"".equals(otherEmails.getText().trim())) {
+				if (!"".equals(otherEmails.getText().trim())) {
 					splitEmails();
 				}
 			}
-			
+
 			@Override
 			public void focusGained(FocusEvent e) {
 			}
-			
+
 			private void splitEmails() {
 				String[] ret = otherEmails.getText().split(";");
 				try {
-					for(String email : ret) {
+					for (String email : ret) {
 						emailController.addEmailReceiver(email);
 					}
 				} catch (OpenReportException e) {
@@ -81,7 +90,13 @@ public class EmailPanel extends JPanel {
 			}
 		});
 	}
-	
+
+	/**
+	 * Panel builder
+	 * 
+	 * @param frame
+	 * @param emailController
+	 */
 	private void buildFrame(JFrame frame, EmailController emailController) {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), EmailPanel.label, TitledBorder.LEFT,
 				TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -92,7 +107,7 @@ public class EmailPanel extends JPanel {
 		gbc_emailSetup.gridy = 4;
 		frame.getContentPane().add(this, gbc_emailSetup);
 		GridBagLayout gbl_emailSetup = new GridBagLayout();
-		gbl_emailSetup.columnWidths = new int[] { 10, 85, 35, 50, 140, 10, 0 };
+		gbl_emailSetup.columnWidths = new int[] { 15, 85, 30, 50, 140, 10, 0 };
 		gbl_emailSetup.rowHeights = new int[] { 20, 0 };
 		gbl_emailSetup.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_emailSetup.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
@@ -149,11 +164,21 @@ public class EmailPanel extends JPanel {
 
 		addListeners(emailController, frame);
 	}
-	
+
+	/**
+	 * Panel builder
+	 * 
+	 * @param frame
+	 * @param emailController
+	 */
 	public void build(JFrame frame, EmailController emailController) {
 		buildFrame(frame, emailController);
 	}
 
+	/**
+	 * Validates the block
+	 * @return
+	 */
 	public boolean validatePanel() {
 		return sendToSupport.isSelected() || (otherEmails != null && !otherEmails.equals(""));
 	}
