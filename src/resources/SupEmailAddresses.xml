@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Support>
 	<Developers>
 		<Developer name="Shin Lim">
@@ -10,8 +10,11 @@
 		<Developer name="Reza Haqiqi">
 			<emailTo>reza.haqiqi@opengi.co.uk</emailTo>
 		</Developer>
-		<Developer name="Samuel Cole-Owens">
-			<emailTo>samuel.cole-owens@opengi.co.uk</emailTo>
-		</Developer>
-	</Developers>
+		
+    
+        <Developer name="samuel cole-owens">
+            <emailTo>samuel.cole-owens@opengi.co.uk</emailTo>
+        </Developer>
+        
+    </Developers>
 </Support>

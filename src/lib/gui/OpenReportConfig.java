@@ -16,6 +16,7 @@ import lib.adapters.ScheduleAdapter;
 import lib.controller.ApplicationController;
 import lib.controller.EmailController;
 import lib.controller.ScheduleController;
+import lib.exceptions.OpenReportException;
 import lib.exec.OpenReporter;
 import lib.gui.blocks.SavePanel;
 import lib.gui.blocks.applications.ApplicationsPanel;
@@ -66,7 +67,7 @@ public class OpenReportConfig {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -140,12 +141,17 @@ public class OpenReportConfig {
 				if(!emailPanel.validatePanel()) {
 					ErrorDialog.showErrorDialog(frame, "You haven't set any destination address.");
 				} else if(config.countApplications() <= 0) {
-					ErrorDialog.showErrorDialog(frame, "Nothing to report.");
+					ErrorDialog.showErrorDialog(frame, "Nothing to report.\nNo application selected.");
 				} else if(!severityPanel.validatePanel()) {
-					ErrorDialog.showErrorDialog(frame, "At least one tipe must be picked.");
+					ErrorDialog.showErrorDialog(frame, "You must pick at least one type.");
 				} else {
-					ReportConfig threadConfig = config.clone();
-					OpenReporter report = new OpenReporter(threadConfig, "Report-" + reportNumber);
+					try {
+						emailController.updateEmailReceivers();
+					} catch (OpenReportException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					OpenReporter report = new OpenReporter(config.clone(), emailController, "Report-" + reportNumber);
 					report.start();
 					reportNumber++;
 				}

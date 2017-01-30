@@ -58,10 +58,7 @@ public class XMLParser {
 	public ArrayList<String> getNodeValue(String nodeName) {
 		ArrayList<String> ret = new ArrayList<>();
 		NodeList nList = document.getElementsByTagName(nodeName);
-		//This can and should be easily replaced
 		int j;
-		String textContent;
-
 		for(int i = 0; i < nList.getLength(); i++) {
 			Node node = nList.item(i);
 			if(node.getNodeType() == Node.ELEMENT_NODE) {
@@ -69,8 +66,7 @@ public class XMLParser {
 				j = 0;
 				while(j < nList2.getLength()) {
 					if(nList2.item(j).getNodeType() == Node.TEXT_NODE) {
-						textContent = nList2.item(j).getTextContent();
-						ret.add(textContent);
+						ret.add(nList2.item(j).getTextContent());
 					}
 					j++;
 				}
@@ -81,10 +77,7 @@ public class XMLParser {
 		
 	public boolean exists(String nodeName, String content) {
 		NodeList nList = document.getElementsByTagName(nodeName);
-		//This can and should be easily replaced
 		int j;
-		String textContent;
-
 		for(int i = 0; i < nList.getLength(); i++) {
 			Node node = nList.item(i);
 			if(node.getNodeType() == Node.ELEMENT_NODE) {
@@ -92,8 +85,7 @@ public class XMLParser {
 				j = 0;
 				while(j < nList2.getLength()) {
 					if(nList2.item(j).getNodeType() == Node.ELEMENT_NODE) {
-						textContent = nList2.item(j).getTextContent();
-						if(content.contains(textContent)) {
+						if(content.contains(nList2.item(j).getTextContent())) {
 							return true;
 						}
 					}

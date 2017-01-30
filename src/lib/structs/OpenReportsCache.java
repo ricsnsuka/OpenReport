@@ -5,8 +5,6 @@ import lib.email.EmailManager;
 public class OpenReportsCache {
 	private EmailManager emailList;
 	
-	
-	
 	public OpenReportsCache() {
 		init();
 	}

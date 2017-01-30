@@ -44,14 +44,11 @@ public class EmailController {
 		} 
 	}
 
-	public void updateEmailReceivers(String ... emailList) throws OpenReportException {
+	public void updateEmailReceivers() throws OpenReportException {
 		if(isEmailToSupportTeam()) {
 			for(String email : cache.getEmailList()) {
 				addEmailReceiver(email);
 			}
-		}
-		for(String email : emailList) {
-			addEmailReceiver(email);
 		}
 	}
 
@@ -59,14 +56,14 @@ public class EmailController {
 		return this.emailAdapter.getReceivers();
 	}
 	
-	public ArrayList<String> getDefaultSupportEmailList() {
+	public EmailManager getDefaultSupportEmailList() {
 		return this.cache.getEmailList();
 	}
 
 	public void addSupportEmailReceiver(String emailAddress, Component component) {
 		String trimmed = emailAddress.trim();
 		if(EmailManager.validateEmailAddress(trimmed)) {
-			getDefaultSupportEmailList().add(trimmed);
+			getDefaultSupportEmailList().addEmail(trimmed);
 		} else {
 			JOptionPane.showMessageDialog(component, "The email address is invalid.");
 		} 

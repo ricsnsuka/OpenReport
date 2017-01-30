@@ -53,7 +53,7 @@ public class EmailDialog extends JDialog {
 		setBounds(getOwner().getX()+getOwner().getWidth(), getOwner().getY(), 450, 320);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 250, 50, 50, 30, 20, 0};
-		gridBagLayout.rowHeights = new int[]{20, 170, 30, 10, 0};
+		gridBagLayout.rowHeights = new int[]{20, 170, 20, 10, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
@@ -102,7 +102,6 @@ public class EmailDialog extends JDialog {
 		GridBagConstraints gbc_addEmailPanel = new GridBagConstraints();
 		gbc_addEmailPanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_addEmailPanel.gridwidth = 3;
-		gbc_addEmailPanel.anchor = GridBagConstraints.NORTH;
 		gbc_addEmailPanel.gridx = 1;
 		gbc_addEmailPanel.gridy = 2;
 		getContentPane().add(addEmailPanel, gbc_addEmailPanel);
@@ -128,6 +127,7 @@ public class EmailDialog extends JDialog {
 		addEmailText.setBorder(new LineBorder(UIManager.getColor("TextField[Disabled].textForeground"), 1, true));
 		JButton btnAdd = new JButton("");
 		btnAdd.setIcon(new ImageIcon(EmailDialog.class.getResource("/resources/img/add.png")));
+		
 		addListenerToAddButton(addEmailText, btnAdd, emailList, emailController);
 		btnAdd.setMargin(new Insets(0,0,0,0));
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
@@ -168,7 +168,7 @@ public class EmailDialog extends JDialog {
 
 		addOnCloseListener();
 	}
-
+	
 	private void createEmailRows(JPanel owner, EmailController emailController) {
 		for(String value : emailController.getDefaultSupportEmailList()) {
 			EmailRow row = new EmailRow();
@@ -177,7 +177,7 @@ public class EmailDialog extends JDialog {
 			row.getDeleteButton().addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					emailController.getDefaultSupportEmailList().remove(row.getText());
+					emailController.getDefaultSupportEmailList().removeEmail(row.getText());
 					revalidatePanel(emailController, owner);
 				}
 			});

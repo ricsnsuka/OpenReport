@@ -6,6 +6,7 @@ package lib.exec;
 import java.util.HashMap;
 import java.util.Map;
 
+import lib.controller.EmailController;
 import lib.structs.LogReport;
 import lib.structs.ReportConfig;
 
@@ -18,11 +19,12 @@ public class OpenReporter implements Runnable {
 	private String threadName;
 	
 	private ReportConfig config;
+	private EmailController email;
 	
-	
-	public OpenReporter(ReportConfig config, String name) {
+	public OpenReporter(ReportConfig config, EmailController email, String name) {
 		this.threadName = name;
 		this.config = config;
+		this.email = email;
 	}
 
 
@@ -40,10 +42,6 @@ public class OpenReporter implements Runnable {
 	      }
 		long start = System.currentTimeMillis();
 		LogReport report = new LogReport();
-		
-		
-		
-		
 		
 		
 		report.generateReport(config);
@@ -66,6 +64,11 @@ public class OpenReporter implements Runnable {
 //		System.out.println("--------------------------------------------------");
 		long finish = System.currentTimeMillis();
 		System.out.println("Ran in " + (finish-start) + " ms");
+		
+		System.out.println("Sending to: ");
+		for(String developer : email.getEmailReceiversList()) {
+			System.out.println(developer);
+		}
 		
 	}
 	
