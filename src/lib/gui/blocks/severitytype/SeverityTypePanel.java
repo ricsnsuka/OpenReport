@@ -14,8 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import lib.adapters.SeverityTypeAdapter;
-import lib.structs.ReportConfig;
+import lib.controller.SeverityController;
 
 public class SeverityTypePanel extends JPanel{
 	
@@ -26,25 +25,20 @@ public class SeverityTypePanel extends JPanel{
 
 	private static final String label = "Severity Type";
 	
-	private SeverityTypeAdapter severityTypeAdapter;
-	
 	private JCheckBox all;
 	private JCheckBox severe;
 	private JCheckBox info;
 	private JCheckBox warning;
 	
-	public SeverityTypePanel(ReportConfig config) {
+	public SeverityTypePanel() {
 		super();
-		severityTypeAdapter = new SeverityTypeAdapter();
-		config.setSeverityTypes(severityTypeAdapter);
-		
 	}
 	
-	public void build(JFrame frame) {
-		buildPanel(frame);
+	public void build(JFrame frame, SeverityController controller) {
+		buildPanel(frame, controller);
 	}
 	
-	private void buildPanel(JFrame frame) {
+	private void buildPanel(JFrame frame, SeverityController controller) {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), SeverityTypePanel.label, TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_severityPanel = new GridBagConstraints();
 		gbc_severityPanel.anchor = GridBagConstraints.NORTH;
@@ -100,79 +94,37 @@ public class SeverityTypePanel extends JPanel{
 		typeChkbxPnl.add(all, gbc_chkbxAll);
 		
 		
-		addListeners();
+		addListeners(controller);
 	}
 	
-	private void addListeners() {
+	private void addListeners(SeverityController controller) {
 		all.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				boolean selected;
-				severityTypeAdapter.setAllTypes((selected = all.isSelected()));
-				if(selected) {
-					severe.setSelected(true);
-					info.setSelected(true);
-					warning.setSelected(true);
-
-				} else {
-					if(checkAllChecksSelected()) {
-						all.setSelected(true);
-					}
-				}
-
+				severe.setSelected(all.isSelected());
+				info.setSelected(all.isSelected());
+				warning.setSelected(all.isSelected());
+				controller.changeCheckboxValue(SeverityTypeFieldName.ALL, all.isSelected());
 			}
 		});
 		severe.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				boolean selected;
-				severityTypeAdapter.setSevere((selected = severe.isSelected()));
-				if(selected) {
-					if(checkAllChecksSelected()) {
-						all.setSelected(true);
-					}
-				} else {
-					if(severityTypeAdapter.isAllTypes()) {
-						all.setSelected(false);
-					}
-				}
+				all.setSelected(severe.isSelected() && controller.checkAllChecksSelected());
+				controller.changeCheckboxValue(SeverityTypeFieldName.SEVERE, severe.isSelected());
 			}
 		});
 		info.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				boolean selected;
-				severityTypeAdapter.setInfo((selected = info.isSelected()));
-				if(selected) {
-					if(checkAllChecksSelected()) {
-						all.setSelected(true);
-					}
-				} else {
-					if(severityTypeAdapter.isAllTypes()) {
-						all.setSelected(false);
-					}
-				}
+				all.setSelected(info.isSelected() && controller.checkAllChecksSelected());
+				controller.changeCheckboxValue(SeverityTypeFieldName.INFO, info.isSelected());
 			}
 		});
 		warning.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				boolean selected;
-				severityTypeAdapter.setWarning((selected = warning.isSelected()));
-				if(selected) {
-					if(checkAllChecksSelected()) {
-						all.setSelected(true);
-					}
-				} else {
-					if(severityTypeAdapter.isAllTypes()) {
-						all.setSelected(false);
-					}
-				}
+				all.setSelected(warning.isSelected() && controller.checkAllChecksSelected());
+				controller.changeCheckboxValue(SeverityTypeFieldName.WARNING, warning.isSelected());
 			}
 		});
 	}
 	
-	private boolean checkAllChecksSelected() {
-		return severityTypeAdapter.isSevere() && severityTypeAdapter.isInfo() && severityTypeAdapter.isWarning();
-	}
 	
-	public boolean validatePanel() {
-		return severityTypeAdapter.isSevere() || severityTypeAdapter.isInfo() || severityTypeAdapter.isWarning();
-	}
 }

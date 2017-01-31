@@ -13,9 +13,11 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import lib.adapters.ApplicationAdapter;
 import lib.adapters.EmailAdapter;
 import lib.adapters.ScheduleAdapter;
+import lib.adapters.SeverityTypeAdapter;
 import lib.controller.ApplicationController;
 import lib.controller.EmailController;
 import lib.controller.ScheduleController;
+import lib.controller.SeverityController;
 import lib.exceptions.OpenReportException;
 import lib.exec.OpenReporter;
 import lib.gui.blocks.SavePanel;
@@ -105,9 +107,11 @@ public class OpenReportConfig {
 		}
 
 		//----------------SEVERITY-----------------
+		SeverityTypeAdapter severityAdapter = new SeverityTypeAdapter();
+		SeverityTypePanel severityPanel = new SeverityTypePanel();
+		SeverityController severityController = new SeverityController(config, severityPanel, severityAdapter);
 		
-		SeverityTypePanel severityPanel = new SeverityTypePanel(config);
-		severityPanel.build(frame);
+		severityController.buildPanel(frame);
 		
 		//-----------------------------------------
 		
@@ -115,10 +119,10 @@ public class OpenReportConfig {
 		
 		ScheduleAdapter scheduleAdpater = new ScheduleAdapter();
 		SchedulePanel schedulePanel = new SchedulePanel();
-		ScheduleController scheduleController = new ScheduleController(config, scheduleAdpater);
+		ScheduleController scheduleController = new ScheduleController(config, schedulePanel, scheduleAdpater);
 		
-		schedulePanel.build(frame, scheduleController);
-		schedulePanel.setEnabled(false);
+		scheduleController.buildPanel(frame);
+		
 		
 		//-----------------------------------------
 		
@@ -142,7 +146,7 @@ public class OpenReportConfig {
 					ErrorDialog.showErrorDialog(frame, "You haven't set any destination address.");
 				} else if(config.countApplications() <= 0) {
 					ErrorDialog.showErrorDialog(frame, "Nothing to report.\nNo application selected.");
-				} else if(!severityPanel.validatePanel()) {
+				} else if(!severityController.validatePanel()) {
 					ErrorDialog.showErrorDialog(frame, "You must pick at least one type.");
 				} else {
 					try {

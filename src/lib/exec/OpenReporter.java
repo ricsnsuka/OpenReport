@@ -56,12 +56,12 @@ public class OpenReporter implements Runnable {
 		
 		System.out.println("--------------------------------------------------");
 		
-//		for(Map.Entry<String, Integer> entry : report.getLogDataHits().entrySet()) {
-//			String sevInfo = entry.getKey();
-//			System.out.println(sevInfo + ": " + report.countHits(sevInfo) + " times");
-//		}
+		for(Map.Entry<String, Integer> entry : report.getLogDataHits().entrySet()) {
+			String sevInfo = entry.getKey();
+			System.out.println(sevInfo + ": " + report.countHits(sevInfo) + " times");
+		}
 		
-//		System.out.println("--------------------------------------------------");
+		System.out.println("--------------------------------------------------");
 		long finish = System.currentTimeMillis();
 		System.out.println("Ran in " + (finish-start) + " ms");
 		
