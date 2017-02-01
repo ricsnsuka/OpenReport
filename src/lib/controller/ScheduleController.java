@@ -48,6 +48,7 @@ public class ScheduleController {
 	
 	public void buildPanel(JFrame frame) {
 		this.panel.build(frame, this);
+		this.panel.setEnabled(false);
 	}
 	
 	

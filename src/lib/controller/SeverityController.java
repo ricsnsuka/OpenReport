@@ -43,6 +43,10 @@ public class SeverityController {
 			break;
 		}
 	}
+	
+	public boolean isMarkedToAll() {
+		return this.adapter.isAllTypes();
+	}
 
 	public boolean checkAllChecksSelected() {
 		return this.adapter.isSevere() && this.adapter.isInfo() && this.adapter.isWarning();

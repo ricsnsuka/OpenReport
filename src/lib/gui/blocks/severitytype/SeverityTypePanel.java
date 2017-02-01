@@ -17,23 +17,23 @@ import javax.swing.border.TitledBorder;
 import lib.controller.SeverityController;
 
 public class SeverityTypePanel extends JPanel{
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	private static final String label = "Severity Type";
-	
+
 	private JCheckBox all;
 	private JCheckBox severe;
 	private JCheckBox info;
 	private JCheckBox warning;
-	
+
 	public void build(JFrame frame, SeverityController controller) {
 		buildPanel(frame, controller);
 	}
-	
+
 	private void buildPanel(JFrame frame, SeverityController controller) {
 		setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), SeverityTypePanel.label, TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		GridBagConstraints gbc_severityPanel = new GridBagConstraints();
@@ -44,7 +44,7 @@ public class SeverityTypePanel extends JPanel{
 		gbc_severityPanel.gridy = 2;
 		frame.getContentPane().add(this, gbc_severityPanel);
 		setLayout(new BorderLayout(0, 0));
-		
+
 
 		JPanel typeChkbxPnl = new JPanel();
 		add(typeChkbxPnl, BorderLayout.SOUTH);
@@ -80,7 +80,7 @@ public class SeverityTypePanel extends JPanel{
 		gbc_chkbxWarning.gridx = 3;
 		gbc_chkbxWarning.gridy = 0;
 		typeChkbxPnl.add(warning, gbc_chkbxWarning);
-		
+
 		all = new JCheckBox("ALL");
 
 		GridBagConstraints gbc_chkbxAll = new GridBagConstraints();
@@ -88,11 +88,11 @@ public class SeverityTypePanel extends JPanel{
 		gbc_chkbxAll.gridx = 4;
 		gbc_chkbxAll.gridy = 0;
 		typeChkbxPnl.add(all, gbc_chkbxAll);
-		
-		
+
+
 		addListeners(controller);
 	}
-	
+
 	private void addListeners(SeverityController controller) {
 		all.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
@@ -100,27 +100,38 @@ public class SeverityTypePanel extends JPanel{
 				info.setSelected(all.isSelected());
 				warning.setSelected(all.isSelected());
 				controller.changeCheckboxValue(SeverityTypeFieldName.ALL, all.isSelected());
+				
+				
 			}
 		});
 		severe.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				all.setSelected(severe.isSelected() && controller.checkAllChecksSelected());
 				controller.changeCheckboxValue(SeverityTypeFieldName.SEVERE, severe.isSelected());
+				all.setSelected(severe.isSelected() && controller.checkAllChecksSelected());
+				if(controller.isMarkedToAll()) {
+					all.setSelected(false);
+				}
 			}
 		});
 		info.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				all.setSelected(info.isSelected() && controller.checkAllChecksSelected());
 				controller.changeCheckboxValue(SeverityTypeFieldName.INFO, info.isSelected());
+				all.setSelected(severe.isSelected() && controller.checkAllChecksSelected());
+				if(controller.isMarkedToAll()) {
+					all.setSelected(false);
+				}
 			}
 		});
 		warning.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				all.setSelected(warning.isSelected() && controller.checkAllChecksSelected());
 				controller.changeCheckboxValue(SeverityTypeFieldName.WARNING, warning.isSelected());
+				all.setSelected(warning.isSelected() && controller.checkAllChecksSelected());
+				if(controller.isMarkedToAll()) {
+					all.setSelected(false);
+				}
 			}
 		});
 	}
-	
-	
+
+
 }
