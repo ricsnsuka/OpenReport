@@ -30,10 +30,6 @@ public class SeverityTypePanel extends JPanel{
 	private JCheckBox info;
 	private JCheckBox warning;
 	
-	public SeverityTypePanel() {
-		super();
-	}
-	
 	public void build(JFrame frame, SeverityController controller) {
 		buildPanel(frame, controller);
 	}

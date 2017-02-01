@@ -10,18 +10,18 @@ import lib.structs.ReportConfig;
 public class SeverityController {
 	private SeverityTypePanel panel;
 	private SeverityTypeAdapter adapter;
-	
-	
+
+
 	public SeverityController(ReportConfig config, SeverityTypePanel panel, SeverityTypeAdapter adapter) {
 		this.panel = panel;
 		this.adapter = adapter;
 		config.setSeverityTypes(adapter);
 	}
-	
+
 	public void buildPanel(JFrame frame) {
 		this.panel.build(frame, this);
 	}
-	
+
 	public void changeCheckboxValue(String field, boolean value) {
 		switch(field) {
 		case SeverityTypeFieldName.ALL:
@@ -39,13 +39,15 @@ public class SeverityController {
 		case SeverityTypeFieldName.WARNING:
 			this.adapter.setWarning(value);
 			break;
+		default:
+			break;
 		}
 	}
-	
+
 	public boolean checkAllChecksSelected() {
 		return this.adapter.isSevere() && this.adapter.isInfo() && this.adapter.isWarning();
 	}
-	
+
 	public boolean validatePanel() {
 		return this.adapter.isSevere() || this.adapter.isInfo() || this.adapter.isWarning();
 	}

@@ -74,7 +74,7 @@ public class XMLParser {
 		}
 		return ret;
 	}
-		
+
 	public boolean exists(String nodeName, String content) {
 		NodeList nList = document.getElementsByTagName(nodeName);
 		int j;
@@ -84,10 +84,8 @@ public class XMLParser {
 				NodeList nList2 = ((Element) node).getChildNodes();
 				j = 0;
 				while(j < nList2.getLength()) {
-					if(nList2.item(j).getNodeType() == Node.ELEMENT_NODE) {
-						if(content.contains(nList2.item(j).getTextContent())) {
-							return true;
-						}
+					if(nList2.item(j).getNodeType() == Node.ELEMENT_NODE && content.contains(nList2.item(j).getTextContent())) {
+						return true;
 					}
 					j++;
 				}

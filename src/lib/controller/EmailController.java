@@ -3,6 +3,7 @@ package lib.controller;
 import java.awt.Component;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import lib.adapters.EmailAdapter;
@@ -14,33 +15,33 @@ import lib.structs.OpenReportsCache;
 
 public class EmailController {
 
-	private EmailAdapter emailAdapter;
-	private EmailPanel emailPanel;
+	private EmailAdapter adapter;
+	private EmailPanel panel;
 	private OpenReportsCache cache;
 
 
-	public EmailController(OpenReportsCache cache, EmailAdapter emailAdapter, EmailPanel emailPanel) {
-		this.emailAdapter = emailAdapter;
-		this.emailPanel = emailPanel;
+	public EmailController(OpenReportsCache cache, EmailAdapter adapter, EmailPanel panel) {
+		this.adapter = adapter;
+		this.panel = panel;
 		this.cache = cache;
 	}
 
 	public void setEmailToSupportTeam(boolean value) {
-		this.emailAdapter.setToSupport(value);
+		this.adapter.setToSupport(value);
 	}
 
 	public boolean isEmailToSupportTeam() {
-		return this.emailAdapter.isToSupport();
+		return this.adapter.isToSupport();
 	}
 
 	public void addEmailReceiver(String emailAddress) throws OpenReportException {
 		String trimmed = emailAddress.trim();
 		if(!EmailManager.validateEmailAddress(trimmed)) {
-			ErrorDialog.showErrorDialog(this.emailPanel, ErrorDialog.INVALID_EMAIL_MESSAGE + trimmed);
+			ErrorDialog.showErrorDialog(this.panel, ErrorDialog.INVALID_EMAIL_MESSAGE + trimmed);
 			throw new OpenReportException(ErrorDialog.INVALID_EMAIL_MESSAGE + trimmed);
 		}
 		if(!getEmailReceiversList().contains(trimmed)) {
-			this.emailAdapter.addReceiver(trimmed);
+			this.adapter.addReceiver(trimmed);
 		} 
 	}
 
@@ -53,7 +54,7 @@ public class EmailController {
 	}
 
 	public ArrayList<String> getEmailReceiversList() {
-		return this.emailAdapter.getReceivers();
+		return this.adapter.getReceivers();
 	}
 	
 	public EmailManager getDefaultSupportEmailList() {
@@ -71,6 +72,10 @@ public class EmailController {
 
 	public void removeSupportEmailReceiver(String emailAddress) {
 		getDefaultSupportEmailList().remove(emailAddress);
+	}
+	
+	public void buildPanel(JFrame frame) {
+		this.panel.build(frame, this);
 	}
 
 }

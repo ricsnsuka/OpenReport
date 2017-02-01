@@ -99,8 +99,6 @@ public class OpenReportConfig {
 				ApplicationsPanel.openDataWarehouseApplication, ApplicationsPanel.openCostumerPortalApplication,
 				ApplicationsPanel.openQuoteApplication, ApplicationsPanel.openUnitMeterApplication,
 				ApplicationsPanel.rteDeployerApplication, ApplicationsPanel.quoteGenerationServiceApplication};
-		
-		
 
 		for(String application: applications) {
 			applicationsPanel.addNewApplicationPanel(new ApplicationController(new ApplicationAdapter()), config, frame, application);
@@ -123,7 +121,6 @@ public class OpenReportConfig {
 		
 		scheduleController.buildPanel(frame);
 		
-		
 		//-----------------------------------------
 		
 		//--------------SEND_TO BLOCK--------------
@@ -132,7 +129,7 @@ public class OpenReportConfig {
 		EmailPanel emailPanel = new EmailPanel();
 		EmailController emailController = new EmailController(cache, emailAdapter, emailPanel);
 		
-		emailPanel.build(frame, emailController);
+		emailController.buildPanel(frame);
 		
 		//-----------------------------------------
 		
