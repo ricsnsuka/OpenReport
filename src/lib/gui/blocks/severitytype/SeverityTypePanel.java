@@ -96,39 +96,28 @@ public class SeverityTypePanel extends JPanel{
 	private void addListeners(SeverityController controller) {
 		all.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				severe.setSelected(all.isSelected());
-				info.setSelected(all.isSelected());
-				warning.setSelected(all.isSelected());
 				controller.changeCheckboxValue(SeverityTypeFieldName.ALL, all.isSelected());
-				
-				
+				info.setSelected(all.isSelected() || !controller.getCurrentValue(SeverityTypeFieldName.INFO));
+				severe.setSelected(all.isSelected() || !controller.getCurrentValue(SeverityTypeFieldName.SEVERE));
+				warning.setSelected(all.isSelected() || !controller.getCurrentValue(SeverityTypeFieldName.WARNING));
 			}
 		});
 		severe.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				controller.changeCheckboxValue(SeverityTypeFieldName.SEVERE, severe.isSelected());
-				all.setSelected(severe.isSelected() && controller.checkAllChecksSelected());
-				if(controller.isMarkedToAll()) {
-					all.setSelected(false);
-				}
+				all.setSelected((severe.isSelected() && (controller.getCurrentValue(SeverityTypeFieldName.ALL) || controller.checkAllChecksSelected()))?true:((!severe.isSelected() && controller.getCurrentValue(SeverityTypeFieldName.ALL))?false:all.isSelected()));
 			}
 		});
 		info.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				controller.changeCheckboxValue(SeverityTypeFieldName.INFO, info.isSelected());
-				all.setSelected(severe.isSelected() && controller.checkAllChecksSelected());
-				if(controller.isMarkedToAll()) {
-					all.setSelected(false);
-				}
+				all.setSelected((info.isSelected() &&(controller.getCurrentValue(SeverityTypeFieldName.ALL) || controller.checkAllChecksSelected()))?true:((!info.isSelected() && controller.getCurrentValue(SeverityTypeFieldName.ALL))?false:all.isSelected()));
 			}
 		});
 		warning.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				controller.changeCheckboxValue(SeverityTypeFieldName.WARNING, warning.isSelected());
-				all.setSelected(warning.isSelected() && controller.checkAllChecksSelected());
-				if(controller.isMarkedToAll()) {
-					all.setSelected(false);
-				}
+				all.setSelected((warning.isSelected() && (controller.getCurrentValue(SeverityTypeFieldName.ALL) || controller.checkAllChecksSelected()))?true:((!warning.isSelected() && controller.getCurrentValue(SeverityTypeFieldName.ALL))?false:all.isSelected()));
 			}
 		});
 	}

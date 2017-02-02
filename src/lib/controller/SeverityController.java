@@ -26,9 +26,6 @@ public class SeverityController {
 		switch(field) {
 		case SeverityTypeFieldName.ALL:
 			this.adapter.setAllTypes(value);
-			this.adapter.setSevere(value);
-			this.adapter.setInfo(value);
-			this.adapter.setWarning(value);
 			break;
 		case SeverityTypeFieldName.SEVERE:
 			this.adapter.setSevere(value);
@@ -44,10 +41,22 @@ public class SeverityController {
 		}
 	}
 	
-	public boolean isMarkedToAll() {
-		return this.adapter.isAllTypes();
+	public boolean getCurrentValue(String field) {
+		switch(field) {
+		case SeverityTypeFieldName.ALL:
+			return this.adapter.isAllTypes();
+		case SeverityTypeFieldName.SEVERE:
+			return this.adapter.isSevere();
+		case SeverityTypeFieldName.INFO:
+			return this.adapter.isInfo();
+		case SeverityTypeFieldName.WARNING:
+			return this.adapter.isWarning();
+		default:
+			break;
+		}
+		return false;
 	}
-
+	
 	public boolean checkAllChecksSelected() {
 		return this.adapter.isSevere() && this.adapter.isInfo() && this.adapter.isWarning();
 	}
