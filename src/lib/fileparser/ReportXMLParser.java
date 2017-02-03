@@ -1,5 +1,6 @@
 package lib.fileparser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.w3c.dom.Element;
@@ -20,6 +21,19 @@ public final class ReportXMLParser extends XMLParser {
 		super(filepath);
 		tagNames = new HashMap<>();
 		initTagNames();
+	}
+	
+	public ReportXMLParser(String filepath) {
+		super(filepath);
+		tagNames = new HashMap<>();
+		initTagNames();
+	}
+
+	@Override
+	public void initXmlInformation() {
+		xmlInformation.put(LogEntryType.SEVERE.name(), new ArrayList<>());
+		xmlInformation.put(LogEntryType.INFO.name(), new ArrayList<>());
+		xmlInformation.put(LogEntryType.WARNING.name(), new ArrayList<>());
 	}
 
 	public boolean exists(LogEntryType type, String severityInfo, MutableString mutable) {

@@ -3,6 +3,7 @@ package lib.fileparser;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -21,12 +22,16 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import lib.structs.OpenReportsCache;
+
 public class XMLParser {
+	protected HashMap<String, ArrayList<String>> xmlInformation;
 	private final String filepath;
 	private Document document;
 
 
 	public XMLParser(String filepath) {
+		this.xmlInformation = new HashMap<>();
 		this.filepath = filepath;
 		loadDocument();
 	}
@@ -53,6 +58,27 @@ public class XMLParser {
 		}
 		return list;
 
+	}
+	
+	protected void initXmlInformation() {
+	}
+	
+	public void cache(OpenReportsCache cache) {
+		initXmlInformation();
+		
+		NodeList nList;
+		int j;
+		for(String entryType : xmlInformation.keySet()) {
+			nList = getDocument().getElementsByTagName(entryType);
+			j = 0;
+			while(j < nList.getLength()) {
+				if(nList.item(j).getNodeType() == Node.TEXT_NODE) {
+					xmlInformation.get(entryType).add(nList.item(j).getTextContent());
+				}
+				j++;
+			}
+		}
+		cache.setStoredXMLInformation(xmlInformation);
 	}
 
 	public ArrayList<String> getNodeValue(String nodeName) {
@@ -93,7 +119,7 @@ public class XMLParser {
 		}
 		return false;
 	}
-
+	
 	protected synchronized void addInfoToXML(String node, String content) {
 		Element root = document.getDocumentElement();
 		NodeList nList = root.getChildNodes();

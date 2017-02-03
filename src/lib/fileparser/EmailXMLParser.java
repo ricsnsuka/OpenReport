@@ -1,5 +1,7 @@
 package lib.fileparser;
 
+import java.util.ArrayList;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -56,5 +58,10 @@ public final class EmailXMLParser extends XMLParser {
 
 	private String getLastName(String emailAddress) {
 		return emailAddress.split("\\.")[1].split("@")[0];
+	}
+
+	@Override
+	protected void initXmlInformation() {
+		xmlInformation.put("Developer", new ArrayList<>());
 	}
 }

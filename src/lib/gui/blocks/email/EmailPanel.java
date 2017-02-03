@@ -78,7 +78,7 @@ public class EmailPanel extends JPanel {
 			}
 
 			private void splitEmails() {
-				String[] ret = otherEmails.getText().split(";");
+				String[] ret = otherEmails.getText().split("; ");
 				try {
 					for (String email : ret) {
 						emailController.addEmailReceiver(email);
@@ -115,6 +115,7 @@ public class EmailPanel extends JPanel {
 
 		sendToSupport = new JCheckBox("Support DEVs");
 		sendToSupport.setSelected(true);
+		emailController.setEmailToSupportTeam(sendToSupport.isSelected());
 		GridBagConstraints gbc_checkbox = new GridBagConstraints();
 		gbc_checkbox.anchor = GridBagConstraints.CENTER;
 		gbc_checkbox.insets = new Insets(0, 0, 0, 5);
