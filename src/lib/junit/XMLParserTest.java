@@ -31,12 +31,7 @@ public class XMLParserTest {
 			i++;
 		}
 	}
-	/**
-	@Test
-	public void addInfoToXMLTest() {
-		fail("To be implemented");
-	}
-	**/
+	
 	@Test
 	public void existsTest() {
 		String expectedResult = "Test string for XMLParser.equals method";

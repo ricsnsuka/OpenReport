@@ -98,7 +98,7 @@ public class OpenReportConfig {
 				ApplicationsPanel.hostedListServiceApplication, ApplicationsPanel.openClientCheckApplication,
 				ApplicationsPanel.openDataWarehouseApplication, ApplicationsPanel.openCostumerPortalApplication,
 				ApplicationsPanel.openQuoteApplication, ApplicationsPanel.openUnitMeterApplication,
-				ApplicationsPanel.rteDeployerApplication, ApplicationsPanel.quoteGenerationServiceApplication};
+				ApplicationsPanel.quoteGenerationServiceApplication, ApplicationsPanel.rteDeployerApplication};
 
 		for(String application: applications) {
 			applicationsPanel.addNewApplicationPanel(new ApplicationController(new ApplicationAdapter()), config, frame, application);
