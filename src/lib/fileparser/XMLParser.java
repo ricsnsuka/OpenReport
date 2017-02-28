@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -143,11 +145,11 @@ public class XMLParser {
 
 
 		}catch(IOException ex) {
-			System.out.println(ex.getMessage());
+			Logger.getLogger(XMLParser.class.getName()).log(Level.SEVERE, null, ex);
 		}catch( ParserConfigurationException ex) {
-			//LOG
+			Logger.getLogger(XMLParser.class.getName()).log(Level.SEVERE, null, ex);
 		}catch(SAXException ex) {		
-			//LOG
+			Logger.getLogger(XMLParser.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 

@@ -3,6 +3,8 @@ package lib.structs;
 import java.util.HashMap;
 import java.util.Set;
 
+import java.util.logging.*;
+
 import lib.adapters.ApplicationAdapter;
 import lib.adapters.ScheduleAdapter;
 import lib.adapters.SeverityTypeAdapter;
@@ -64,8 +66,8 @@ public class ReportConfig implements Cloneable {
 		if(validateApplicationKey(key)) {
 			this.applications.put(key, value);
 		} else {
-			//LOG
-			throw new OpenReportException("Application key is invalid");
+			String ex = "Application key is invalid.";
+			Logger.getLogger(ReportConfig.class.getName()).log(Level.SEVERE, ex, new OpenReportException("ex"));
 		}
 	}
 	

@@ -16,5 +16,8 @@
             <emailTo>samuel.cole-owens@opengi.co.uk</emailTo>
         </Developer>
         
+    <Developer name="test test">
+            <emailTo>test.test@opengi.co.uk</emailTo>
+        </Developer>
     </Developers>
 </Support>

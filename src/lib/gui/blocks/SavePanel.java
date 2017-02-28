@@ -35,7 +35,7 @@ public class SavePanel extends JPanel {
 
 		schedule = new JButton("Schedule");
 		schedule.setEnabled(false);
-		schedule.setToolTipText("Unavailable for now...");
+		schedule.setToolTipText("Unavailable...");
 
 		GridBagConstraints gbc_btnSchedule = new GridBagConstraints();
 		gbc_btnSchedule.anchor = GridBagConstraints.NORTHWEST;

@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.*;
 import java.util.stream.Stream;
 
 import lib.adapters.SeverityTypeAdapter;
@@ -60,8 +61,7 @@ public class CatalinaLogParser {
 				}
 			}
 		}catch(FileNotFoundException ex ) {
-			//LOG
-			System.err.println("Resource not available:: " + filepath);
+			Logger.getLogger(CatalinaLogParser.class.getName()).log(Level.SEVERE, "Resource not available:: " + filepath, ex);
 		}
 	}
 
@@ -91,13 +91,12 @@ public class CatalinaLogParser {
 
 			if(!parser.exists(currentLogEntryType, currentEntrySeverityInfo, mutable)) {
 				parser.addInfoToXML(currentLogEntryType.name(), currentEntrySeverityInfo);
-				System.out.println(currentEntrySeverityInfo);
 			} else {
 				logData.setSeverityInfo(mutable.getString());
 			}
 			logDataCollection.add(logData);
 		} catch(OpenReportException ex) {
-			//LOG
+			Logger.getLogger(CatalinaLogParser.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
