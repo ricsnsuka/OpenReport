@@ -85,6 +85,13 @@
     <SEVERE>Fatal Exception:Zip File /opt/brand/hughes_brands.jar does not contain hughes_brands/config/questions/motor/prequote_vehicledetails.xml</SEVERE>
         <SEVERE>BANG:</SEVERE>
         <SEVERE>Unknown Exception</SEVERE>
+    <SEVERE>110</SEVERE>
+        <SEVERE>User</SEVERE>
+        <SEVERE>RenewalOINCMessageGateway</SEVERE>
+    <SEVERE>java.lang.Exception</SEVERE>
+    <SEVERE>EmailManager:</SEVERE>
+    <SEVERE>SessionReference</SEVERE>
+    <SEVERE>111</SEVERE>
     </SEVERES>
 	<INFOS>
 		<INFO>### Authentication attempt username</INFO>
@@ -409,6 +416,14 @@
         <INFO>Thread=19588 loaded list OV.TitleHome~uH001~H(5 entries) elapsed=19ms</INFO>
         <INFO>Thread=19588 entered loadList BHQ_WINDOWLOCKS</INFO>
         <INFO>SessionReference: 172653549 FormPanelValidateTimings ProposerDetails:drivingRecordFormPanel=74ms</INFO>
+    <INFO>IOException occurred in UserInfoServiceClient. Connection issue.sun.security.validator.ValidatorException</INFO>
+        <INFO>GatewayResender (ThreadID</INFO>
+        <INFO>OpenCustomerPortalRealm loaded using properties</INFO>
+        <INFO>SessionReference</INFO>
+    <INFO>Information Service  GetInformation exceeded trycount 1 exception</INFO>
+        <INFO>PageTimings</INFO>
+        <INFO>loadModels</INFO>
+        <INFO>Exception serving resource</INFO>
     </INFOS>
 	<WARNINGS>
 		<WARNING>Rule publish DateTime</WARNING>

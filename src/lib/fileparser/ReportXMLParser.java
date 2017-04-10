@@ -36,7 +36,7 @@ public final class ReportXMLParser extends XMLParser {
 		xmlInformation.put(LogEntryType.WARNING.name(), new ArrayList<>());
 	}
 
-	public boolean exists(LogEntryType type, String severityInfo, MutableString mutable) {
+	public String exists(LogEntryType type, String severityInfo) {
 		NodeList nList = getDocument().getElementsByTagName(tagNames.get(type));
 		//This can and should be easily replaced
 		JaroWinkler algorithm = new JaroWinkler();
@@ -53,20 +53,19 @@ public final class ReportXMLParser extends XMLParser {
 					if(nList2.item(j).getNodeType() == Node.ELEMENT_NODE) {
 						textContent = nList2.item(j).getTextContent();
 						if(!"".equals(textContent) && severityInfo.contains(textContent)) {
-							mutable.setString(textContent);
-							return true;
+							return textContent;
 						}
 						similarity = algorithm.getSimilarity(severityInfo, textContent);
+						//TODO make the similarity value configurable
 						if(similarity > 0.93) {
-							mutable.setString(textContent);
-							return true;
+							return textContent;
 						}
 					}
 					j++;
 				}
 			}
 		}
-		return false;
+		return null;
 	}
 
 	private void initTagNames() {

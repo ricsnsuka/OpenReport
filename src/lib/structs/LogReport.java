@@ -47,7 +47,7 @@ public class LogReport {
 		CatalinaLogParser parser = new CatalinaLogParser();
 		for(String key : config.getApplications().keySet()) {
 			for(Application application : config.getApplications().get(key).getSelectedValues()) {
-				logData = parser.parse(config, application);
+				logData = parser.parse(application);
 				generateReport();
 			}
 		}

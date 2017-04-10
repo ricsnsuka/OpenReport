@@ -4,17 +4,18 @@ import lib.exceptions.OpenReportException;
 
 public class LogDataFactory {
 
-	public static LogData generateLogData(String type,  String severityInfo) throws OpenReportException {
+	public static LogData generateLogData(String line) throws OpenReportException {
 		LogData log = null;
-		switch(type) {
+		
+		switch(line.split(": ")[0]) {
 		case "SEVERE":
-			log = new SevereLogData(severityInfo);
+			log = new SevereLogData(line.split(": ")[1]);
 			break;
 		case "INFO":
-			log = new InfoLogData(severityInfo);
+			log = new InfoLogData(line.split(": ")[1]);
 			break;
 		case "WARNING":
-			log = new WarningLogData(severityInfo);
+			log = new WarningLogData(line.split(": ")[1]);
 			break;
 		default:
 			throw new OpenReportException("The provided type is invalid.");

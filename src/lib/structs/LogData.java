@@ -32,5 +32,21 @@ public class LogData {
 	public void setType(LogEntryType type) {
 		this.type = type;
 	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if(other == null || getClass() != other.getClass()) {
+			return false;
+		}
+		return ((LogData)other).getType().name().equals(this.getType().name()) && ((LogData)other).getSeverityInfo().equals(this.getSeverityInfo());
+	}
+	
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 53 * hash + (this.severityInfo != null ? this.severityInfo.hashCode() : 0);
+		hash = 53 * hash + (this.type != null ? this.type.hashCode() : 0);
+		return hash;
+	}
 
 }
