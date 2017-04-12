@@ -14,22 +14,19 @@ import lib.structs.LogData;
 import lib.structs.LogDataFactory;
 import lib.structs.LogEntryType;
 
-public class LogReader implements Runnable {
-
-	private Thread thread;
-	private String threadName;
-
+public class LogReader {
+	
 	private Map<LogData, Integer> logDataMap;
 	private Path filePath;
-
+	private String appRefName;
+	
 	public LogReader(String name, Path filePath) {
 		this.logDataMap = new HashMap<>();
 		this.filePath = filePath;
-		this.threadName = name;
+		this.appRefName = name;
 	}
 
-	@Override
-	public void run() {
+	public void read() {
 		ReportXMLParser parser = new ReportXMLParser();
 		try (Stream<String> fileLines = Files.lines(filePath)){
 			fileLines.filter(line -> hasSeverity(line)).forEach(line -> {
@@ -41,16 +38,8 @@ public class LogReader implements Runnable {
 					logDataMap.put(logData, 1);
 				}
 			});
-			logDataMap.forEach((key, value) -> System.out.printf("%s = %s\n", key.getSeverityInfo(), value));
 		} catch (IOException ex) {
 			Logger.getLogger(CatalinaLogParser.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
-
-	public void start() {
-		if(thread == null) {
-			thread = new Thread(this, threadName);
-			thread.start();
 		}
 	}
 
@@ -58,8 +47,8 @@ public class LogReader implements Runnable {
 		return logDataMap;
 	}
 
-	public String getThreadName() {
-		return threadName;
+	public String getAppRefName() {
+		return appRefName;
 	}
 
 	private boolean hasSeverity(String line) {
