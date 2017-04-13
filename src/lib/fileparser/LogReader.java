@@ -15,11 +15,11 @@ import lib.structs.LogDataFactory;
 import lib.structs.LogEntryType;
 
 public class LogReader {
-	
+
 	private Map<LogData, Integer> logDataMap;
 	private Path filePath;
 	private String appRefName;
-	
+
 	public LogReader(String name, Path filePath) {
 		this.logDataMap = new HashMap<>();
 		this.filePath = filePath;
@@ -64,7 +64,9 @@ public class LogReader {
 			String textContent;
 
 			if((textContent = parser.exists(currentLogEntryType, currentEntrySeverityInfo)) == null) {
-				parser.addInfoToXML(currentLogEntryType.name(), currentEntrySeverityInfo);
+				if(!currentEntrySeverityInfo.contains("SessionReference")) {
+					parser.addInfoToXML(currentLogEntryType.name(), currentEntrySeverityInfo);
+				} 
 			} else {
 				logData.setSeverityInfo(textContent);
 			}

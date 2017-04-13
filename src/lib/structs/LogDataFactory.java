@@ -6,16 +6,16 @@ public class LogDataFactory {
 
 	public static LogData generateLogData(String line) throws OpenReportException {
 		LogData log = null;
-		
-		switch(line.split(": ")[0]) {
+		int split = line.indexOf(':');
+		switch(line.substring(0, split)) {
 		case "SEVERE":
-			log = new SevereLogData(line.split(": ")[1]);
+			log = new SevereLogData(line.substring(split+1).trim());
 			break;
 		case "INFO":
-			log = new InfoLogData(line.split(": ")[1]);
+			log = new InfoLogData(line.substring(split+1).trim());
 			break;
 		case "WARNING":
-			log = new WarningLogData(line.split(": ")[1]);
+			log = new WarningLogData(line.substring(split+1).trim());
 			break;
 		default:
 			throw new OpenReportException("The provided type is invalid.");

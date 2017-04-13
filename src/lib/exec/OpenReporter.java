@@ -3,7 +3,11 @@
  */
 package lib.exec;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import lib.controller.EmailController;
+import lib.structs.LogData;
 import lib.structs.LogEntryType;
 import lib.structs.LogReport;
 import lib.structs.ReportConfig;
@@ -59,11 +63,18 @@ public class OpenReporter implements Runnable {
 			System.out.println(type + ": " + occurrences + " occurrences");
 		}
 		
+		System.out.println("---------------------ORDERED---------------------");
+		
+		Map<LogData, Integer> result = new LinkedHashMap<>();
+		
+		report.getLogDataHits(config).entrySet().stream().sorted(Map.Entry.<LogData, Integer>comparingByValue().reversed()).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+		
+		result.forEach((key, value) -> System.out.println("(" + key.getType() + (key.getType().name().length() >= 6 ?")\t":")\t\t") + key.getSeverityInfo() + ": " + value + " times."));
+
+		
 		System.out.println("--------------------------------------------------");
 		
-		report.getLogDataHits(config).forEach((key, value) -> System.out.println("(" + key.getType() + ")\t" + key.getSeverityInfo() + ": " + value + " times."));
 		
-		System.out.println("--------------------------------------------------");
 		long finish = System.currentTimeMillis();
 		System.out.println("Ran in " + (finish-start) + " ms");
 		
@@ -71,7 +82,6 @@ public class OpenReporter implements Runnable {
 		for(String developer : email.getEmailReceiversList()) {
 			System.out.println(developer);
 		}
-		
 	}
 	
 	public void start() {

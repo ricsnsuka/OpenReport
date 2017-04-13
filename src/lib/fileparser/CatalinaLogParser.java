@@ -16,11 +16,12 @@ import lib.structs.LogData;
 public class CatalinaLogParser {
 	private Map<LogData, Integer> logDataMap = new HashMap<>();
 	
-	
-	public Map<LogData, Integer> parse(Application application) {
+	public void parse(Map<String, Map<LogData, Integer>> appLogData, Application application) {
 
 		String appPath = "src/resources/applications/"+application.getProduct()+"/"+application.getName();
-
+		String appName = application.getProduct() + " - " + application.getName();
+		
+		
 		try(Stream<Path> paths = Files.walk(Paths.get(appPath))) {
 			paths.filter(filePath -> Files.isRegularFile(filePath)).forEach(filePath -> {
 				LogReader logReader = new LogReader(application.getProduct(), filePath);
@@ -34,11 +35,10 @@ public class CatalinaLogParser {
 					}
 				});
 			});
-			return logDataMap;
+			appLogData.put(appName, logDataMap);
 		} catch (IOException e) {
 			Logger.getLogger(CatalinaLogParser.class.getName()).log(Level.SEVERE, "Resource not available:: ", application.getName());
 		}	
-		return null;
 	}
 
 }
