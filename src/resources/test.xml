@@ -69,6 +69,8 @@
         <SEVERE>Error in BDMInterface</SEVERE>
         <SEVERE>The web application [/CoreQuote] appears to have started a thread</SEVERE>
         <SEVERE>Passed Tomcat session ID didn't match from deeplink URL</SEVERE>
+    <SEVERE>JavascriptServlet fatal error</SEVERE>
+        <SEVERE>TemplatePopulator::getReplacement failed on tag: brand_paymentMethodImage</SEVERE>
     </SEVERES>
 	<INFOS>
 		<INFO>### Authentication attempt username</INFO>
@@ -206,6 +208,64 @@
         <INFO>Thread=12254 entered loadBrand [opencustomerportalebrokeriym]Broker</INFO>
         <INFO>Shared Session (0CF1910FA7CF6B002D29E6FA6C0B2B7D) removed. SharedSessionSize=0</INFO>
     <INFO>Shared Session (A9350604840594D902429B0206FD3291) removed. SharedSessionSize=0</INFO>
+    <INFO>messageXML is null or empty</INFO>
+        <INFO>PageTimings: Process(Person)=1ms Render(Person)=0ms</INFO>
+        <INFO>Checking view identifier '/site/SiteStatus.jsp'</INFO>
+        <INFO>PageTimings: Process(PreQuote_ProposerDetails)=207ms Render(PreQuote_ProposerDetails)=133ms</INFO>
+        <INFO>PageTimings: Process(QuoteStart)=12045ms Render(QuoteStart)=0ms</INFO>
+        <INFO>Nothing to report</INFO>
+        <INFO>PageTimings: Process(RetrieveQuote)=701ms Render(RetrieveQuote)=72ms</INFO>
+        <INFO>Reloading PersistentCache object: UserInfoBrokerServer_B01594</INFO>
+        <INFO>Unable to find selected value 1968cc in list: [0-1050:0 - 1000cc::, 951-1750:1001cc - 1700cc::, 1651-2050:1701cc - 2100cc::, 2051-2550:2101cc - 2600cc::, 2551-10000:2601cc+::]</INFO>
+        <INFO>Unable to determine VehicleSpecification Filter for field Vehicle.PreciseModel with value 1968cc</INFO>
+        <INFO>Thread=45 entered loadBrand CoreQuote.Home</INFO>
+        <INFO>Thread=45 loaded brand CoreQuote.Home elapsed=11ms</INFO>
+        <INFO>Thread=45 loaded brand [responsive]home elapsed=3ms</INFO>
+        <INFO>Thread=45 entered loadBrand [responsive]responsive</INFO>
+        <INFO>Thread=45 loaded brand Hughes.Truck elapsed=7ms</INFO>
+        <INFO>Checking view identifier '/RemoteEvent.do'</INFO>
+        <INFO>Thread=9750 entered loadList OV.MotorTitle~uQRTL~H</INFO>
+        <INFO>Thread=9750 loaded list OV.MotorTitle~uQRTL~H(6 entries) elapsed=39ms</INFO>
+        <INFO>Thread=9750 entered loadList BDB.HearAboutUs.Hughes</INFO>
+        <INFO>Thread=9750 loaded list BDB.HearAboutUs.Hughes(9 entries) elapsed=78ms</INFO>
+        <INFO>Thread=9750 loaded list DB.PrevPayment.Hughes(2 entries) elapsed=1ms</INFO>
+        <INFO>Thread=9750 loaded list OV.PermittedDrivers~uQR01~H(2 entries) elapsed=7ms</INFO>
+        <INFO>Thread=9750 entered loadList OV.PersonsMinusOne~DB.PersonsMinusOne~H</INFO>
+        <INFO>Thread=9750 loaded list OV.PersonsMinusOne~DB.PersonsMinusOne~H(4 entries) elapsed=0ms</INFO>
+        <INFO>Thread=9750 loaded list OV.IncidentPolicyMotor~uQR20~S(4 entries) elapsed=8ms</INFO>
+        <INFO>Thread=9750 loaded list DB.NCBAffMotor(2 entries) elapsed=0ms</INFO>
+        <INFO>Thread=9750 loaded list OV.OwnerKeeper~uQR08~H(18 entries) elapsed=11ms</INFO>
+        <INFO>Thread=10804 entered loadList [responsive]DB.CardTypes</INFO>
+        <INFO>Thread=10804 loaded list [responsive]DB.CardTypes(4 entries) elapsed=1ms</INFO>
+        <INFO>Thread=10803 loaded list DB.PersonsMinusOne(5 entries) elapsed=0ms</INFO>
+        <INFO>PageTimings: Process(PreQuote_ProposerDetails)=2938ms Render(NoQuote)=51ms</INFO>
+        <INFO>PageTimings: Process(Quote)=487ms Render(Confirmation)=55ms</INFO>
+        <INFO>PageTimings: Process(Confirmation)=220ms Render(DirectDebit)=110ms</INFO>
+        <INFO>Thread=10186 loaded list OV.Title~uQRTL~H(5 entries) elapsed=19ms</INFO>
+        <INFO>Thread=10186 entered loadList OV.MaritalStatus~uQR17~S</INFO>
+        <INFO>Thread=10186 loaded list OV.MaritalStatus~uQR17~S(8 entries) elapsed=61ms</INFO>
+        <INFO>Thread=10186 entered loadList TOA_FULLPART</INFO>
+        <INFO>PageTimings: Process(ProposerDetails)=130ms Render(ProposerDetails)=478ms</INFO>
+        <INFO>Checking view identifier '/broker/DownloadPolicy.jsp'</INFO>
+        <INFO>Thread=10217 loaded brand core.truck elapsed=5ms</INFO>
+        <INFO>PageTimings: Process(NoQuote)=188ms Render(ProposerDetails)=118ms</INFO>
+        <INFO>Thread=10211 entered loadList OV.TitleHome~uH001~H</INFO>
+        <INFO>Thread=10211 loaded list DB.YesNoSwapped(2 entries) elapsed=1ms</INFO>
+        <INFO>Thread=10211 entered loadList H18_FULLPART</INFO>
+        <INFO>Thread=10211 loaded list BHQ_CURRENTMOTORPOLICY(2 entries) elapsed=7ms</INFO>
+        <INFO>Thread=10211 loaded list OV.PropertyType~uH005~H(16 entries) elapsed=9ms</INFO>
+        <INFO>Thread=10211 entered loadList OV.ClaimSection~HBC_CLAIMSECT~S</INFO>
+        <INFO>Thread=10211 loaded list OV.ClaimSection~HBC_CLAIMSECT~S(8 entries) elapsed=6ms</INFO>
+        <INFO>Thread=10211 loaded list OV.OwnershipStatus~uH01G~H(7 entries) elapsed=31ms</INFO>
+        <INFO>Checking view identifier '/resources/images/date_picker_icon.png'</INFO>
+        <INFO>Thread=10803 entered loadList DB.VehCategory.Hughes</INFO>
+        <INFO>PageTimings: Process(DirectDebit)=82ms Render(PaymentRedirect)=70ms</INFO>
+        <INFO>Got sessionRef=HUG-2C01J2LY0W</INFO>
+        <INFO>Invalid chunk starting at byte [238] and ending at byte [243] with a value of [=Next] ignored</INFO>
+        <INFO>Unknown Tag:sessionQuoteTimeStamp</INFO>
+        <INFO>PageTimings: Process(Quote)=222ms Render(PaymentRedirect)=73ms</INFO>
+        <INFO>PageTimings: Process(Quote)=205ms Render(OTSHomeProposer)=14ms</INFO>
+        <INFO>User 171735450 is locked out until 2016-12-31 23:39:17.000 after 10 failed login attempts.</INFO>
     </INFOS>
 	<WARNINGS>
 		<WARNING>Rule publish DateTime</WARNING>

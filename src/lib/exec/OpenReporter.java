@@ -3,10 +3,12 @@
  */
 package lib.exec;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import lib.controller.EmailController;
+import lib.json.ReportJSONFileWriter;
 import lib.structs.LogData;
 import lib.structs.LogEntryType;
 import lib.structs.LogReport;
@@ -49,6 +51,8 @@ public class OpenReporter implements Runnable {
 		
 		report.generateReport(config);
 		
+		Map<LogData, Integer> reportLogDataHits = report.getLogDataHits(config);
+		
 		System.out.println("--------------------------------------------------");
 		System.out.println(threadName + "\n\n");
 		
@@ -56,7 +60,7 @@ public class OpenReporter implements Runnable {
 		
 		for(LogEntryType type : types) {
 			occurrences = 0;
-			report.getLogDataHits().entrySet().stream()
+			reportLogDataHits.entrySet().stream()
 				.filter(map -> type.equals(map.getKey().getType())).forEach(map -> {
 					occurrences += map.getValue();
 				});
@@ -67,7 +71,7 @@ public class OpenReporter implements Runnable {
 		
 		Map<LogData, Integer> result = new LinkedHashMap<>();
 		
-		report.getLogDataHits(config).entrySet().stream().sorted(Map.Entry.<LogData, Integer>comparingByValue().reversed()).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+		reportLogDataHits.entrySet().stream().sorted(Map.Entry.<LogData, Integer>comparingByValue().reversed()).forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
 		
 		result.forEach((key, value) -> System.out.println("(" + key.getType() + (key.getType().name().length() >= 6 ?")\t":")\t\t") + key.getSeverityInfo() + ": " + value + " times."));
 
@@ -78,9 +82,21 @@ public class OpenReporter implements Runnable {
 		long finish = System.currentTimeMillis();
 		System.out.println("Ran in " + (finish-start) + " ms");
 		
+		
 		System.out.println("Sending to: ");
 		for(String developer : email.getEmailReceiversList()) {
 			System.out.println(developer);
+		}
+		
+		System.out.println("Creating JSON file");
+		
+		ReportJSONFileWriter json = new ReportJSONFileWriter();
+		
+		try {
+			json.createFile(config, report.getAppLog());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

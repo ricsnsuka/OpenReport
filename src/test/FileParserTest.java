@@ -25,7 +25,7 @@ public class FileParserTest {
 
 		for(LogEntryType type : types) {
 			occurrences = 0;
-			report.getLogDataHits().entrySet().stream()
+			report.getLogDataHits(config).entrySet().stream()
 			.filter(map -> type.equals(map.getKey().getType())).forEach(map -> {
 				occurrences += map.getValue();
 			});
@@ -34,7 +34,7 @@ public class FileParserTest {
 
 		System.out.println("--------------------------------------------------");
 
-		for(Map.Entry<LogData, Integer> entry : report.getLogDataHits().entrySet()) {
+		for(Map.Entry<LogData, Integer> entry : report.getLogDataHits(config).entrySet()) {
 			String sevInfo = entry.getKey().getSeverityInfo();
 			System.out.println(sevInfo + ": " + report.countHits(sevInfo) + " times");
 		}
