@@ -2,8 +2,8 @@ package lib.structs;
 
 import java.util.HashMap;
 import java.util.Set;
-
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import lib.adapters.ApplicationAdapter;
 import lib.adapters.ScheduleAdapter;

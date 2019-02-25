@@ -10,7 +10,6 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -37,9 +36,9 @@ public class ReportJSONFileWriter {
 		Gson gson = new GsonBuilder().setPrettyPrinting().setLenient().create();
 		JsonParser jp = new JsonParser();
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
-		Date date = cal.getTime();
+//		Date date = cal.getTime();
 		
 //		JsonElement reportDate = jp.parse(dateFormat.format(date));
 		

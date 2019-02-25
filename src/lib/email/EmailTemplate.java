@@ -1,6 +1,6 @@
 package lib.email;
 
-import org.stringtemplate.v4.*;
+import org.stringtemplate.v4.ST;
 
 public class EmailTemplate {
 	public static void main(String[] args) {

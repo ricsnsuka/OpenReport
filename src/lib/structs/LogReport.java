@@ -8,7 +8,7 @@ import lib.fileparser.CatalinaLogParser;
 public class LogReport {
 	private Map<LogData, Integer> logDataHits;
 	private Map<String, Map<LogData, Integer>> appLogDataHits;
-	private int hitOccurences = 0;
+//	private int hitOccurences = 0;
 
 	public LogReport() {
 		appLogDataHits = new HashMap<>();
@@ -24,7 +24,7 @@ public class LogReport {
 	}
 
 	public int countHits(String sevInfo) {
-		hitOccurences = 0;
+//		hitOccurences = 0;
 		appLogDataHits.forEach((key, value) -> value.entrySet().stream()
 				.filter(map -> sevInfo.equals(map.getKey().getType().name())));
 		return logDataHits.get(sevInfo);
